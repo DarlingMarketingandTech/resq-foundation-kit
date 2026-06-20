@@ -1,6 +1,11 @@
 # ResQ Foundation Kit — Agent Operating Guide
 
-This repository is the **foundation layer** for a WordPress + WooCommerce storefront built as a theme/plugin pair. Agents should treat the docs in `docs/` as the source of truth before writing code.
+This repository is the **foundation layer** for a WordPress + WooCommerce storefront built as a theme/plugin pair:
+
+- **Theme:** `resq-clean-pro` — presentation and Woo template overrides
+- **Plugin:** `resq-core` — business logic, settings, Woo hooks
+
+Agents must treat the docs in `docs/` as the source of truth before writing code. Do not blur the theme/plugin boundary defined in `docs/01-THEME-PLUGIN-CONTRACT.md`.
 
 ## North star stack
 
@@ -24,7 +29,7 @@ Add later (only after sandbox is stable):
 
 - **Mutation layer:** WP-CLI first (backups, search-replace dry-run, plugin/config changes)
 - **Remote access:** read-only WordPress/Woo MCP against staging until explicitly approved
-- **Local sandbox:** DDEV + WP-CLI (see `docs/06-BUILD-ROADMAP.md`)
+- **Local sandbox:** LocalWP or DDEV + WP-CLI (Phase 6 validates LocalWP; see `docs/06-BUILD-ROADMAP.md`)
 - **Write policy:** Plan mode for any file, DB, or config mutation; no production store writes in normal sessions
 
 ## Read order
@@ -36,6 +41,23 @@ Add later (only after sandbox is stable):
 5. `docs/04-PRODUCT-MERCHANDISING-SYSTEM.md` — PDP/PLP, badges, cross-sells
 6. `docs/05-COMPLIANCE-RULES.md` — accessibility, performance, legal, checkout safety
 7. `docs/06-BUILD-ROADMAP.md` — phases, milestones, verification gates
+
+## Build phases (summary)
+
+Follow the ordered roadmap in `docs/06-BUILD-ROADMAP.md`. Do not skip phases or verification gates.
+
+| Phase | Focus |
+|---|---|
+| 1 | Contract and architecture (docs lock) |
+| 2 | Plugin foundation |
+| 3 | Theme foundation |
+| 4 | WooCommerce template shells |
+| 5 | Demo fixtures |
+| 6 | LocalWP install test |
+| 7 | Catalog / product strategy |
+| 8 | Polish and QA |
+
+Planning-level nav concepts only: **Pets, People, CBD, Bundles, Learn** — not hardcoded product data.
 
 ## Project skills (`.codex/skills/`)
 
