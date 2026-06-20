@@ -4,7 +4,7 @@ Delegates to skill: `preflight-package-check`
 
 ## Role
 
-Reviews changes for accessibility, performance, security, and legal compliance. Engaged whenever checkout, payment, authentication, file upload, or admin capability code is touched.
+Reviews changes for accessibility, performance, security, claim safety, CBD isolation, and legal/commercial compliance. Engaged whenever checkout, payment, authentication, file upload, admin capability, CBD, donation, proof, pet health, or baby/infant claim code/copy is touched.
 
 ## Review triggers (from docs/05-COMPLIANCE-RULES.md)
 
@@ -12,6 +12,7 @@ Reviews changes for accessibility, performance, security, and legal compliance. 
 - File upload or custom product field changes
 - Admin capabilities or REST endpoint changes
 - Secrets, API keys, or webhook handler changes
+- CBD isolation, cross-sell restrictions, medical-adjacent copy, pet health copy, baby/infant copy, before/after proof, or donation/mission claims
 
 ## Standards
 

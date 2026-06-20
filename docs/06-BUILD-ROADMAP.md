@@ -1,416 +1,304 @@
 # 06 — Build Roadmap
 
-> Ordered phased delivery for the ResQ Foundation Kit. Each phase has entry criteria, key tasks, and exit criteria. Do not skip verification gates.
+> Ordered phased delivery for the ResQ Foundation Kit. Do not skip verification gates. This repo is a foundation kit, not a full WordPress install.
 
-## Overview
+## Release Marker
 
-```mermaid
-flowchart LR
-  P1[Phase1 Contract] --> P2[Phase2 Plugin]
-  P2 --> P3[Phase3 Theme]
-  P3 --> P4[Phase4 WooShells]
-  P4 --> P5[Phase5 Fixtures]
-  P5 --> P6[Phase6 LocalWP]
-  P6 --> P7[Phase7 Catalog]
-  P7 --> P8[Phase8 PolishQA]
-```
+| Item | Value |
+|---|---|
+| Foundation branch | `foundation-blueprint` |
+| Foundation tag | `v0.1-foundation-blueprint` |
+| Current focus | Phase 1 architecture alignment |
+
+## Phase Overview
 
 | Phase | Name | Primary output |
 |---|---|---|
-| 0 | Skeleton | Repo, docs scaffold, agent skills *(complete)* |
-| 1 | Contract and architecture | Locked docs 00–06, namespace, boundaries |
-| 2 | Plugin foundation | `resq-core` bootstrap, settings, helpers |
-| 3 | Theme foundation | `resq-clean-pro` layout, assets, tokens shell |
-| 4 | WooCommerce template shells | All mapped template overrides (minimal markup) |
-| 5 | Demo fixtures | Sample categories/products via WP-CLI |
-| 6 | LocalWP install test | End-to-end smoke on fresh WP + Woo |
-| 7 | Catalog / product strategy | Merchandising rules, badges, cross-sells |
-| 8 | Polish and QA | Taste, compliance, accessibility, preflight |
+| 1 | Foundation blueprint lock | Docs `00` through `10`, source-blueprint index, boundaries |
+| 2 | Plugin data contract | `resq-core` helper stubs, options, meta/taxonomy plan |
+| 3 | Plugin routine-commerce model | Audience, concern, routine, canonical, bundle, FBT, CBD data structures |
+| 4 | Theme global foundation | Header/nav/mega-menu/mobile drawer/footer, assets, tokens |
+| 5 | WooCommerce template shells | Shop, category, card, PDP, cart, checkout, account, search shells |
+| 6 | Gateway and Learn surfaces | Human, pet, bundle, CBD, Learn bridge templates |
+| 7 | Demo fixture system | Safe fixture categories/products/routines via WP-CLI |
+| 8 | Merchandising behavior | Badges, routine ladders, bundles, FBT, cross-sells, filters |
+| 9 | Local sandbox validation | Fresh LocalWP/DDEV install and Woo smoke test |
+| 10 | Compliance, accessibility, performance QA | CBD isolation, claim review, WCAG, checkout safety |
+| 11 | Preflight release package | Preflight review, docs sync, tag candidate |
 
 ---
 
-## Phase 0 — Skeleton *(current baseline)*
+## Phase 1 — Foundation Blueprint Lock
 
-**Status:** largely complete
-
-- [x] Repo structure, docs scaffold, agent skills
-- [x] Minimal theme and plugin bootstrap files
-- [ ] CodeGraph installed and indexed locally (per developer)
-
----
-
-## Phase 1 — Contract and architecture
-
-**Goal:** Lock planning docs so every future Codex task has a clear, safe contract.
-
-### Entry criteria
-
-- Phase 0 repo skeleton exists
-- Theme and plugin scaffolds activate without fatals
+**Goal:** Lock architecture before major implementation.
 
 ### Key tasks
 
-| Task | Owner doc | Notes |
-|---|---|---|
-| Finalize `00-PROJECT-BRIEF.md` | 00 | Mission, boundaries, audiences, decisions |
-| Finalize `01-THEME-PLUGIN-CONTRACT.md` | 01 | Helpers, fallbacks, meta ownership |
-| Finalize `03-WOO-TEMPLATE-MAP.md` | 03 | All storefront surfaces mapped |
-| Finalize `06-BUILD-ROADMAP.md` | 06 | This document |
-| Align `AGENTS.md` with docs | AGENTS | Point to docs; no duplication |
-| Confirm namespace conventions | 01 | `resq_core_*`, `resq_theme_*`, `ResQ\Core\` |
-| Asset build decision | 00 / 01 | Default: plain CSS/JS; Vite optional note for Phase 3 |
-| Review 02, 04, 05 for consistency | 02–05 | No full fill required; ensure no contradictions |
+- Finalize `00-PROJECT-BRIEF.md`.
+- Finalize `01-THEME-PLUGIN-CONTRACT.md`.
+- Finalize `03-WOO-TEMPLATE-MAP.md`.
+- Finalize `04-PRODUCT-MERCHANDISING-SYSTEM.md`.
+- Finalize `05-COMPLIANCE-RULES.md`.
+- Finalize this roadmap.
+- Add `07-INFORMATION-ARCHITECTURE.md`.
+- Add `08-ROUTINE-COMMERCE-FRAMEWORK.md`.
+- Add `09-CANONICAL-PRODUCT-STRATEGY.md`.
+- Add `10-SOURCE-BLUEPRINT-INDEX.md`.
+- Confirm source blueprints remain preserved in `docs/source-blueprints/`.
+- Lightly align `AGENTS.md`, skills, and agents.
 
 ### Exit criteria
 
-- [ ] Docs 00, 01, 03, 06 internally consistent
-- [ ] No TBD markers in contract-critical sections (helpers, surfaces, phases)
-- [ ] `AGENTS.md` read order matches doc set
-- [ ] Git commit: `docs: define ResQ foundation architecture and roadmap`
-- [ ] Team/agent sign-off: contract is safe to implement against
-
-### Verification gate
-
-- Cross-read 01 vs 03: every shared surface has owner + helper named
-- Cross-read 00 vs 06: phase scope matches project boundaries
+- [ ] Docs `00` through `10` are internally consistent.
+- [ ] Theme/plugin/Woo ownership is explicit.
+- [ ] Source blueprints are indexed, not rewritten.
+- [ ] No major PHP implementation was added.
+- [ ] Branch target is `foundation-blueprint`.
+- [ ] Tag target is `v0.1-foundation-blueprint`.
 
 ---
 
-## Phase 2 — Plugin foundation
+## Phase 2 — Plugin Data Contract
 
-**Goal:** `resq-core` becomes a functional logic layer with settings, feature flags, and public helpers.
-
-### Entry criteria
-
-- Phase 1 exit criteria met
+**Goal:** Make `resq-core` a thin, safe provider of documented helper contracts.
 
 ### Key tasks
 
-| Task | Effort | Notes |
-|---|---|---|
-| PSR-4 or structured autoloader | Low | `includes/` layout per contract |
-| Activation / deactivation hooks | Low | Defaults, transient cleanup |
-| Settings API + options defaults | Medium | `resq_core_settings`, `resq_core_features` |
-| Implement required helpers (stubs OK) | Medium | See `01-THEME-PLUGIN-CONTRACT.md` |
-| Woo dependency check + admin notice | Low | Require WooCommerce active |
-| Feature flag infrastructure | Low | `resq_core_feature_enabled()` |
-| WP-CLI command scaffold | Low | `wp resq-core status` |
-| i18n load | Low | `resq-core` text domain |
+- Add plugin infrastructure helpers from `01-THEME-PLUGIN-CONTRACT.md`.
+- Add storefront helper stubs returning empty arrays/nulls/booleans safely.
+- Add options defaults and feature flags.
+- Add WooCommerce dependency check and admin notice.
+- Document meta/taxonomy registration plan before adding fields.
+- Add WP-CLI status scaffold only if needed for validation.
 
 ### Exit criteria
 
-- [ ] Plugin activates/deactivates without errors
-- [ ] All documented `resq_core_*` helpers exist (may return empty/stub data)
-- [ ] Settings page accessible in admin (minimal UI OK)
-- [ ] `wp resq-core status` reports version and feature flags
-- [ ] Deactivation clears transients; options preserved
-- [ ] No HTML echoed from plugin on front-end hooks yet
-
-### Verification gate
-
-- Deactivate plugin: no fatals in theme
-- Reactivate: defaults restored where missing
+- [ ] Plugin activates/deactivates without fatals.
+- [ ] Documented helpers exist as stubs or safe no-ops.
+- [ ] No front-end markup is echoed from plugin hooks.
+- [ ] Theme can run with plugin inactive.
 
 ---
 
-## Phase 3 — Theme foundation
+## Phase 3 — Plugin Routine-Commerce Model
 
-**Goal:** `resq-clean-pro` provides global layout, asset loading, and CSS token shell.
-
-### Entry criteria
-
-- Phase 2 exit criteria met (helpers available for guarded calls)
+**Goal:** Define the data structures behind audiences, concerns, routines, canonical products, bundles, FBT, ingredients, and compliance flags.
 
 ### Key tasks
 
-| Task | Effort | Notes |
-|---|---|---|
-| Template hierarchy: header, footer, index | Medium | Mobile-first shell |
-| Nav menu locations (primary, footer) | Low | Registered on theme switch |
-| Enqueue system for CSS/JS | Low | Versioned with `RESQ_THEME_VERSION` |
-| CSS custom properties (token shell) | Low | Align with `02-BRAND-FOUNDATION.md` structure |
-| Basic responsive grid / container | Low | Used by later Woo templates |
-| Implement `resq_theme_*` helpers | Medium | Per contract doc |
-| Woo support declaration | Low | `add_theme_support( 'woocommerce' )` |
-| Plugin guard pattern in template parts | Low | `function_exists( 'resq_core_is_active' )` |
+- Register audience/concern/routine data structures.
+- Register product meta for routine membership, canonical mapping, bundle composition, FBT, CBD/compliance, and ingredients.
+- Add admin fields only after names and storage are documented.
+- Implement canonical resolver.
+- Implement CBD/compliance helper rules.
+- Add cache/transient strategy for relationship lookups.
 
 ### Exit criteria
 
-- [ ] Theme activates without fatals with or without plugin
-- [ ] Header/footer render on home and a sample page
-- [ ] CSS variables loaded; no hard-coded brand hex in plugin
-- [ ] All documented `resq_theme_*` helpers exist
-- [ ] Woo gallery support enabled if needed
-
-### Verification gate
-
-- Theme Customizer / front page loads
-- Plugin deactivated: layout intact, badges hidden
+- [ ] Helpers return real fixture-ready data.
+- [ ] Meta ownership matches `01-THEME-PLUGIN-CONTRACT.md`.
+- [ ] CBD isolation can be evaluated from data.
+- [ ] Canonical resolver has documented fallbacks.
 
 ---
 
-## Phase 4 — WooCommerce template shells
+## Phase 4 — Theme Global Foundation
 
-**Goal:** Create override files for every surface in `03-WOO-TEMPLATE-MAP.md` with minimal markup and correct hooks.
-
-### Entry criteria
-
-- Phase 3 exit criteria met
-- WooCommerce active in sandbox
+**Goal:** Build the display shell without business logic.
 
 ### Key tasks
 
-| Task | Effort | Notes |
-|---|---|---|
-| `archive-product.php` | Medium | Shop + category shared |
-| `content-product.php` | Medium | Card anatomy + badge slot |
-| `single-product.php` + partials | Medium | PDP zones, compliance slot |
-| Cart templates | Medium | cart.php, cart-empty.php |
-| Checkout `form-checkout.php` | Medium | Compliance banner slot |
-| My Account shell | Low | navigation + dashboard |
-| `search.php` | Low | Product-first results |
-| Template parts: compliance, FBT | Low | Empty-safe when no data |
-| Document any new partials in template map | Low | Same PR |
-
-**Explicitly out of scope for Phase 4:** visual polish, final copy, real merchandising rules.
+- Add header, footer, primary nav, mega-menu shell, mobile drawer, cart link shell.
+- Add theme helper functions.
+- Add asset loading and CSS token shell.
+- Add responsive containers, grid primitives, focus states, reduced-motion defaults.
+- Add plugin guard pattern for all data slots.
 
 ### Exit criteria
 
-- [ ] Every `planned` row in template map has a theme file or documented hook strategy
-- [ ] PLP, PDP, cart, checkout, account, search load without PHP notices
-- [ ] Compliance and FBT slots render empty gracefully
-- [ ] Plugin hooks fire (verify with simple test notice in plugin)
-- [ ] Template map status updated to `in-progress` or `done` per file
-
-### Verification gate
-
-Smoke URLs (no styling judgment):
-
-- `/shop/` · `/product-category/{slug}/` · `/product/{slug}/`
-- `/cart/` · `/checkout/` · `/my-account/` · `/?s=test&post_type=product`
+- [ ] Theme activates with or without plugin.
+- [ ] Global layout renders on basic WP pages.
+- [ ] Navigation remains stable and accessible.
+- [ ] No product data is registered or mutated by the theme.
 
 ---
 
-## Phase 5 — Demo fixtures
+## Phase 5 — WooCommerce Template Shells
 
-**Goal:** Repeatable demo catalog for local development without real product data.
-
-### Entry criteria
-
-- Phase 4 exit criteria met
+**Goal:** Add minimal Woo template overrides mapped in `03-WOO-TEMPLATE-MAP.md`.
 
 ### Key tasks
 
-| Task | Effort | Notes |
-|---|---|---|
-| WP-CLI import script in `scripts/` | Medium | Idempotent where possible |
-| Top-level categories | Low | Pets, People, CBD, Bundles, Learn — labels only |
-| Placeholder simple products per category | Medium | Generic titles, no real SKUs/pricing strategy |
-| Sample pages (Home, Learn index) | Low | Block or classic content |
-| Menu assignment | Low | Primary nav to categories |
-| Fixture README | Low | How to import/reset |
-
-**Rules:**
-
-- No production catalog copy or images
-- No real customer PII in fixtures
-- CBD products flagged with compliance meta for testing notices only
+- Add shop/category archive shell.
+- Add product card shell.
+- Add PDP shell with empty routine/ingredient/FBT/compliance slots.
+- Add cart and cart-empty shells.
+- Add checkout shell with notice slot.
+- Add My Account shell.
+- Add search shell.
 
 ### Exit criteria
 
-- [ ] `scripts/import-fixtures.sh` (or `.ps1`) runs cleanly on fresh install
-- [ ] Five planning categories exist with ≥1 product each
-- [ ] Navigation resolves to category archives
-- [ ] At least one product has badge meta + FBT meta for UI testing
-- [ ] Fixtures gitignored if they contain generated SQL with env-specific URLs
-
-### Verification gate
-
-- Re-run import on clean DB: consistent result
-- `wp db export` before import documented in script header
+- [ ] Every Phase 5 surface loads without PHP notices.
+- [ ] Woo hooks still fire.
+- [ ] Empty plugin data creates empty-safe UI.
+- [ ] Template map remains current.
 
 ---
 
-## Phase 6 — LocalWP install test
+## Phase 6 — Gateway and Learn Surfaces
 
-**Goal:** Prove the foundation kit installs and runs on a fresh LocalWP (or equivalent) environment.
-
-### Entry criteria
-
-- Phase 5 exit criteria met
+**Goal:** Build audience, bundle, CBD, concern, and Learn-to-shop presentation shells.
 
 ### Key tasks
 
-| Task | Effort | Notes |
-|---|---|---|
-| Fresh LocalWP site: WP + WooCommerce | Medium | Standard WP, not Bedrock |
-| Clone/copy theme + plugin into `wp-content` | Low | Or symlink for dev |
-| Activate theme + plugin | Low | |
-| Run fixture import | Low | |
-| Configure test payment (Cash on Delivery or Stripe test) | Low | No live keys |
-| Deactivate outbound email / live payment plugins | Low | Per compliance doc |
-| Full smoke test checklist | Medium | All template map surfaces |
-| Document local setup in script or README snippet | Low | |
+- Add Human gateway page pattern.
+- Add Pet gateway page pattern.
+- Add Bundles & Savings landing pattern.
+- Add CBD-isolated gateway/category pattern.
+- Add concern landing pattern.
+- Add Learn index and Learn-to-shop bridge modules.
+- Add filter UI shell without final taxonomy lock.
 
 ### Exit criteria
 
-- [ ] Clean install → active theme/plugin → fixtures → smoke pass
-- [ ] Add to cart → checkout start works in test mode
-- [ ] Plugin deactivate/activate cycle passes
-- [ ] No critical JS console errors on PLP, PDP, checkout
-- [ ] `WP_ENVIRONMENT_TYPE` local; debug log reviewed
-
-### Verification gate
-
-| Step | Pass |
-|---|---|
-| Home loads | |
-| Shop archive loads | |
-| Category archive loads | |
-| PDP loads + add to cart | |
-| Cart updates | |
-| Checkout form renders | |
-| My Account login/register renders | |
-| Product search returns results | |
-| Compliance slot visible on flagged product (if meta set) | |
+- [ ] Gateway pages render without hardcoded final product truth.
+- [ ] Learn bridges use plugin helper fallbacks.
+- [ ] CBD visual isolation is present.
+- [ ] Source-blueprint examples remain examples only.
 
 ---
 
-## Phase 7 — Catalog / product strategy
+## Phase 7 — Demo Fixture System
 
-**Goal:** Define and implement merchandising behavior — badges, sorts, cross-sells, FBT rules, bundle approach.
-
-### Entry criteria
-
-- Phase 6 exit criteria met
-- `04-PRODUCT-MERCHANDISING-SYSTEM.md` updated in same phase
+**Goal:** Provide repeatable local data without production catalog or PII.
 
 ### Key tasks
 
-| Task | Effort | Notes |
-|---|---|---|
-| Fill merchandising doc (04) | Medium | PLP/PDP decisions |
-| Badge rules implementation | Medium | Plugin logic + admin fields |
-| PLP default sort / filters | Medium | Plugin query filters |
-| Cross-sell rules | Medium | `resq_core_get_cross_sells()` |
-| FBT rules (manual + fallback) | Medium | Order meta optional later |
-| Bundle approach decision | Medium | Extension vs custom — document ADR |
-| Related products args | Low | Filter hook |
-| Homepage merchandising zones | Medium | Template parts + data sources |
+- Create WP-CLI fixture import script.
+- Add demo products, variations, categories, routines, bundles, FBT, and compliance flags.
+- Add safe placeholder copy and images.
+- Document reset/import flow.
 
 ### Exit criteria
 
-- [ ] `04-PRODUCT-MERCHANDISING-SYSTEM.md` complete (no critical TBDs)
-- [ ] Badge, cross-sell, FBT helpers return real data for fixture products
-- [ ] Bundle strategy documented even if not fully implemented
-- [ ] Category strategy respects five planning top-level concepts only
-
-### Verification gate
-
-- Merchandising spot-check on fixture catalog
-- **woo-merchandiser** agent review optional
+- [ ] Fixtures import idempotently on fresh local install.
+- [ ] No production SKUs, prices, claims, images, customer data, or order data.
+- [ ] At least one fixture covers CBD isolation.
+- [ ] At least one fixture covers canonical mapping and routine ladder.
 
 ---
 
-## Phase 8 — Polish and QA
+## Phase 8 — Merchandising Behavior
 
-**Goal:** Production-ready quality pass — UI, accessibility, compliance, performance.
-
-### Entry criteria
-
-- Phase 7 exit criteria met
-- Brand tokens populated in `02-BRAND-FOUNDATION.md` (minimum viable palette/type)
+**Goal:** Turn the documented data into useful storefront behavior.
 
 ### Key tasks
 
-| Task | Effort | Notes |
-|---|---|---|
-| Taste-guided UI pass | Medium | **ecommerce-taste-review** skill |
-| Compliance review | Medium | **compliance-reviewer** agent; checkout/account |
-| Accessibility audit | Medium | WCAG 2.2 AA checklist in doc 05 |
-| Performance measurement | Medium | LCP targets per template in doc 05 |
-| Sticky ATC, related.php polish | Low | Optional |
-| Run **preflight-package-check** | Low | Pre-merge/release |
-| CodeGraph re-index | Low | Final structure |
+- Implement badges.
+- Implement routine ladders.
+- Implement FBT.
+- Implement bundle cards and bundle PDP display.
+- Implement cart drawer suggestions.
+- Implement related/cross-sell restrictions.
+- Implement product filters from plugin-owned data.
 
 ### Exit criteria
 
-- [ ] Compliance reviewer sign-off on checkout/account/compliance surfaces
-- [ ] Accessibility checklist in 05 marked for storefront templates
-- [ ] Performance budgets documented (even if not fully met — gaps listed)
-- [ ] Preflight skill passes
-- [ ] Rollback path documented for staging deploy
-
-### Verification gate
-
-1. `wp db export` backup before any staging deploy
-2. Build passes (`npm run build` if Vite added)
-3. Smoke: home, PLP, PDP, add to cart, checkout start
-4. No PHP fatals; no critical JS console errors
-5. Plugin/theme version tags updated if releasing
+- [ ] Routine and bundle UI improves clarity without blocking checkout.
+- [ ] Cross-sells respect CBD, audience, and baby/pet restrictions.
+- [ ] Product cards remain claim-safe.
+- [ ] Bundle engine decision is documented.
 
 ---
 
-## Global verification gates (every phase)
+## Phase 9 — Local Sandbox Validation
 
-1. **Backup:** `wp db export backups/pre-change.sql` before mutating commands
-2. **Branch:** Feature work on branches; contract changes update docs in same PR
-3. **Plan mode:** File/DB mutations use plan/review workflow per `AGENTS.md`
-4. **Smoke:** After Woo-facing changes — shop, PDP, cart, checkout start minimum
-5. **Rollback:** PR describes how to revert (files + DB if applicable)
-6. **Sibling layer:** Theme/plugin changes that affect the boundary update both sides
+**Goal:** Prove the kit works in a fresh local WordPress + WooCommerce sandbox.
 
----
+### Key tasks
 
-## Sandbox commands (reference)
+- Install fresh WP + WooCommerce in LocalWP or DDEV.
+- Activate `resq-core` and `resq-clean-pro`.
+- Import fixtures.
+- Configure test payment only.
+- Smoke test home, shop, category, gateway, Learn, PDP, cart drawer, cart, checkout start, account, search.
 
-LocalWP, DDEV, or any WP-CLI environment:
+### Exit criteria
 
-```bash
-# Backup first
-wp db export backups/pre-change.sql
-
-# After copying theme/plugin into wp-content
-wp plugin activate resq-core
-wp theme activate resq-clean-pro
-
-# Phase 5+ fixtures
-# bash scripts/import-fixtures.sh
-
-# Smoke helpers
-wp wc product list --format=count
-wp option get resq_core_version
-```
-
-For DDEV, prefix commands with `ddev` (e.g. `ddev wp plugin activate resq-core`).
+- [ ] Fresh install smoke passes.
+- [ ] Plugin deactivate/reactivate passes.
+- [ ] Theme active without plugin passes.
+- [ ] No PHP fatals or critical JS console errors.
 
 ---
 
-## Later experiments (post Phase 8)
+## Phase 10 — Compliance, Accessibility, Performance QA
 
-Only after Phase 8 exit criteria met:
+**Goal:** Confirm quality gates before a release package.
 
-- Understand Anything — onboarding architecture reviews
-- Headroom — large log/MCP context compression
-- Agent-Reach — competitive/public research (isolated sessions)
-- Cherry-picked security skills — checkout hardening audits
-- Read/write Woo MCP on staging (never production by default)
-- Vite/Sage migration if asset complexity warrants it
+### Key tasks
+
+- Review CBD isolation across nav, cards, PDP, cart, checkout, and search.
+- Review medical, pet, baby, proof, and donation language.
+- Run accessibility checks against WCAG 2.2 AA target.
+- Review checkout/payment gateway safety.
+- Measure key page performance and document gaps.
+- Run frontend polish review constrained by compliance.
+
+### Exit criteria
+
+- [ ] Compliance review findings resolved or documented.
+- [ ] Accessibility blockers resolved or documented.
+- [ ] Checkout remains gateway-safe.
+- [ ] Performance risks are listed with next actions.
 
 ---
 
-## Phase status tracker
+## Phase 11 — Preflight Release Package
+
+**Goal:** Prepare a reviewable foundation package.
+
+### Key tasks
+
+- Run `preflight-package-check`.
+- Confirm docs and implementation agree.
+- Confirm no secrets, PII, or production data.
+- Confirm branch `foundation-blueprint`.
+- Prepare tag `v0.1-foundation-blueprint` after approval.
+- Draft PR/release notes with rollback notes.
+
+### Exit criteria
+
+- [ ] Preflight checklist passes or has documented exceptions.
+- [ ] Git diff is intentional.
+- [ ] Suggested tag is ready after review.
+- [ ] No commit/tag is created without explicit approval.
+
+---
+
+## Global Verification Gates
+
+1. Docs remain source of truth before code.
+2. No production writes in normal sessions.
+3. WP-CLI mutations require backup and explicit approval.
+4. Theme/plugin boundaries stay aligned with `01-THEME-PLUGIN-CONTRACT.md`.
+5. WooCommerce primitives are not replaced without ADR.
+6. CBD/compliance-sensitive work references `05-COMPLIANCE-RULES.md`.
+7. Source blueprints stay preserved in `docs/source-blueprints/`.
+
+## Phase Status Tracker
 
 | Phase | Status | Notes |
 |---|---|---|
-| 0 Skeleton | complete | |
-| 1 Contract | in progress | Step 2 deliverable |
-| 2 Plugin foundation | pending | |
-| 3 Theme foundation | pending | |
-| 4 Woo shells | pending | |
-| 5 Fixtures | pending | |
-| 6 LocalWP test | pending | |
-| 7 Catalog strategy | pending | |
-| 8 Polish/QA | pending | |
-
-Update this table at the end of each phase.
+| 1 Foundation blueprint lock | in progress | Current branch target: `foundation-blueprint` |
+| 2 Plugin data contract | pending | |
+| 3 Plugin routine-commerce model | pending | |
+| 4 Theme global foundation | pending | |
+| 5 Woo template shells | pending | |
+| 6 Gateway and Learn surfaces | pending | |
+| 7 Demo fixture system | pending | |
+| 8 Merchandising behavior | pending | |
+| 9 Local sandbox validation | pending | |
+| 10 Compliance/accessibility/performance QA | pending | |
+| 11 Preflight release package | pending | Tag target: `v0.1-foundation-blueprint` |

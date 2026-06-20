@@ -1,407 +1,98 @@
 # 03 — Woo Template Map
 
-> Inventory of WooCommerce storefront surfaces: default source, override location, owner, status, and hook strategy.
+> Inventory of WooCommerce and storefront surfaces. Use `woo-template-planner` before adding, moving, or overriding WooCommerce templates.
 
-Use skill `woo-template-planner` before adding or moving overrides.
-
-## Override root
+## Override Root
 
 Theme path: `wp-content/themes/resq-clean-pro/woocommerce/`
 
-## Legend
+WooCommerce template overrides belong in the theme. Plugin work supplies data, helpers, filters, and commerce behavior.
 
-| Column | Meaning |
+## Surface Inventory
+
+| Surface | Purpose | Data source | Theme responsibility | Plugin responsibility | WooCommerce responsibility | Fallback / empty state | Future implementation notes |
+|---|---|---|---|---|---|---|---|
+| Global header/nav | Stable route entry to People, Pets, CBD, Bundles, Learn, search, cart | WP menus, plugin route metadata later | Header markup, mega-menu, mobile drawer, active states | Optional route/category metadata and compliance flags | None beyond cart fragments if used | Plain menu with no dynamic labels | Keep nav stable; filters refine inside pages |
+| Mega-menu | Expose audience/problem/routine pathways without hiding categories | Menu items, term meta, Learn links | Responsive panels, keyboard/focus behavior | Supply featured audiences/concerns only if enabled | None | Collapse to normal menu links | CBD links visually isolated and not mixed with standard lanes |
+| Footer | Trust, policies, Learn, mission, compliance notices | WP menus, plugin compliance notices | Footer layout, notice slot, policy link presentation | Notice rules/content source | Account/cart policy links if native | Static footer links only | Donation/mission copy requires proof review |
+| Shop archive | Main catalog index | Woo product query, plugin sort/filter rules | `archive-product.php`, toolbar, grid, empty state | Query filters, default sort, route context | Product loop, result count, ordering, pagination | Native Woo loop or no-products state | Do not hardcode planning categories as final taxonomy |
+| Audience gateway: Human | Entry page for human routines and concerns | WP page/term content, plugin audience mappings | Gateway hero, cards, product shelves, Learn bridges | Audience/concern/routine/product mappings | Product queries/cards | Editorial page without product shelves | Blueprint examples inform structure only |
+| Audience gateway: Pet | Entry page for pet care concerns and routines | WP page/term content, plugin audience mappings | Gateway hero, concern cards, pet-safe copy display | Audience/concern/routine/product mappings | Product queries/cards | Editorial page without product shelves | Pet health copy must stay cautious |
+| CBD gateway/category | Isolated CBD shopping area | Woo category/term meta, compliance flags | Isolated layout, disclaimers, no mixed cards | CBD flags, notice requirements, cross-sell restrictions | Product loop/cart/checkout | Empty category or notice-only page | No CBD products in standard cross-sell zones by default |
+| Bundles & savings landing | Explain kits/routines and value | Woo products, bundle metadata | Bundle cards, savings display, anchors, empty states | Bundle composition, savings data, validation | Product/bundle product records | Hide bundle sections with no products | Decide extension vs plugin rules before implementation |
+| Category archive | Term-specific PLP | Woo term query, term meta, plugin mappings | Category header, filters, grid, breadcrumbs | Term meta, route-to-canonical mappings | Product loop/pagination | Native archive header + no-products state | Filters should refine, not replace navigation |
+| Concern landing page | Problem-led discovery route | WP page or taxonomy term + product mappings | Landing sections, concern cards, product shelves | Concern mappings and canonical target resolution | Product card data | Editorial page with CTA to shop | Avoid medical/veterinary cure language |
+| Learn index | Education hub | WP posts/pages | Learn card grid, topic navigation | Optional ingredient/product bridge metadata | None | Standard blog/archive list | Learn content may bridge to products but not create duplicates |
+| Learn-to-shop guide | Editorial guide pointing to products/routines | WP content, plugin canonical mappings | Guide layout, product callouts, CTA modules | Resolve canonical products and allowed claims/notices | Add-to-cart/PDP links | Article renders without product modules | Do not duplicate product records for SEO variants |
+| Product search | Search across product and Learn content | WP/Woo search query | `search.php`, product-first grid, content result cards | Optional relevance weighting | Product results | Search-empty recommendations | CBD query results may need isolated grouping |
+| Product filters | Refine current collection | Woo attributes, plugin audience/concern/routine taxonomies | Filter UI, applied chips, mobile drawer | Register filterable data and query filters | Attribute filtering/queries | Hide unavailable filters | Filters are not primary nav replacements |
+| Product card | Reusable PLP/shelf card | Woo product + plugin helpers | `woocommerce/content-product.php`, badges, CTA, routine/bundle hints | Badge, audience/concern/routine/CBD helper data | Image/title/price/rating/add-to-cart | Minimal Woo card without plugin data | Cards must not display risky claims from examples |
+| Single product page (PDP) | Canonical buyable product page | Woo product, plugin helpers | `single-product.php`, gallery, summary, tabs, routine/bundle/notice slots | Routine steps, ingredient profiles, FBT, compliance, canonical mapping | Product data, variations, add-to-cart, tabs | Native PDP with empty custom slots | Canonical parent is the source for price/stock |
+| PDP routine ladder | Show current product inside a routine | `resq_get_product_routines()`, `resq_get_routine_steps()` | Step checklist UI and upgrade CTA | Routine definitions, step order, bundle target | Add-to-cart/cart actions | Hide if no routine data | Use for clarity, not pressure or false savings |
+| PDP ingredient profile | Claim-safe ingredient explanation | `resq_get_product_ingredient_profile()` | Ingredient cards/accordion | Ingredient descriptors and risk flags | Product attributes if used | Hide or show native attributes | Avoid adding unsupported claims in theme copy |
+| Frequently bought together | Suggest complementary products | `resq_get_frequently_bought_together()` | FBT template part and add UI | FBT product IDs and restrictions | Cart/add-to-cart | Hide with no IDs | Must respect CBD isolation |
+| Related products | Native related section | Woo related products, plugin filters | Style/render related block | Filter count/exclusions/restrictions | Related products query | Native related output | Phase 4 may keep hook-only strategy |
+| Bundle product PDP | Sell curated kit/bundle | Woo bundle product + plugin bundle data | Bundle layout, included item list, savings UI | Bundle composition, validation, restrictions | Product type/add-to-cart/cart line item | Standard product PDP | Depends on bundle extension decision |
+| Cart drawer | Keep shopping context after add-to-cart | Woo cart/session, plugin suggestions | Drawer UI, focus trap, item summary, suggestion card | Routine/FBT/cart suggestion rules | Cart fragments/session | Redirect/standard cart if disabled | Suggestions must not block checkout |
+| Cart page | Review cart and cross-sells | Woo cart, plugin notices/suggestions | `cart/cart.php`, totals layout, empty state, notice slots | Cart notices, restrictions, suggestion IDs | Cart items, totals, coupons, cross-sells | Native cart/empty cart | Cart should remain functional without plugin |
+| Checkout | Complete purchase safely | Woo checkout, plugin compliance/validation | `checkout/form-checkout.php`, notice placement, layout | Checkout fields/validation/notices/compliance gates | Payment, taxes, order creation | Native checkout | Do not override gateway iframe internals. Open decision: whether an "isolated checkout mode" hides header/footer/category links during checkout (see source blueprint concept). |
+| Thank-you page | Order confirmation | Woo order | `checkout/thankyou.php` layout | Optional mission/next-step data | Order summary | Native thank-you | Avoid unverified donation claims |
+| My Account | Customer account management | Woo account endpoints | Account layout/navigation templates | Custom endpoints if later needed | Login, orders, addresses, account forms | Native account templates | Account logic stays Woo/plugin |
+| Compliance notices | Product/category/cart/checkout notices | Plugin flags and notice source | Notice markup, placement, accessibility | Rule selection and copy source | None | Hidden when not required | CBD, baby, pet, proof, donation risk flags |
+| Emails | Transactional messages | Woo order/email data | Optional email shell styling | Email content hooks and data | Email sending/templates | Native Woo emails | Avoid major email overrides until needed |
+
+## Planned Template and Part Paths
+
+| Surface | Theme path |
 |---|---|
-| **Owner** | `theme` = markup/layout · `plugin` = logic/data · `shared` = plugin data + theme render |
-| **Status** | `planned` · `in-progress` · `done` |
-| **Prefer** | `template` = override file · `hook` = Woo action/filter · `both` |
-
----
-
-## Storefront surface inventory
-
-### 1. Shop archive
-
-| Attribute | Value |
-|---|---|
-| Woo template | `archive-product.php` (theme root, not under `woocommerce/`) |
-| Theme override | `resq-clean-pro/archive-product.php` |
-| Owner | theme |
-| Status | planned |
-| Prefer | template |
-
-**Planned customizations:**
-
-- Page header with shop title and optional intro (from plugin option or static theme mod)
-- Product grid using `content-product.php`
-- Toolbar: result count, ordering, pagination (Woo hooks)
-- Empty state when no products match
-
-**Key hooks:**
-
-- `woocommerce_before_shop_loop` / `woocommerce_after_shop_loop`
-- `woocommerce_shop_loop_item_title`
-- Plugin may filter `woocommerce_product_query` for default sort rules (Phase 7)
-
-**Differs from category archive:** Shop is the main catalog index; no term-specific hero or intro unless globally configured.
-
----
-
-### 2. Category archive
-
-| Attribute | Value |
-|---|---|
-| Woo template | `taxonomy-product_cat.php` or falls back to `archive-product.php` |
-| Theme override | `archive-product.php` (shared) + `template-parts/archive/category-header.php` |
-| Owner | shared |
-| Status | planned |
-| Prefer | both |
-
-**Planned customizations:**
-
-- Category hero (image + intro from term meta via plugin)
-- Subcategory tiles when parent category has children
-- Same product grid/card as shop archive
-- Breadcrumbs
-
-**Key hooks:**
-
-- `woocommerce_before_main_content`
-- Plugin provides term meta: `_resq_category_hero_image`, `_resq_category_intro`
-- Theme template part reads via helper or direct meta through plugin wrapper
-
-**Planning categories (top-level only):** Pets, People, CBD, Bundles, Learn — used as fixture taxonomy labels in Phase 5, not hardcoded in templates.
-
----
-
-### 3. Product card (PLP loop item)
-
-| Attribute | Value |
-|---|---|
-| Woo template | `woocommerce/content-product.php` |
-| Theme override | `woocommerce/content-product.php` |
-| Owner | theme |
-| Status | planned |
-| Prefer | template |
-
-**Card anatomy (markup order):**
-
-1. Product link wrapper
-2. Image (`woocommerce_template_loop_product_thumbnail`)
-3. Badge slot — theme calls `resq_theme_render_badge()` (plugin data)
-4. Title
-5. Price
-6. Optional short excerpt / attribute hint (Phase 7)
-7. Add to cart or "View product" CTA
-
-**Key hooks:**
-
-- `resq_theme_before_product_card` / `resq_theme_after_product_card` (theme)
-- `woocommerce_before_shop_loop_item_title`
-- Badge data: `resq_core_get_badge_data()` (plugin)
-
----
-
-### 4. Single product page (PDP)
-
-| Attribute | Value |
-|---|---|
-| Woo templates | `single-product.php` + `woocommerce/content-single-product.php` |
-| Theme overrides | `single-product.php`, `woocommerce/content-single-product.php` |
-| Partial overrides | `woocommerce/single-product/product-image.php`, `tabs/tabs.php`, `add-to-cart/*.php` |
-| Owner | shared |
-| Status | planned |
-| Prefer | both |
-
-**PDP zones:**
-
-| Zone | Owner | Mechanism |
-|---|---|---|
-| Gallery | theme | `product-image.php` override |
-| Title, price, rating | theme | Standard Woo templates |
-| Add to cart | theme | Variable/simple add-to-cart partials |
-| Badge | shared | Plugin data, theme render |
-| Trust signals (shipping, returns) | shared | Plugin content source, theme placement |
-| Product tabs (description, attributes) | theme layout | Woo tabs; plugin may add tab via filter |
-| Compliance notices (CBD, disclaimers) | shared | `resq_theme_render_compliance_notices( 'pdp' )` |
-| Upsells | theme render | Woo hook `woocommerce_after_single_product_summary` |
-| Cross-sells (inline PDP) | shared | Plugin IDs, theme template part |
-| FBT block | shared | See section 11 |
-| Sticky add-to-cart (mobile) | theme | JS + CSS; Phase 8 polish |
-
-**Key hooks:**
-
-- `woocommerce_single_product_summary`
-- `woocommerce_after_single_product_summary` (related, upsells priority 15/20)
-- `woocommerce_product_tabs` (plugin adds compliance/spec tabs if needed)
-
----
-
-### 5. Cart
-
-| Attribute | Value |
-|---|---|
-| Woo templates | `woocommerce/cart/cart.php`, `cart/cart-empty.php`, `cart/cart-totals.php`, `cart/cross-sells.php` |
-| Theme overrides | Same paths under theme `woocommerce/cart/` |
-| Owner | shared |
-| Status | planned |
-| Prefer | template |
-
-**Planned layout:**
-
-- Line items table (responsive stack on mobile)
-- Coupon area (Woo native; plugin may restrict coupons later)
-- Cart totals sidebar / below on mobile
-- Cross-sells block (Woo default; theme styles)
-- Trust/compliance notice slot above checkout CTA — `resq_theme_render_compliance_notices( 'cart' )`
-- Empty cart: CTA back to shop + optional featured categories
-
-**Plugin boundaries:**
-
-- Cart item data, fees, notices logic → plugin hooks
-- Markup and responsive layout → theme templates
-
----
-
-### 6. Checkout
-
-| Attribute | Value |
-|---|---|
-| Woo templates | `woocommerce/checkout/form-checkout.php`, `form-billing.php`, `form-shipping.php`, `payment.php`, `review-order.php`, `thankyou.php` |
-| Theme overrides | `woocommerce/checkout/*.php` (incremental — start with `form-checkout.php`) |
-| Owner | shared |
-| Status | planned |
-| Prefer | both |
-
-**Planned sections:**
-
-1. Compliance notice banner (checkout context) — required for CBD-age/disclaimer when enabled
-2. Billing / shipping columns
-3. Order review
-4. Payment gateway area (unchanged gateway markup; theme styles only)
-5. Terms checkbox area
-6. Thank-you page: order summary + continue shopping
-
-**Plugin boundaries:**
-
-- `woocommerce_checkout_fields` — add/remove/validate fields
-- Checkout notices, validation messages
-- Age verification or category gates (logic only; theme renders modal/banner)
-
-**Safety:** Do not override payment gateway iframe internals. Style wrappers only. See `05-COMPLIANCE-RULES.md`.
-
----
-
-### 7. My Account
-
-| Attribute | Value |
-|---|---|
-| Woo templates | `woocommerce/myaccount/my-account.php`, `navigation.php`, `dashboard.php`, `orders.php`, `view-order.php`, `form-login.php`, `form-edit-account.php`, `form-edit-address.php` |
-| Theme overrides | Start with `my-account.php`, `navigation.php`, `dashboard.php`; expand as needed |
-| Owner | theme (layout) + plugin (custom endpoints if any) |
-| Status | planned |
-| Prefer | template |
-
-**Planned layout:**
-
-- Sidebar navigation (collapsible on mobile)
-- Dashboard welcome + recent orders snippet
-- Consistent form styling with checkout
-
-**Plugin (future):**
-
-- Custom endpoints (e.g. subscriptions, rescue program) registered in plugin
-- Templates still live in theme under `woocommerce/myaccount/`
-
----
-
-### 8. Search (product + content)
-
-| Attribute | Value |
-|---|---|
-| Woo behavior | Product search via `?s=` + `post_type=product` or Woo product search widget |
-| WP template | `search.php` (theme root) |
-| Theme overrides | `search.php`, optionally `woocommerce/product-searchform.php` |
-| Owner | theme |
-| Status | planned |
-| Prefer | template |
-
-**Planned behavior:**
-
-- Unified search results page with product-first layout when Woo active
-- Product results use `content-product.php` in a grid
-- Non-product results (Learn content) use separate loop partial `template-parts/content-search.php`
-- Empty state with category links (Pets, People, CBD, Bundles, Learn)
-
-**Plugin:** May filter `pre_get_posts` for search relevance weighting (Phase 7). No search template in plugin.
-
----
-
-### 9. Related products
-
-| Attribute | Value |
-|---|---|
-| Woo default | Hooked via `woocommerce_after_single_product_summary` → `woocommerce_output_related_products` |
-| Theme override | Optional `woocommerce/single-product/related.php` OR template part via hook removal/re-add |
-| Owner | shared |
-| Status | planned |
-| Prefer | hook (Phase 4 shell) → template (Phase 8 polish) |
-
-**Strategy:**
-
-- Phase 4: Keep Woo hook; style via CSS targeting `.related.products`
-- Phase 7+: Plugin filters `woocommerce_output_related_products_args` for count/columns/rules
-- Phase 8: Custom `related.php` if card design diverges from PLP card
-
----
-
-### 10. Bundles
-
-| Attribute | Value |
-|---|---|
-| Dependency | WooCommerce Product Bundles extension **or** custom bundle product type (decision Phase 7) |
-| Theme template | `woocommerce/single-product/add-to-cart/bundle.php` (if extension used) or custom template part |
-| Owner | shared |
-| Status | planned |
-| Prefer | both |
-
-**Contract (until extension chosen):**
-
-- Plugin owns bundle configuration data and cart validation hooks
-- Theme owns bundle PDP layout template part: `template-parts/product/bundle-options.php`
-- PLP card shows bundle indicator badge via `resq_core_get_badge_data()`
-
-**Planning category:** Bundles — fixture products in Phase 5 use simple grouped/bundle-like placeholders without final pricing.
-
----
-
-### 11. Frequently bought together (FBT)
-
-| Attribute | Value |
-|---|---|
-| Not a native Woo template | Custom block on PDP |
-| Theme template part | `template-parts/product/frequently-bought-together.php` |
-| Owner | shared |
-| Status | planned |
-| Prefer | both |
-
-**Interface contract:**
-
-```php
-// Plugin provides
-$product_ids = resq_core_get_fbt_products( $product_id ); // int[]
-
-// Theme renders
-resq_theme_template_part( 'product/frequently-bought-together', null, [
-    'product_ids' => $product_ids,
-    'primary_id'  => $product_id,
-] );
-```
-
-**Data sources (Phase 7 priority order):**
-
-1. Manual `_resq_fbt_product_ids` post meta
-2. Order-history-based rules (plugin)
-3. Category affinity fallback
-
-**Placement:** Below add-to-cart on PDP, above related products hook priority.
-
----
-
-### 12. Compliance notices
-
-| Attribute | Value |
-|---|---|
-| Not a single Woo template | Rendered slots across surfaces |
-| Theme template part | `template-parts/compliance/notices.php` |
-| Owner | shared |
-| Status | planned |
-| Prefer | both |
-
-**Contexts and placement:**
-
-| Context | Surfaces | Owner split |
-|---|---|---|
-| `global` | Footer, sitewide banner | plugin rules, theme slot in `footer.php` |
-| `pdp` | Below price or above add-to-cart | CBD/product flags from `_resq_compliance_flags` |
-| `cart` | Above proceed to checkout | plugin content |
-| `checkout` | Top of form | age attestation, shipping restrictions |
-| `cbd` | Category + PDP + checkout | stricter copy set; no final legal text in repo until compliance review |
-
-**Plugin API:**
-
-```php
-resq_core_get_compliance_notices( string $context ); // array of [ 'id', 'message', 'type', 'dismissible' ]
-```
-
-**Theme:** `resq_theme_render_compliance_notices( $context )` — never hard-code jurisdiction-specific legal claims in theme files.
-
-See `05-COMPLIANCE-RULES.md` for non-negotiable constraints.
-
----
-
-## Master inventory table
-
-| Surface | Woo default | Theme override path | Owner | Status | Prefer |
-|---|---|---|---|---|---|
-| Shop archive | `archive-product.php` | `archive-product.php` | theme | planned | template |
-| Category archive | `archive-product.php` / taxonomy | `archive-product.php` + category header part | shared | planned | both |
-| Product card | `content-product.php` | `woocommerce/content-product.php` | theme | planned | template |
-| Single product | `single-product.php` | `single-product.php` + partials | shared | planned | both |
-| Cart | `cart/cart.php` | `woocommerce/cart/cart.php` | shared | planned | template |
-| Cart empty | `cart/cart-empty.php` | `woocommerce/cart/cart-empty.php` | theme | planned | template |
-| Checkout | `checkout/form-checkout.php` | `woocommerce/checkout/form-checkout.php` | shared | planned | both |
-| Thank you | `checkout/thankyou.php` | `woocommerce/checkout/thankyou.php` | theme | planned | template |
-| My Account | `myaccount/my-account.php` | `woocommerce/myaccount/my-account.php` | theme | planned | template |
-| Search | `search.php` | `search.php` | theme | planned | template |
-| Related products | hook + `related.php` | optional `woocommerce/single-product/related.php` | shared | planned | hook |
-| Bundles | extension-dependent | `template-parts/product/bundle-options.php` | shared | planned | both |
-| FBT | custom | `template-parts/product/frequently-bought-together.php` | shared | planned | both |
-| Compliance notices | custom slots | `template-parts/compliance/notices.php` | shared | planned | both |
-| Emails | `emails/*.php` | optional `woocommerce/emails/` | shared | planned | template |
-
----
-
-## Hooks vs templates decision guide
+| Shop/category archive | `archive-product.php` |
+| Product card | `woocommerce/content-product.php` |
+| Single product | `single-product.php`, `woocommerce/content-single-product.php` |
+| PDP gallery/add-to-cart/tabs | `woocommerce/single-product/*` |
+| Routine ladder | `template-parts/product/routine-ladder.php` |
+| Ingredient profile | `template-parts/product/ingredient-profile.php` |
+| FBT | `template-parts/product/frequently-bought-together.php` |
+| Bundle card | `template-parts/product/bundle-card.php` |
+| Bundle PDP block | `template-parts/product/bundle-options.php` |
+| Audience gateway | `template-parts/archive/audience-gateway.php` or page template |
+| Concern landing | `template-parts/archive/concern-landing.php` or page template |
+| Cart drawer | `template-parts/cart/drawer.php` |
+| Compliance notices | `template-parts/compliance/notices.php` |
+| Learn guide bridge | `template-parts/learn/product-bridge.php` |
+| Cart | `woocommerce/cart/cart.php`, `cart-empty.php`, `cart-totals.php`, `cross-sells.php` |
+| Checkout | `woocommerce/checkout/form-checkout.php`, `review-order.php`, `payment.php`, `thankyou.php` |
+| Account | `woocommerce/myaccount/*.php` |
+| Search | `search.php`, optional `woocommerce/product-searchform.php` |
+
+## Hooks vs Templates Decision Guide
 
 | Behavior | Prefer | Notes |
 |---|---|---|
-| Layout / HTML structure | Template override | Keep logic minimal |
-| Price formatting, labels | Plugin filter | `woocommerce_get_price_html` |
-| Add cart notice | Plugin hook | Theme styles via `.woocommerce-message` |
-| Custom product tab content | Plugin registers | Theme styles tab |
-| Related product count | Plugin filter | Theme renders output |
-| FBT / compliance blocks | Template part | Plugin supplies data array |
-| Dequeue Woo assets | Theme (careful) | Measure impact; document in PR |
+| Layout/HTML structure | Template override | Keep logic minimal |
+| Route/category/product mapping | Plugin helper | Theme only consumes resolved data |
+| Price, stock, tax, add-to-cart | WooCommerce | Plugin filters only when documented |
+| Routine, bundle, FBT data | Plugin helper | Theme renders empty-safe parts |
+| Compliance decisions | Plugin helper | Theme displays accessible notice slots |
+| Payment gateway internals | Woo/gateway | Theme styles wrappers only |
+| Product query filtering | Plugin hook | Document changes in merchandising doc |
 
----
+## Verification Checklist
 
-## CodeGraph workflow
+- [ ] Surface appears in the inventory table.
+- [ ] Theme path or hook strategy is named.
+- [ ] Plugin data/helper responsibility is named.
+- [ ] WooCommerce responsibility is not replaced by theme/plugin code.
+- [ ] Empty/plugin-inactive fallback avoids PHP notices and broken markup.
+- [ ] CBD/compliance-sensitive surfaces link back to `05-COMPLIANCE-RULES.md`.
+- [ ] Source-blueprint examples were not hardcoded as final catalog truth.
 
-Before editing a template:
-
-1. Query CodeGraph for existing overrides and callers
-2. Confirm no duplicate override in old theme paths
-3. Update this map in the same PR
-4. Confirm owner column still accurate (theme vs plugin vs shared)
-
----
-
-## Verification checklist (per template)
-
-- [ ] Template loads without PHP notices (with and without plugin active)
-- [ ] Mobile layout checked
-- [ ] Plugin hooks still fire after template change
-- [ ] Compliance slots present where required for surface
-- [ ] Fallback behavior matches `01-THEME-PLUGIN-CONTRACT.md`
-- [ ] Entry added/updated in master inventory table above
-
-## Phase alignment
+## Phase Alignment
 
 | Phase | Template map work |
 |---|---|
-| Phase 1 | This document complete (contract lock) |
-| Phase 4 | Shell override files created for all `planned` rows |
-| Phase 6 | Smoke test every surface |
-| Phase 7 | Merchandising hooks wired (FBT, related, badges) |
-| Phase 8 | Visual polish, optional `related.php`, sticky ATC |
+| Phase 1 | Inventory and boundaries locked |
+| Phase 4 | Global layout and navigation shell |
+| Phase 5 | Woo template shells |
+| Phase 6 | Gateway, Learn, and routine UI shells |
+| Phase 8 | Bundle/FBT/cart drawer implementation strategy |
+| Phase 10 | Compliance and accessibility verification |
