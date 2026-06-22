@@ -1,0 +1,33 @@
+---
+description: Phase 4 Theme Global Foundation - layout shell only for resq-clean-pro
+globs: wp-content/themes/resq-clean-pro/**/*
+alwaysApply: false
+---
+
+# Phase 4 Theme Global Foundation Boundary
+
+During Phase 4, theme work is limited to **global layout shell and presentation scaffolding**.
+
+## Allowed
+
+- Header, footer, nav, mobile drawer, cart link shell
+- CSS tokens, layout grid, focus states, reduced-motion defaults
+- Theme helpers (`resq_theme_*`) with plugin guards
+- Empty-safe template parts that consume plugin helpers
+- Planning-route nav links from docs/07
+
+## Prohibited
+
+- Product/taxonomy/CPT registration or meta writes
+- Woo template overrides beyond empty-safe template parts (Phase 5)
+- Gateway page content (Phase 6)
+- Cart drawer behavior, bundle engine, checkout mutations
+- Hard-coded product catalog truth or risky claims
+
+## References
+
+- `docs/01-THEME-PLUGIN-CONTRACT.md`
+- `docs/02-BRAND-FOUNDATION.md`
+- `docs/05-COMPLIANCE-RULES.md`
+- `docs/07-INFORMATION-ARCHITECTURE.md`
+- `docs/15-PHASE-4-IMPLEMENTATION-NOTES.md`

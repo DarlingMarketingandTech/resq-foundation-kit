@@ -9,10 +9,6 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * ResQ_Core_Plugin — singleton bootstrap for the ResQ Core plugin.
- *
- * Initializes options, checks WooCommerce availability, loads helpers,
- * and registers activation/deactivation hooks. Does not register
- * taxonomies, CPTs, admin UI, or front-end markup in Phase 2B.
  */
 class ResQ_Core_Plugin {
 
@@ -73,6 +69,9 @@ class ResQ_Core_Plugin {
 			'before_woocommerce_init',
 			array( 'ResQ_Core_Woocommerce_Compat', 'declare_feature_compatibility' )
 		);
+
+		add_action( 'init', array( $this, 'register_data_structures' ), 10 );
+		ResQ_Core_Product_Sync::register_hooks();
 	}
 
 	/**
@@ -86,6 +85,13 @@ class ResQ_Core_Plugin {
 		}
 
 		$this->initialized = true;
+	}
+
+	/**
+	 * Register taxonomies, CPTs, and meta keys.
+	 */
+	public function register_data_structures(): void {
+		ResQ_Core_Registrations::register_all();
 	}
 
 	/**

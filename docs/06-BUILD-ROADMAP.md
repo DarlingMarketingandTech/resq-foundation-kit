@@ -16,7 +16,11 @@
 | Phase 2B tag | `v0.3-phase-2b-plugin-scaffold` |
 | Phase 2B merge commit | `52f1cf5` |
 | Phase 2B status | complete |
-| Current focus | Phase 3 — plugin routine-commerce model |
+| Phase 3 branch | `phase-3-routine-commerce-model` |
+| Phase 3 tag target | `v0.4-phase-3-routine-commerce-model` |
+| Phase 3 status | complete — smoke verified |
+| Phase 4 branch target | `phase-4-theme-global-foundation` |
+| Current focus | Phase 4 — theme global foundation |
 
 ## Phase Overview
 
@@ -136,10 +140,12 @@
 
 ### Exit criteria
 
-- [ ] Helpers return real fixture-ready data.
-- [ ] Meta ownership matches `01-THEME-PLUGIN-CONTRACT.md`.
-- [ ] CBD isolation can be evaluated from data.
-- [ ] Canonical resolver has documented fallbacks.
+- [x] Helpers return real fixture-ready data.
+- [x] Meta ownership matches `01-THEME-PLUGIN-CONTRACT.md`.
+- [x] CBD isolation can be evaluated from data.
+- [x] Canonical resolver has documented fallbacks.
+
+See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for delivery details.
 
 ---
 
@@ -335,8 +341,8 @@
 | 1 Foundation blueprint lock | complete | Checkpoint: `foundation-blueprint` @ `v0.1-foundation-blueprint` (`77430b6`) |
 | 2A Plugin data schema (docs) | complete | Checkpoint: `phase-2a-contracts` @ `v0.2-phase-2a-contracts` — `11`, `12`, `13` |
 | 2B Plugin data contract (PHP) | complete | Checkpoint: `phase-2b-plugin-scaffold` @ `v0.3-phase-2b-plugin-scaffold` (`52f1cf5`) |
-| 3 Plugin routine-commerce model | pending | |
-| 4 Theme global foundation | pending | |
+| 3 Plugin routine-commerce model | complete | Checkpoint: `phase-3-routine-commerce-model` @ `v0.4-phase-3-routine-commerce-model` — doc `14`, plugin `0.2.0` |
+| 4 Theme global foundation | in progress | Shell: header, nav, tokens, routine-ladder part — doc `15` |
 | 5 Woo template shells | pending | |
 | 6 Gateway and Learn surfaces | pending | |
 | 7 Demo fixture system | pending | |

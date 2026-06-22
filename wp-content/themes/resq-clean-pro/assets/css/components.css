@@ -1,0 +1,177 @@
+/**
+ * Reusable UI components (routine ladder, badges, notices).
+ *
+ * @package ResQ_Clean_Pro
+ */
+
+.resq-badge {
+	display: inline-block;
+	padding: var(--resq-spacing-2xs) var(--resq-spacing-xs);
+	font-size: var(--resq-font-size-xs);
+	font-weight: var(--resq-font-weight-bold);
+	border-radius: var(--resq-radius-sm);
+	background: var(--resq-color-bg-muted);
+	color: var(--resq-color-text-primary);
+}
+
+.resq-compliance-notices {
+	display: grid;
+	gap: var(--resq-spacing-sm);
+	margin-block: var(--resq-spacing-md);
+}
+
+.resq-compliance-notice {
+	padding: var(--resq-spacing-sm) var(--resq-spacing-md);
+	font-size: var(--resq-font-size-sm);
+	color: var(--resq-color-text-primary);
+	background: var(--resq-color-bg-surface);
+	border: 1px solid var(--resq-color-border-light);
+	border-radius: var(--resq-radius-md);
+}
+
+.resq-routine-ladder {
+	margin: var(--resq-spacing-xl) 0;
+	padding: var(--resq-spacing-lg);
+	background: var(--resq-color-bg-surface);
+	border: 1px solid var(--resq-color-border-light);
+	border-radius: var(--resq-radius-lg);
+}
+
+.resq-routine-ladder__title {
+	margin: 0 0 var(--resq-spacing-2xs);
+	font-family: var(--resq-font-family-display);
+	font-size: var(--resq-font-size-xl);
+	font-weight: var(--resq-font-weight-bold);
+	color: var(--resq-color-text-primary);
+}
+
+.resq-routine-ladder__description {
+	margin: 0;
+	font-size: var(--resq-font-size-sm);
+	color: var(--resq-color-text-secondary);
+}
+
+.resq-routine-ladder__steps {
+	list-style: none;
+	margin: var(--resq-spacing-lg) 0 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--resq-spacing-md);
+}
+
+.resq-routine-step {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--resq-spacing-md);
+	padding: var(--resq-spacing-sm);
+	background: var(--resq-color-bg-card);
+	border: 1px solid var(--resq-color-border-light);
+	border-radius: var(--resq-radius-md);
+}
+
+.resq-routine-step.is-current {
+	border-color: var(--resq-color-border-dark);
+}
+
+.resq-routine-step.is-out-of-stock {
+	opacity: 0.6;
+}
+
+.resq-routine-step__badge {
+	flex-shrink: 0;
+	width: 1.75rem;
+	height: 1.75rem;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: var(--resq-font-size-xs);
+	font-weight: var(--resq-font-weight-bold);
+	background: var(--resq-color-bg-muted);
+	color: var(--resq-color-text-secondary);
+}
+
+.resq-routine-step.is-current .resq-routine-step__badge {
+	background: var(--resq-color-primary);
+	color: var(--resq-color-text-on-dark);
+}
+
+.resq-routine-step__role {
+	display: block;
+	font-size: var(--resq-font-size-xs);
+	text-transform: uppercase;
+	font-weight: var(--resq-font-weight-bold);
+	letter-spacing: 0.05em;
+	color: var(--resq-color-text-muted);
+}
+
+.resq-routine-step.is-current .resq-routine-step__role {
+	color: var(--resq-color-text-primary);
+}
+
+.resq-routine-step__product {
+	margin: var(--resq-spacing-2xs) 0 0;
+	font-size: var(--resq-font-size-md);
+	font-weight: var(--resq-font-weight-medium);
+}
+
+.resq-routine-step__link {
+	color: var(--resq-color-text-primary);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.resq-routine-step__current-note {
+	font-size: var(--resq-font-size-xs);
+	color: var(--resq-color-text-muted);
+	font-weight: var(--resq-font-weight-normal);
+}
+
+.resq-routine-step__stock {
+	font-size: var(--resq-font-size-xs);
+	color: var(--resq-color-status-error);
+	font-weight: var(--resq-font-weight-bold);
+}
+
+.resq-routine-ladder__bundle {
+	margin-top: var(--resq-spacing-lg);
+	padding-top: var(--resq-spacing-md);
+	border-top: 1px solid var(--resq-color-border-light);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: var(--resq-spacing-md);
+}
+
+.resq-routine-ladder__bundle-text {
+	font-size: var(--resq-font-size-sm);
+}
+
+.resq-routine-ladder__bundle-text strong {
+	display: block;
+	color: var(--resq-color-text-primary);
+}
+
+.resq-routine-ladder__bundle-text span {
+	font-size: var(--resq-font-size-xs);
+	color: var(--resq-color-text-muted);
+}
+
+.resq-routine-ladder__bundle-btn {
+	display: inline-block;
+	padding: var(--resq-spacing-xs) var(--resq-spacing-lg);
+	font-size: var(--resq-font-size-sm);
+	font-weight: var(--resq-font-weight-bold);
+	color: var(--resq-color-text-on-dark);
+	background: var(--resq-color-primary);
+	text-decoration: none;
+	border-radius: var(--resq-radius-md);
+	transition: opacity var(--resq-transition-speed-fast) var(--resq-transition-timing);
+}
+
+.resq-routine-ladder__bundle-btn:hover,
+.resq-routine-ladder__bundle-btn:focus-visible {
+	opacity: 0.9;
+}

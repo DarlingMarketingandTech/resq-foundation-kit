@@ -6,8 +6,8 @@
 
 | Item | Value |
 |---|---|
-| Phase | 2B complete — contracts + empty-safe stubs |
-| Implementation | Stubs in `wp-content/plugins/resq-core/includes/helpers/`; Phase 3 = real data reads |
+| Phase | 2B complete — contracts + empty-safe stubs; Phase 3 complete — real data reads |
+| Implementation | Live reads in `wp-content/plugins/resq-core/includes/helpers/` |
 | Schema reference | `11-PLUGIN-DATA-SCHEMA.md` |
 | Ownership | `01-THEME-PLUGIN-CONTRACT.md` |
 
