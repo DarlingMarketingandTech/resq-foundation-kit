@@ -107,6 +107,10 @@ defined( 'ABSPATH' ) || exit;
  * CBD isolation, notice selection, cross-sell restrictions.
  * Intended terms: standard, cbd, baby, pet-health.
  *
+ * Naming note: `baby` is the compliance-zone slug used in data storage,
+ * option keys, and helper returns. `baby-infant-care` and
+ * `Baby & Infant Care` are storefront route/display language only.
+ *
  * function resq_register_taxonomy_compliance_zone(): void {
  *     register_taxonomy( 'resq_compliance_zone', 'product', array(
  *         'labels'            => array(

@@ -19,6 +19,11 @@ class ResQ_Core_Options {
 	/**
 	 * Default feature flags (docs/11 § Feature flag map).
 	 *
+	 * Note: `learn_bridges` is the feature flag for Learn-to-shop bridge
+	 * modules. The separate product meta key `_resq_learn_links` stores
+	 * per-product Learn guide links; the helper is
+	 * `resq_get_learn_links_for_product()`. Do not conflate the two.
+	 *
 	 * @return array<string, bool>
 	 */
 	public static function default_features(): array {

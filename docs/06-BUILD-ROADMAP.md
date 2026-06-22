@@ -12,7 +12,11 @@
 | Phase 2A branch | `phase-2a-contracts` |
 | Phase 2A tag | `v0.2-phase-2a-contracts` |
 | Phase 2A status | complete |
-| Current focus | Phase 2B — plugin PHP implementation scaffold |
+| Phase 2B branch | `phase-2b-plugin-scaffold` |
+| Phase 2B tag | `v0.3-phase-2b-plugin-scaffold` |
+| Phase 2B merge commit | `52f1cf5` |
+| Phase 2B status | complete |
+| Current focus | Phase 3 — plugin routine-commerce model |
 
 ## Phase Overview
 
@@ -110,10 +114,10 @@
 
 ### Exit criteria
 
-- [ ] Plugin activates/deactivates without fatals.
-- [ ] Documented helpers exist as stubs or safe no-ops.
-- [ ] No front-end markup is echoed from plugin hooks.
-- [ ] Theme can run with plugin inactive.
+- [x] Plugin activates/deactivates without fatals.
+- [x] Documented helpers exist as stubs or safe no-ops.
+- [x] No front-end markup is echoed from plugin hooks.
+- [x] Theme can run with plugin inactive.
 
 ---
 
@@ -330,7 +334,7 @@
 |---|---|---|
 | 1 Foundation blueprint lock | complete | Checkpoint: `foundation-blueprint` @ `v0.1-foundation-blueprint` (`77430b6`) |
 | 2A Plugin data schema (docs) | complete | Checkpoint: `phase-2a-contracts` @ `v0.2-phase-2a-contracts` — `11`, `12`, `13` |
-| 2B Plugin data contract (PHP) | pending | Helper stubs, options, Woo check — see scope boundaries |
+| 2B Plugin data contract (PHP) | complete | Checkpoint: `phase-2b-plugin-scaffold` @ `v0.3-phase-2b-plugin-scaffold` (`52f1cf5`) |
 | 3 Plugin routine-commerce model | pending | |
 | 4 Theme global foundation | pending | |
 | 5 Woo template shells | pending | |
