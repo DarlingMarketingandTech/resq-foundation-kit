@@ -15,7 +15,10 @@
 | Phase 2B branch | `phase-2b-plugin-scaffold` |
 | Phase 2B tag | `v0.3-phase-2b-plugin-scaffold` |
 | Phase 2B merge commit | `52f1cf5` |
-| Current phase | Phase 3 pending — plugin routine-commerce model |
+| Phase 3 | Plugin routine-commerce model — complete |
+| Phase 3 branch | `phase-3-routine-commerce-model` |
+| Phase 3 tag target | `v0.4-phase-3-routine-commerce-model` |
+| Current phase | Phase 4 pending — theme global foundation |
 
 ---
 
@@ -232,6 +235,5 @@ over _ids meta.
 
 ## Read Next
 
-1. `11-PLUGIN-DATA-SCHEMA.md`
-2. `12-PLUGIN-HELPER-CONTRACTS.md`
-3. `06-BUILD-ROADMAP.md` — Phase 3 tasks
+1. `14-PHASE-3-IMPLEMENTATION-NOTES.md` — Phase 3 delivery summary
+2. `06-BUILD-ROADMAP.md` — Phase 4 tasks

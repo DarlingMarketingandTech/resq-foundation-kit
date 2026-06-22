@@ -47,7 +47,7 @@ Agents and humans treat `docs/` as the source of truth for implementation bounda
 
 ## Current Phase
 
-The project is in **Phase 2B complete / Phase 3 next**. Phase 1 (foundation blueprint lock) is complete with all architecture docs aligned and source blueprints preserved. Phase 2A has delivered the plugin data schema (`docs/11`), helper contracts (`docs/12`), and implementation notes (`docs/13`). Phase 2B delivered the plugin PHP scaffold in `wp-content/plugins/resq-core/` (infrastructure + storefront helper stubs returning empty-safe defaults, option/feature-flag defaults, a WooCommerce dependency check with admin notice, WooCommerce HPOS compatibility declaration, and commented taxonomy/CPT/meta registration scaffolds). Phase 3 (plugin routine-commerce model) will activate taxonomy/CPT/meta registration and replace helper stubs with real data reads.
+The project is in **Phase 4 in progress**. Phase 3 (plugin routine-commerce model) is complete with smoke verification. Phase 4 builds the `resq-clean-pro` global layout shell (header, nav, footer, tokens, plugin guards). See `docs/15-PHASE-4-IMPLEMENTATION-NOTES.md`.
 
 ## Implementation Target
 

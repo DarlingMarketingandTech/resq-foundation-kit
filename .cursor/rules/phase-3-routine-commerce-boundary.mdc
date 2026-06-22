@@ -1,0 +1,37 @@
+---
+description: Phase 3 Routine-Commerce Boundary - active registration and real helper reads for resq-core plugin
+globs: wp-content/plugins/resq-core/**/*.php
+alwaysApply: false
+---
+
+# Phase 3 Routine-Commerce Boundary
+
+During Phase 3, ResQ Core work activates the documented data model and replaces helper stubs with real reads.
+
+## Allowed Implementation
+
+- Active taxonomy registration (`resq_audience`, `resq_concern`, `resq_ingredient`, `resq_product_role`, `resq_compliance_zone`)
+- Active `resq_routine` CPT registration
+- `register_post_meta()` and term meta with sanitize callbacks
+- Real storefront helper implementations per `docs/12-PLUGIN-HELPER-CONTRACTS.md`
+- Canonical resolver, compliance zone sync, cross-sell rules
+- Transient cache for relationship lookups
+- Native WP taxonomy panels (no custom metaboxes required)
+
+## Prohibited in Phase 3
+
+- No custom admin UI (option pages, product metaboxes, routine editor UI)
+- No fixture data or WP-CLI seed scripts
+- No REST endpoints
+- No checkout/cart behavior changes
+- No theme markup output from the plugin
+- No bundle engine implementation
+- Do not register superseded keys: `_resq_audience_ids`, `_resq_concern_ids`
+- Do not store derived keys: `_resq_cbd_product`, `_resq_requires_compliance_notice`
+
+## Required References
+
+- `docs/11-PLUGIN-DATA-SCHEMA.md`
+- `docs/12-PLUGIN-HELPER-CONTRACTS.md`
+- `docs/13-PHASE-2A-IMPLEMENTATION-NOTES.md`
+- `docs/14-PHASE-3-IMPLEMENTATION-NOTES.md`

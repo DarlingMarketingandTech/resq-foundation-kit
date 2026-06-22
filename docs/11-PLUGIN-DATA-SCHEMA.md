@@ -7,7 +7,7 @@
 | Item | Value |
 |---|---|
 | Phase | 2A — schema and contracts |
-| Implementation | Phase 2B (stubs) / Phase 3 (registration and real data) |
+| Implementation | Phase 2B (stubs) / Phase 3 complete (registration and real data) |
 | Source of truth for helpers | `12-PLUGIN-HELPER-CONTRACTS.md` |
 | Layer ownership | `01-THEME-PLUGIN-CONTRACT.md` |
 

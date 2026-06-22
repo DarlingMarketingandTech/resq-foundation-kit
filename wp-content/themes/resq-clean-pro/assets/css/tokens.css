@@ -1,0 +1,79 @@
+/**
+ * Brand foundation tokens — neutral accessible defaults (docs/02, docs/05).
+ *
+ * @package ResQ_Clean_Pro
+ */
+
+:root {
+	--resq-color-primary: #121212;
+	--resq-color-secondary: #4a4a4a;
+	--resq-color-accent: #6b7280;
+
+	--resq-color-bg-main: #ffffff;
+	--resq-color-bg-surface: #f9fafb;
+	--resq-color-bg-card: #ffffff;
+	--resq-color-bg-muted: #f3f4f6;
+
+	--resq-color-text-primary: #111827;
+	--resq-color-text-secondary: #374151;
+	--resq-color-text-muted: #6b7280;
+	--resq-color-text-on-dark: #ffffff;
+
+	--resq-color-border-light: #e5e7eb;
+	--resq-color-border-dark: #9ca3af;
+
+	--resq-color-status-success: #065f46;
+	--resq-color-status-warning: #92400e;
+	--resq-color-status-error: #991b1b;
+
+	--resq-font-family-display: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--resq-font-family-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+	--resq-font-size-xs: 0.75rem;
+	--resq-font-size-sm: 0.875rem;
+	--resq-font-size-md: 1rem;
+	--resq-font-size-lg: 1.125rem;
+	--resq-font-size-xl: 1.25rem;
+	--resq-font-size-2xl: 1.5rem;
+	--resq-font-size-3xl: 1.875rem;
+
+	--resq-font-weight-normal: 400;
+	--resq-font-weight-medium: 500;
+	--resq-font-weight-bold: 700;
+
+	--resq-line-height-tight: 1.25;
+	--resq-line-height-base: 1.5;
+	--resq-line-height-loose: 1.75;
+
+	--resq-spacing-2xs: 0.25rem;
+	--resq-spacing-xs: 0.5rem;
+	--resq-spacing-sm: 0.75rem;
+	--resq-spacing-md: 1rem;
+	--resq-spacing-lg: 1.5rem;
+	--resq-spacing-xl: 2rem;
+	--resq-spacing-2xl: 3rem;
+	--resq-spacing-3xl: 4rem;
+
+	--resq-radius-sm: 2px;
+	--resq-radius-md: 4px;
+	--resq-radius-lg: 8px;
+
+	--resq-container-max-width: 1280px;
+	--resq-z-index-drawer: 400;
+	--resq-z-index-header: 500;
+	--resq-z-index-overlay: 450;
+
+	--resq-transition-speed-fast: 150ms;
+	--resq-transition-speed-base: 250ms;
+	--resq-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+
+	--resq-breakpoint-md: 768px;
+	--resq-breakpoint-lg: 1024px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--resq-transition-speed-fast: 0s;
+		--resq-transition-speed-base: 0s;
+	}
+}

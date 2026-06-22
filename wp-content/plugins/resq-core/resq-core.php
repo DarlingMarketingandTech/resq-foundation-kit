@@ -3,7 +3,7 @@
  * Plugin Name: ResQ Core
  * Plugin URI:
  * Description: Business logic, settings, and WooCommerce integrations for the ResQ storefront.
- * Version: 0.1.0
+ * Version: 0.2.0
  * Requires at least: 6.4
  * Requires PHP: 8.1
  * Author:
@@ -25,17 +25,24 @@ if ( defined( 'RESQ_CORE_VERSION' ) ) {
 	return;
 }
 
-define( 'RESQ_CORE_VERSION', '0.1.0' );
+define( 'RESQ_CORE_VERSION', '0.2.0' );
 define( 'RESQ_CORE_FILE', __FILE__ );
 define( 'RESQ_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'RESQ_CORE_URL', plugin_dir_url( __FILE__ ) );
 define( 'RESQ_CORE_INCLUDES', RESQ_CORE_DIR . 'includes/' );
 
 require_once RESQ_CORE_INCLUDES . 'helpers/infrastructure.php';
-require_once RESQ_CORE_INCLUDES . 'helpers/storefront.php';
 require_once RESQ_CORE_INCLUDES . 'class-options.php';
+require_once RESQ_CORE_INCLUDES . 'class-cache.php';
+require_once RESQ_CORE_INCLUDES . 'registrations/class-post-meta.php';
+require_once RESQ_CORE_INCLUDES . 'registrations/class-term-meta.php';
+require_once RESQ_CORE_INCLUDES . 'registrations/class-taxonomies.php';
+require_once RESQ_CORE_INCLUDES . 'registrations/class-cpt.php';
+require_once RESQ_CORE_INCLUDES . 'registrations/class-registrations.php';
 require_once RESQ_CORE_INCLUDES . 'class-woocommerce-compat.php';
+require_once RESQ_CORE_INCLUDES . 'helpers/internal.php';
+require_once RESQ_CORE_INCLUDES . 'helpers/storefront.php';
+require_once RESQ_CORE_INCLUDES . 'class-product-sync.php';
 require_once RESQ_CORE_INCLUDES . 'class-plugin.php';
-require_once RESQ_CORE_INCLUDES . 'registration-scaffold.php';
 
 ResQ_Core_Plugin::instance();

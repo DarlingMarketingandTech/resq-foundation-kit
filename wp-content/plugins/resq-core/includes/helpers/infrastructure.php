@@ -2,9 +2,6 @@
 /**
  * Infrastructure helper functions.
  *
- * These are the plugin-internal helpers prefixed resq_core_*.
- * Contracts: docs/01-THEME-PLUGIN-CONTRACT.md, docs/12-PLUGIN-HELPER-CONTRACTS.md.
- *
  * @package ResQ_Core
  */
 
@@ -24,9 +21,6 @@ if ( ! function_exists( 'resq_core' ) ) {
 if ( ! function_exists( 'resq_core_get_option' ) ) {
 	/**
 	 * Read a plugin option with an optional default.
-	 *
-	 * Supports dot-notation for nested arrays, e.g.
-	 * `resq_core_compliance.cbd_isolation_enabled`.
 	 *
 	 * @param string $key     Option key.
 	 * @param mixed  $default Fallback value.
@@ -53,9 +47,6 @@ if ( ! function_exists( 'resq_core_is_active' ) ) {
 	/**
 	 * Whether the ResQ Core plugin has fully initialized.
 	 *
-	 * Theme templates should use this or function_exists() before
-	 * calling any resq_* helper.
-	 *
 	 * @return bool
 	 */
 	function resq_core_is_active(): bool {
@@ -70,9 +61,6 @@ if ( ! function_exists( 'resq_core_get_badge_data' ) ) {
 	/**
 	 * Return badge data for a product.
 	 *
-	 * Phase 2B stub — returns null. Real implementation in Phase 3.
-	 * Theme templates should prefer resq_get_product_badges().
-	 *
 	 * @param int $product_id WooCommerce product ID.
 	 * @return array|null
 	 */
@@ -80,15 +68,15 @@ if ( ! function_exists( 'resq_core_get_badge_data' ) ) {
 		if ( $product_id <= 0 ) {
 			return null;
 		}
-		return null;
+
+		$badges = resq_get_product_badges( $product_id );
+		return ! empty( $badges ) ? $badges[0] : null;
 	}
 }
 
 if ( ! function_exists( 'resq_core_get_cross_sells' ) ) {
 	/**
 	 * Return curated cross-sell product IDs.
-	 *
-	 * Phase 2B stub — returns empty array. Real implementation in Phase 3.
 	 *
 	 * @param int $product_id WooCommerce product ID.
 	 * @return int[]
@@ -97,7 +85,8 @@ if ( ! function_exists( 'resq_core_get_cross_sells' ) ) {
 		if ( $product_id <= 0 ) {
 			return array();
 		}
-		return array();
+
+		return resq_get_frequently_bought_together( $product_id );
 	}
 }
 
@@ -105,13 +94,37 @@ if ( ! function_exists( 'resq_core_get_compliance_notices' ) ) {
 	/**
 	 * Return compliance notices for a given context and product.
 	 *
-	 * Phase 2B stub — returns empty array. Real implementation in Phase 3.
-	 *
-	 * @param string $context    Display context: pdp, category, cart, checkout, card.
+	 * @param string $context    Display context.
 	 * @param int    $product_id Optional product ID.
 	 * @return array[]
 	 */
 	function resq_core_get_compliance_notices( string $context, int $product_id = 0 ): array {
-		return array();
+		if ( $product_id <= 0 ) {
+			return array();
+		}
+
+		if ( ! resq_requires_compliance_notice( $product_id, $context ) ) {
+			return array();
+		}
+
+		$zone        = resq_get_compliance_zone( $product_id );
+		$notice_text = resq_core_get_option( 'resq_core_compliance.notice_text', array() );
+		$text        = '';
+
+		if ( is_array( $notice_text ) && ! empty( $notice_text[ $zone ] ) ) {
+			$text = (string) $notice_text[ $zone ];
+		}
+
+		if ( '' === $text ) {
+			return array();
+		}
+
+		return array(
+			array(
+				'zone'    => $zone,
+				'context' => $context,
+				'text'    => $text,
+			),
+		);
 	}
 }
