@@ -9,7 +9,10 @@
 | Foundation branch | `foundation-blueprint` |
 | Foundation tag | `v0.1-foundation-blueprint` |
 | Foundation commit | `77430b6` |
-| Current focus | Phase 2A — plugin data schema and helper contracts |
+| Phase 2A branch | `phase-2a-contracts` |
+| Phase 2A tag | `v0.2-phase-2a-contracts` |
+| Phase 2A status | complete |
+| Current focus | Phase 2B — plugin PHP implementation scaffold |
 
 ## Phase Overview
 
@@ -87,6 +90,14 @@
 ## Phase 2B — Plugin PHP Implementation Scaffold
 
 **Goal:** Make `resq-core` a thin, safe provider of documented helper stubs.
+
+### Scope boundaries
+
+- No admin UI.
+- No fixture data.
+- No active taxonomy or CPT registration.
+- No real product, meta, or taxonomy data reads.
+- Helper functions return empty-safe defaults only.
 
 ### Key tasks
 
@@ -318,8 +329,8 @@
 | Phase | Status | Notes |
 |---|---|---|
 | 1 Foundation blueprint lock | complete | Checkpoint: `foundation-blueprint` @ `v0.1-foundation-blueprint` (`77430b6`) |
-| 2A Plugin data schema (docs) | complete | `11`, `12`, `13` |
-| 2B Plugin data contract (PHP) | pending | Helper stubs, options, Woo check |
+| 2A Plugin data schema (docs) | complete | Checkpoint: `phase-2a-contracts` @ `v0.2-phase-2a-contracts` — `11`, `12`, `13` |
+| 2B Plugin data contract (PHP) | pending | Helper stubs, options, Woo check — see scope boundaries |
 | 3 Plugin routine-commerce model | pending | |
 | 4 Theme global foundation | pending | |
 | 5 Woo template shells | pending | |

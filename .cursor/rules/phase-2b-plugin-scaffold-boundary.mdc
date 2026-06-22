@@ -1,0 +1,89 @@
+---
+description: Phase 2B Plugin Scaffold Boundary - safe PHP scaffold implementation only for resq-core plugin
+globs: wp-content/plugins/resq-core/**/*.php
+alwaysApply: false
+---
+
+# Phase 2B Plugin Scaffold Boundary
+
+During Phase 2B, the ResQ Core plugin work is limited to **safe PHP scaffold implementation only**. This rule enforces the boundary between allowed scaffold scaffolding and prohibited active implementations.
+
+## Allowed Implementation
+
+- ✅ Plugin main file header and bootstrap wiring
+- ✅ WooCommerce dependency check and admin notice for missing WooCommerce
+- ✅ Options/default initialization stubs
+- ✅ Empty-safe helper function stubs matching `docs/12-PLUGIN-HELPER-CONTRACTS.md`
+- ✅ Commented taxonomy and CPT registration scaffolds (not active)
+- ✅ Feature flag constants or option helpers
+- ✅ Basic defensive guards: `defined( 'ABSPATH' ) || exit;`
+
+## Prohibited in Phase 2B
+
+- ❌ No admin UI (no option pages, no metaboxes, no admin menus)
+- ❌ No fixture data (no seeding, no demo products)
+- ❌ No active taxonomy registration
+- ❌ No active CPT registration
+- ❌ No real product data lookups beyond empty-safe placeholders
+- ❌ No bundle engine implementation
+- ❌ No REST endpoints
+- ❌ No checkout/cart behavior changes
+- ❌ No theme markup output from the plugin
+- ❌ No source blueprint edits (preserve `docs/source-blueprints/` as-is)
+
+## Key Verification Checklist
+
+Before marking Phase 2B work complete:
+
+1. **Function Contracts**: All function names match `docs/12-PLUGIN-HELPER-CONTRACTS.md` exactly
+2. **Empty-Safe Returns**: Helper functions return predictable empty values (empty array, zero, empty string, false) when data is unavailable
+3. **No Naming Drift**: Helper naming is consistent:
+   - FBT product IDs: `_resq_fbt_product_ids()`
+   - Badge helpers: `_resq_*_badge_*()`
+   - Compliance helpers: `_resq_*_compliance_*()`
+4. **Syntax Valid Without WooCommerce**: Plugin file passes `php -l` syntax check even if WooCommerce is not installed
+5. **Dependency Behavior Documented**: `resq-core.php` clearly documents WooCommerce requirement and provides user-facing notice if missing
+
+## Required Reference Documents
+
+Before implementing, ensure you've reviewed:
+
+- `docs/11-PLUGIN-DATA-SCHEMA.md` — Data structure contracts
+- `docs/12-PLUGIN-HELPER-CONTRACTS.md` — Exact function signatures and return shapes
+- `docs/13-PHASE-2A-IMPLEMENTATION-NOTES.md` — Context from Phase 2A decisions
+- `.codex/skills/resq-plugin-architect/SKILL.md` — Plugin architecture patterns
+
+## Example: Empty-Safe Helper
+
+```php
+// ✅ GOOD - returns empty array, safe without data
+function _resq_fbt_product_ids( $parent_product_id = 0 ) {
+    // Phase 2B: placeholder only
+    if ( ! $parent_product_id ) {
+        return array();
+    }
+    return array();
+}
+
+// ❌ BAD - queries database actively, not allowed in Phase 2B
+function _resq_fbt_product_ids( $parent_product_id = 0 ) {
+    $parent = wc_get_product( $parent_product_id );
+    return $parent->get_children();
+}
+```
+
+## Example: Commented CPT Registration
+
+```php
+// Phase 2B: CPT registration scaffold - COMMENTED OUT
+// Uncomment in Phase 3 when data schema is finalized
+/*
+function resq_register_fbt_cpt() {
+    register_post_type( 'resq_fbt', array(
+        'label' => 'FBT Bundle',
+        'supports' => array( 'title', 'editor' ),
+    ) );
+}
+add_action( 'init', 'resq_register_fbt_cpt' );
+*/
+```
