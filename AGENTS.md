@@ -82,6 +82,12 @@ No major implementation code should be added until architecture docs align for t
 
 Delegate focused review or planning to the matching agent file before large changes.
 
+## Research and background artifacts
+
+Background research and exploratory documents are in `docs/research/`. These are not architecture docs and should not be treated as authoritative for implementation decisions. They document the research process, tool evaluation, and platform comparisons that informed the architecture docs.
+
+- `docs/research/deep-research-report.md` — Background workflow and tool research for Claude Code Desktop; informs `AGENTS.md` and skill/tool selection but is not a direct implementation reference.
+
 ## Sensitive data
 
 - Do not commit API keys, application passwords, or customer PII

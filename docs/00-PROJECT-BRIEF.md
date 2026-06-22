@@ -47,7 +47,7 @@ Agents and humans treat `docs/` as the source of truth for implementation bounda
 
 ## Current Phase
 
-The project is in **Phase 1: Foundation blueprint lock**. The current task is architectural alignment, not code buildout. Phase 1 must settle routine-commerce concepts, theme/plugin ownership, Woo surfaces, compliance constraints, roadmap order, and source-blueprint traceability before implementation expands.
+The project is in **Phase 2A complete / Phase 2B pending**. Phase 1 (foundation blueprint lock) is complete with all architecture docs aligned and source blueprints preserved. Phase 2A has delivered the plugin data schema (`docs/11`), helper contracts (`docs/12`), and implementation notes (`docs/13`). Phase 2B (plugin PHP scaffold) will begin with helper stubs, options initialization, and WooCommerce dependency checks — no real data registration or admin UI yet.
 
 ## Implementation Target
 
