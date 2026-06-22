@@ -68,6 +68,11 @@ class ResQ_Core_Plugin {
 	private function register_hooks(): void {
 		register_activation_hook( RESQ_CORE_FILE, array( $this, 'activate' ) );
 		register_deactivation_hook( RESQ_CORE_FILE, array( $this, 'deactivate' ) );
+
+		add_action(
+			'before_woocommerce_init',
+			array( 'ResQ_Core_Woocommerce_Compat', 'declare_feature_compatibility' )
+		);
 	}
 
 	/**

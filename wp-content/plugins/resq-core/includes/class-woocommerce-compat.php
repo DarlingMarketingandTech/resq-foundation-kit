@@ -37,6 +37,22 @@ class ResQ_Core_Woocommerce_Compat {
 	}
 
 	/**
+	 * Declare compatibility with WooCommerce features (HPOS, etc.).
+	 *
+	 * Must be called on `before_woocommerce_init`. Without this,
+	 * WooCommerce shows an "incompatible plugins" warning.
+	 */
+	public static function declare_feature_compatibility(): void {
+		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility(
+				'custom_order_tables',
+				RESQ_CORE_FILE,
+				true
+			);
+		}
+	}
+
+	/**
 	 * Register admin notice for missing WooCommerce.
 	 */
 	public static function register_admin_notice(): void {
