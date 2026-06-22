@@ -13,12 +13,29 @@
  * Text Domain: resq-core
  * Domain Path: /languages
  *
+ * WC requires at least: 8.0
+ * WC tested up to: 9.0
+ *
  * @package ResQ_Core
  */
 
 defined( 'ABSPATH' ) || exit;
 
+if ( defined( 'RESQ_CORE_VERSION' ) ) {
+	return;
+}
+
 define( 'RESQ_CORE_VERSION', '0.1.0' );
 define( 'RESQ_CORE_FILE', __FILE__ );
 define( 'RESQ_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'RESQ_CORE_URL', plugin_dir_url( __FILE__ ) );
+define( 'RESQ_CORE_INCLUDES', RESQ_CORE_DIR . 'includes/' );
+
+require_once RESQ_CORE_INCLUDES . 'helpers/infrastructure.php';
+require_once RESQ_CORE_INCLUDES . 'helpers/storefront.php';
+require_once RESQ_CORE_INCLUDES . 'class-options.php';
+require_once RESQ_CORE_INCLUDES . 'class-woocommerce-compat.php';
+require_once RESQ_CORE_INCLUDES . 'class-plugin.php';
+require_once RESQ_CORE_INCLUDES . 'registration-scaffold.php';
+
+ResQ_Core_Plugin::instance();
