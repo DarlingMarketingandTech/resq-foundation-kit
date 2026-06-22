@@ -8,14 +8,16 @@
 |---|---|
 | Foundation branch | `foundation-blueprint` |
 | Foundation tag | `v0.1-foundation-blueprint` |
-| Current focus | Phase 1 architecture alignment |
+| Foundation commit | `77430b6` |
+| Current focus | Phase 2A — plugin data schema and helper contracts |
 
 ## Phase Overview
 
 | Phase | Name | Primary output |
 |---|---|---|
 | 1 | Foundation blueprint lock | Docs `00` through `10`, source-blueprint index, boundaries |
-| 2 | Plugin data contract | `resq-core` helper stubs, options, meta/taxonomy plan |
+| 2A | Plugin data schema (docs) | `11`, `12`, `13` — schema, helper contracts, implementation notes |
+| 2B | Plugin data contract (PHP) | `resq-core` helper stubs, options, Woo dependency check |
 | 3 | Plugin routine-commerce model | Audience, concern, routine, canonical, bundle, FBT, CBD data structures |
 | 4 | Theme global foundation | Header/nav/mega-menu/mobile drawer/footer, assets, tokens |
 | 5 | WooCommerce template shells | Shop, category, card, PDP, cart, checkout, account, search shells |
@@ -49,26 +51,50 @@
 
 ### Exit criteria
 
-- [ ] Docs `00` through `10` are internally consistent.
-- [ ] Theme/plugin/Woo ownership is explicit.
-- [ ] Source blueprints are indexed, not rewritten.
-- [ ] No major PHP implementation was added.
-- [ ] Branch target is `foundation-blueprint`.
-- [ ] Tag target is `v0.1-foundation-blueprint`.
+- [x] Docs `00` through `10` are internally consistent.
+- [x] Theme/plugin/Woo ownership is explicit.
+- [x] Source blueprints are indexed, not rewritten.
+- [x] No major PHP implementation was added.
+- [x] Branch target is `foundation-blueprint`.
+- [x] Tag target is `v0.1-foundation-blueprint`.
 
 ---
 
-## Phase 2 — Plugin Data Contract
+## Phase 2A — Plugin Data Schema and Helper Contracts
 
-**Goal:** Make `resq-core` a thin, safe provider of documented helper contracts.
+**Goal:** Document the plugin-owned data model and public helper contracts before any PHP registration.
+
+### Key tasks
+
+- Add `11-PLUGIN-DATA-SCHEMA.md` — taxonomies, CPTs, meta keys, options, relationships.
+- Add `12-PLUGIN-HELPER-CONTRACTS.md` — signed helper functions with return shapes.
+- Add `13-PHASE-2A-IMPLEMENTATION-NOTES.md` — decisions, Phase 2B scope, risks.
+- Update `01-THEME-PLUGIN-CONTRACT.md` — superseded meta keys, new keys.
+- Resolve audience/concern storage (taxonomy over `_ids` meta).
+- Resolve compliance storage (flags array + zone meta + derived helpers).
+- Resolve routine step storage (CPT meta, not taxonomy).
+
+### Exit criteria
+
+- [x] Taxonomy and CPT decisions documented with exact names.
+- [x] All evaluated meta keys documented with types and sanitization.
+- [x] All storefront helpers documented with signatures and return shapes.
+- [x] Deferred decisions explicitly marked (bundle engine, REST, admin UI).
+- [x] No PHP implementation, admin fields, or fixture data added.
+
+---
+
+## Phase 2B — Plugin PHP Implementation Scaffold
+
+**Goal:** Make `resq-core` a thin, safe provider of documented helper stubs.
 
 ### Key tasks
 
 - Add plugin infrastructure helpers from `01-THEME-PLUGIN-CONTRACT.md`.
-- Add storefront helper stubs returning empty arrays/nulls/booleans safely.
-- Add options defaults and feature flags.
+- Add storefront helper stubs from `12-PLUGIN-HELPER-CONTRACTS.md` returning empty-safe defaults.
+- Add options defaults and feature flags from `11-PLUGIN-DATA-SCHEMA.md`.
 - Add WooCommerce dependency check and admin notice.
-- Document meta/taxonomy registration plan before adding fields.
+- Add commented taxonomy/CPT/meta registration scaffolds (not activated).
 - Add WP-CLI status scaffold only if needed for validation.
 
 ### Exit criteria
@@ -291,8 +317,9 @@
 
 | Phase | Status | Notes |
 |---|---|---|
-| 1 Foundation blueprint lock | in progress | Current branch target: `foundation-blueprint` |
-| 2 Plugin data contract | pending | |
+| 1 Foundation blueprint lock | complete | Checkpoint: `foundation-blueprint` @ `v0.1-foundation-blueprint` (`77430b6`) |
+| 2A Plugin data schema (docs) | complete | `11`, `12`, `13` |
+| 2B Plugin data contract (PHP) | pending | Helper stubs, options, Woo check |
 | 3 Plugin routine-commerce model | pending | |
 | 4 Theme global foundation | pending | |
 | 5 Woo template shells | pending | |

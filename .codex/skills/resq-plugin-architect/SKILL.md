@@ -22,3 +22,5 @@ description: Use for plugin hooks, settings, Woo integrations, routine-commerce 
 - Expose feature toggles via `resq_core_feature_enabled` filter
 - Check `docs/01-THEME-PLUGIN-CONTRACT.md` before moving behavior across layers
 - Prefix everything: `resq_` for functions, `ResQ\` or `ResQ_` for classes
+- Phase 2A: prefer native taxonomy assignment (`resq_audience`, `resq_concern`, `resq_ingredient`) over `_resq_*_ids` product meta — see `docs/11-PLUGIN-DATA-SCHEMA.md`
+- Helper contracts live in `docs/12-PLUGIN-HELPER-CONTRACTS.md`; do not implement helpers without matching contract

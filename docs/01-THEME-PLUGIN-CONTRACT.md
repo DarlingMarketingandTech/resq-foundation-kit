@@ -207,18 +207,32 @@ All ResQ keys are plugin-registered. Theme reads via helpers and must not update
 
 ### Product Meta
 
+> Phase 2A schema: `11-PLUGIN-DATA-SCHEMA.md`. Helper contracts: `12-PLUGIN-HELPER-CONTRACTS.md`.
+
 | Meta key | Owner | Purpose | Consumer |
 |---|---|---|---|
 | `_resq_badge_label` | plugin | Custom badge text | product card, PDP |
 | `_resq_badge_type` | plugin | Badge variant slug | theme CSS class |
-| `_resq_audience_ids` | plugin | Audience mappings | gateway/filter/PDP UI |
-| `_resq_concern_ids` | plugin | Concern/problem mappings | discovery/filter/PDP UI |
-| `_resq_routine_ids` | plugin | Routine memberships | routine ladder |
+| `_resq_audience_ids` | plugin | ~~Audience mappings~~ **Superseded** — use `resq_audience` taxonomy | — |
+| `_resq_concern_ids` | plugin | ~~Concern mappings~~ **Superseded** — use `resq_concern` taxonomy | — |
+| `_resq_routine_ids` | plugin | Routine memberships (`resq_routine` CPT post IDs) | routine ladder |
+| `_resq_primary_routine_id` | plugin | Featured routine when product belongs to many | PDP routine ladder |
+| `_resq_routine_step_order` | plugin | Optional step position hint on product | routine ladder |
 | `_resq_canonical_product_id` | plugin | Canonical parent override where needed | route resolver |
 | `_resq_bundle_product_ids` | plugin | Bundle/kit composition | bundle card/PDP/cart |
 | `_resq_fbt_product_ids` | plugin | Manual FBT override | FBT block |
-| `_resq_compliance_flags` | plugin | CBD/medical/pet/baby/proof/donation risk flags | notices/restrictions |
+| `_resq_compliance_flags` | plugin | Writable CBD/medical/pet/baby/proof/donation risk flags | notices/restrictions |
+| `_resq_compliance_zone` | plugin | Compliance zone slug (`standard`, `cbd`, `baby`, `pet-health`) | isolation, filters, notices |
 | `_resq_ingredient_profile` | plugin | Ingredient IDs/descriptors | ingredient blocks |
+| `_resq_short_benefit_tags` | plugin | Claim-safe benefit tags for cards/PDP | product card, PDP |
+| `_resq_product_card_subtitle` | plugin | Optional card subtitle line | product card |
+| `_resq_gateway_featured` | plugin | Gateway slugs where product is featured | gateway shelves |
+| `_resq_learn_links` | plugin | Learn guide post IDs/labels | PDP Learn bridge |
+| `_resq_donation_eligible` | plugin | Donation/mission display eligibility | mission modules |
+
+**Not stored as meta (helper-derived):** `_resq_cbd_product`, `_resq_requires_compliance_notice` — computed from `_resq_compliance_flags`, `_resq_compliance_zone`, and context. See `11-PLUGIN-DATA-SCHEMA.md`.
+
+**Taxonomies (plugin-registered, Phase 3):** `resq_audience`, `resq_concern`, `resq_ingredient`, `resq_product_role`, `resq_compliance_zone` — assigned to products. Audience and concern use native taxonomy assignment, not `_ids` meta.
 
 Standard Woo meta such as `_price`, `_stock`, `_sku`, `_tax_class`, and variation attributes remains Woo-owned.
 
