@@ -124,20 +124,29 @@ These functions are the public API between layers. The theme may call plugin hel
 
 ### Plugin Storefront Data Helpers
 
-Future implementation must provide these helpers before theme templates rely on them:
+Phase 2B provides empty-safe stubs for all 19 storefront helpers (see `12-PLUGIN-HELPER-CONTRACTS.md`). Theme templates may call them behind `function_exists()` / `resq_core_is_active()` guards; Phase 3 supplies real data.
 
 | Function | Purpose | Returns |
 |---|---|---|
-| `resq_get_product_audiences( int $product_id )` | Audience tags/mappings for a product | `array[]` |
-| `resq_get_product_concerns( int $product_id )` | Concern/problem tags for discovery and filters | `array[]` |
-| `resq_get_product_routines( int $product_id )` | Routines that include the product | `array[]` |
-| `resq_get_routine_steps( int $routine_id, int $current_product_id = 0 )` | Ordered routine step data with current-product marker | `array[]` |
-| `resq_get_bundle_products( int $bundle_product_id )` | Product IDs and quantities in a bundle/kit | `array[]` |
-| `resq_get_frequently_bought_together( int $product_id )` | FBT products for PDP/cart | `int[]` |
+| `resq_get_product_audiences( int $product_id )` | Audience terms | `array[]` |
+| `resq_get_product_concerns( int $product_id )` | Concern/problem terms | `array[]` |
+| `resq_get_product_routines( int $product_id )` | Routines including product | `array[]` |
+| `resq_get_routine_steps( int $routine_id, int $current_product_id = 0 )` | Ordered routine steps | `array[]` |
+| `resq_get_product_ingredient_profile( int $product_id )` | Claim-safe ingredient profile | `array[]` |
+| `resq_get_canonical_product_id( int|string $source_id, string $source_type = 'product' )` | Resolve to canonical product | `int|null` |
+| `resq_resolve_product_context( int|string $context_id, string $context_type )` | Page/term/route/gateway shopping context | `array` |
 | `resq_is_cbd_product( int $product_id )` | Whether product is CBD-regulated | bool |
-| `resq_requires_compliance_notice( int $product_id, string $context = 'pdp' )` | Whether notices must render for product/context | bool |
-| `resq_get_canonical_product_id( int|string $source, string $source_type = 'product' )` | Resolve product/page/route/term to canonical Woo product | `int|null` |
-| `resq_get_product_ingredient_profile( int $product_id )` | Claim-safe ingredient profile data | `array[]` |
+| `resq_requires_compliance_notice( int $product_id, string $context = 'pdp' )` | Whether notice must render | bool |
+| `resq_get_compliance_zone( int $product_id )` | Compliance zone slug | string |
+| `resq_can_cross_sell_products( int $source_product_id, int $target_product_id )` | Cross-sell safety gate | bool |
+| `resq_get_product_routine_ladder( int $product_id )` | PDP routine ladder payload | `array` |
+| `resq_get_recommended_routine_addons( int $product_id )` | Cart drawer suggestions | `array[]` |
+| `resq_get_bundle_products( int $bundle_id )` | Products/qty in bundle | `array[]` |
+| `resq_get_frequently_bought_together( int $product_id )` | FBT product IDs | `int[]` |
+| `resq_get_product_card_data( int $product_id )` | Aggregated card payload | `array` |
+| `resq_get_gateway_featured_products( string $gateway )` | Gateway shelf product IDs | `int[]` |
+| `resq_get_learn_links_for_product( int $product_id )` | PDP Learn bridge links | `array[]` |
+| `resq_get_product_badges( int $product_id )` | Badge objects sorted by priority | `array[]` |
 
 ### Theme Helpers
 

@@ -1,13 +1,13 @@
 # 12 — Plugin Helper Contracts
 
-> Public helper function contracts for `resq-core`. Theme may call these functions. Plugin must not call theme helpers. **Do not implement until Phase 2B/3.**
+> Public helper function contracts for `resq-core`. Theme may call these functions. Plugin must not call theme helpers. **Phase 2B implemented empty-safe stubs for all helpers; Phase 3 replaces stubs with real data reads.**
 
 ## Status
 
 | Item | Value |
 |---|---|
-| Phase | 2A — contracts only |
-| Implementation | Phase 2B (stubs) / Phase 3 (real data) |
+| Phase | 2B complete — contracts + empty-safe stubs |
+| Implementation | Stubs in `wp-content/plugins/resq-core/includes/helpers/`; Phase 3 = real data reads |
 | Schema reference | `11-PLUGIN-DATA-SCHEMA.md` |
 | Ownership | `01-THEME-PLUGIN-CONTRACT.md` |
 

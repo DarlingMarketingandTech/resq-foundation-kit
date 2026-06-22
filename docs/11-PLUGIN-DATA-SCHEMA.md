@@ -536,7 +536,7 @@ Gateway pages are front-end experiences. This meta marks featured products; it d
 | REST later | Admin-only write |
 | Required | Optional |
 
-Display requires `resq_core_donation_display_enabled` option AND operational proof per `05-COMPLIANCE-RULES.md`.
+Display requires `resq_core_feature_enabled( 'donation_display' )` AND the `resq_core_compliance['donation_display_enabled']` option (readable via `resq_core_get_option( 'resq_core_compliance.donation_display_enabled' )`) AND operational proof per `05-COMPLIANCE-RULES.md`.
 
 ---
 

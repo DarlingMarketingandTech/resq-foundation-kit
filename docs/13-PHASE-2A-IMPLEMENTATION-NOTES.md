@@ -1,17 +1,21 @@
 # 13 — Phase 2A Implementation Notes
 
-> Summary of Phase 2A decisions, Phase 2B scope, deferred work, and pre-PHP risks.
+> Summary of Phase 2A decisions, Phase 2B delivery notes, deferred work, and Phase 3 risks.
 
 ## Checkpoint Context
 
 | Item | Value |
 |---|---|
-| Prior phase | Phase 1 — Foundation blueprint lock |
-| Prior branch | `foundation-blueprint` |
-| Prior tag | `v0.1-foundation-blueprint` |
-| Prior commit | `77430b6` |
-| Current phase | Phase 2A — Plugin data schema and helper contracts |
-| Deliverable type | Documentation only — no PHP implementation |
+| Phase 1 | Foundation blueprint lock — complete |
+| Phase 1 branch | `foundation-blueprint` |
+| Phase 1 tag | `v0.1-foundation-blueprint` |
+| Phase 1 commit | `77430b6` |
+| Phase 2A | Plugin data schema and helper contracts — complete (documentation only) |
+| Phase 2B | Plugin PHP scaffold — complete |
+| Phase 2B branch | `phase-2b-plugin-scaffold` |
+| Phase 2B tag | `v0.3-phase-2b-plugin-scaffold` |
+| Phase 2B merge commit | `52f1cf5` |
+| Current phase | Phase 3 pending — plugin routine-commerce model |
 
 ---
 
@@ -103,35 +107,34 @@ Plus 7 infrastructure helpers from Phase 1 (implemented in Phase 2B).
 
 ---
 
-## What Phase 2B Must Implement Next
+## What Phase 2B Delivered
 
-Phase 2B is the minimum PHP scaffold — still no admin UI, no fixture data, no live taxonomy/CPT registration.
+Phase 2B shipped the minimum PHP scaffold — still no admin UI, no fixture data, no live taxonomy/CPT registration.
 
 ### Plugin bootstrap
 
-- Expand `wp-content/plugins/resq-core/resq-core.php` with bootstrap loader
-- Add `includes/class-plugin.php` singleton
-- WooCommerce dependency check + admin notice when inactive
+- Expanded `wp-content/plugins/resq-core/resq-core.php` with bootstrap constants and the require chain
+- Added `includes/class-plugin.php` singleton
+- Added `includes/class-woocommerce-compat.php` with a WooCommerce dependency check + admin notice when inactive and a WooCommerce HPOS compatibility declaration
 
 ### Options and feature flags
 
-- Initialize `resq_core_version`, `resq_core_features`, `resq_core_settings`, `resq_core_compliance`, `resq_core_merchandising` on activation
-- Implement `resq_core_get_option()` and `resq_core_feature_enabled()`
-- Implement `resq_core_is_active()`
+- Implemented `includes/class-options.php` initializing `resq_core_version`, `resq_core_features`, `resq_core_settings`, `resq_core_compliance`, and `resq_core_merchandising` defaults
+- Implemented `resq_core_get_option()` and `resq_core_feature_enabled()`
+- Implemented `resq_core_is_active()`
 
 ### Helper stubs
 
-- Create `includes/helpers/storefront.php` with all 19 storefront helpers
-- Each returns empty-safe defaults (`[]`, `null`, `false`, `'standard'`)
-- Create `includes/helpers/infrastructure.php` for `resq_core_*` helpers
-- No real taxonomy/CPT reads until Phase 3
+- Added `includes/helpers/storefront.php` with all 19 storefront helpers returning empty-safe defaults (`[]`, `null`, `false`, `'standard'`)
+- Added `includes/helpers/infrastructure.php` with the 7 `resq_core_*` infrastructure helpers
+- No real taxonomy/CPT reads — deferred to Phase 3
 
 ### Registration scaffolds (commented only)
 
-- Commented taxonomy registration block referencing `11-PLUGIN-DATA-SCHEMA.md`
+- Added `includes/registration-scaffold.php` with commented taxonomy registration referencing `11-PLUGIN-DATA-SCHEMA.md`
 - Commented CPT registration for `resq_routine`
 - Commented product meta registration list
-- Do not call registration hooks in Phase 2B
+- Registration hooks are not yet called
 
 ### Verification
 
@@ -151,12 +154,12 @@ Phase 2B is the minimum PHP scaffold — still no admin UI, no fixture data, no 
 | Fixture import | Phase 7 |
 | Bundle engine implementation | Phase 8 |
 | REST endpoints | Phase 3+ after helper stability |
-| Composer/autoload | Optional — evaluate in Phase 2B if file count grows |
+| Composer/autoload | Optional — defer unless file count grows in Phase 3+ |
 | Final product catalog data | Never in foundation kit without fixtures phase |
 
 ---
 
-## Risks to Watch Before Writing PHP
+## Risks to Watch During Phase 3 Implementation
 
 1. **Meta key drift:** Do not reintroduce `_resq_audience_ids` or `_resq_concern_ids` in code. Use taxonomy APIs.
 2. **Step order:** Never infer routine step order from taxonomy term order. Always read `_resq_routine_steps`.
@@ -187,7 +190,7 @@ Phase 2B is the minimum PHP scaffold — still no admin UI, no fixture data, no 
 
 ---
 
-## Suggested Commit Message
+## Suggested Commit Message (Phase 2A checkpoint — historical)
 
 ```
 docs: Phase 2A — plugin data schema and helper contracts
@@ -213,20 +216,17 @@ over _ids meta.
 
 ---
 
-## Recommended Next Prompt (Phase 2B)
+## Recommended Next Prompt (Phase 3)
 
-> Start Phase 2B: Plugin PHP Implementation Scaffold.
+> Start Phase 3: Plugin Routine-Commerce Model.
 >
-> Reference `docs/13-PHASE-2A-IMPLEMENTATION-NOTES.md` for scope.
-> Create the minimum PHP implementation in `wp-content/plugins/resq-core/`:
-> - Plugin main file header and bootstrap
-> - WooCommerce dependency check + admin notice
-> - Options initialization from `resq_core_*` keys
-> - All helper function stubs returning empty/safe defaults (no real data yet)
-> - Commented taxonomy and CPT registration scaffolds (not yet called)
-> - Feature flag infrastructure
+> Reference `docs/11-PLUGIN-DATA-SCHEMA.md` and `docs/12-PLUGIN-HELPER-CONTRACTS.md` for scope.
+> Build on the Phase 2B scaffold in `wp-content/plugins/resq-core/`:
+> - Activate the commented taxonomy/CPT/meta registration in `includes/registration-scaffold.php` per `docs/11`
+> - Implement the canonical resolver and CBD/compliance helper rules
+> - Replace the empty-safe storefront stubs with real data reads per `docs/12`
 >
-> No admin UI, no fixture data, no taxonomy/CPT activation yet.
+> No admin UI and no fixture data yet — those are later phases per `docs/06`.
 
 ---
 
@@ -234,4 +234,4 @@ over _ids meta.
 
 1. `11-PLUGIN-DATA-SCHEMA.md`
 2. `12-PLUGIN-HELPER-CONTRACTS.md`
-3. `06-BUILD-ROADMAP.md` — Phase 2B tasks
+3. `06-BUILD-ROADMAP.md` — Phase 3 tasks
