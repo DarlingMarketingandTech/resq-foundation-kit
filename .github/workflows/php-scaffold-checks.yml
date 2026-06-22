@@ -28,9 +28,14 @@ jobs:
 
       - name: Lint PHP files in wp-content
         run: |
-          find wp-content -name "*.php" -type f -exec php -l {} \; | grep -v "No syntax errors detected"
-          exit_code=${PIPESTATUS[0]}
-          if [ $exit_code -eq 0 ]; then
-            echo "✓ All PHP files passed syntax check"
+          set -euo pipefail
+          shopt -s globstar nullglob
+          files=(wp-content/**/*.php)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No PHP files found under wp-content"
+            exit 0
           fi
-          exit $exit_code
+          for file in "${files[@]}"; do
+            php -l "$file"
+          done
+          echo "All PHP files passed syntax check"
