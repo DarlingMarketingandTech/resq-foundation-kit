@@ -82,6 +82,9 @@ class ResQ_Core_Plugin {
 
 		if ( ! ResQ_Core_Woocommerce_Compat::is_woocommerce_active() ) {
 			ResQ_Core_Woocommerce_Compat::register_admin_notice();
+		} else {
+			ResQ_Core_Merchandising_Hooks::init();
+			ResQ_Core_Product_Filters::init();
 		}
 
 		$this->initialized = true;

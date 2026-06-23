@@ -1,4 +1,4 @@
-# Phase 8 — Merchandising Behavior
+﻿# Phase 8 — Merchandising Behavior
 
 > **Implementation authority** for Phase 8. Turn documented routine-commerce data into useful storefront behavior (`resq-core` + `resq-clean-pro`).
 
@@ -7,7 +7,7 @@
 | Item | Value |
 | --- | --- |
 | Phases 1–7 + catalog import | Complete — see [`CHECKPOINT.md`](CHECKPOINT.md) |
-| Phase 8 | Merchandising behavior — **in progress** |
+| Phase 8 | Merchandising behavior — **complete** (all streams A–F) |
 | Plugin version | `0.4.0` (target `0.5.0` after Phase 8 gate) |
 | Theme version | `0.4.0` (target `0.5.0` after Phase 8 gate) |
 | Catalog data | `wp resq-catalog import` — real `RQ-*` SKUs (preferred for smoke tests) |
@@ -124,39 +124,39 @@ Register new classes from `resq-core.php` only after hooks are documented here.
 
 ## Implementation workstreams
 
-Work in roadmap order. Each stream should stay theme/plugin clean per [`01-THEME-PLUGIN-CONTRACT.md`](01-THEME-PLUGIN-CONTRACT.md).
+All six streams complete. Each stayed theme/plugin clean per [`01-THEME-PLUGIN-CONTRACT.md`](01-THEME-PLUGIN-CONTRACT.md).
 
-### Stream A — Missing PDP template parts
+### Stream A — Missing PDP template parts ✓ done
 
 1. Add `ingredient-profile.php` — consume `resq_get_product_ingredient_profile()`; hide when empty.
 2. Add `frequently-bought-together.php` — consume `resq_get_frequently_bought_together()`; hide when empty; no CBD leakage.
 3. Add `bundle-options.php` on bundle PDPs — detect `_resq_bundle_product_ids` via `resq_get_bundle_products()`; show included lines and savings.
 
-### Stream B — Routine ladder and badge polish
+### Stream B — Routine ladder and badge polish ✓ done
 
 1. Compute `bundle_savings` in `resq_get_product_routine_ladder()` (compare bundle price vs sum of step product prices).
 2. Render savings in `routine-ladder.php` bundle CTA (claim-safe; no false “% off” without data).
 3. Seed sensible `default_badge_config` in `ResQ_Core_Options::default_merchandising()` (e.g. `on_sale`, `is_bundle`).
 
-### Stream C — Cross-sell and related restrictions
+### Stream C — Cross-sell and related restrictions ✓ done
 
 1. Filter Woo related products: `woocommerce_related_products` or query hook — apply `resq_can_cross_sell_products()`.
 2. Filter cart cross-sells similarly.
 3. Ensure FBT manual IDs and Woo cross-sell fallback both respect the same gate (already in `resq_get_frequently_bought_together()`).
 
-### Stream D — Bundle cart validation
+### Stream D — Bundle cart validation ✓ done
 
 1. On add-to-cart for bundle simple products, validate included products: exist, in stock, compliance-compatible with bundle zone.
 2. Surface admin-notice or cart error message when validation fails — do not silent-fail into broken orders.
 3. Document behavior in [`11-PLUGIN-DATA-SCHEMA.md`](11-PLUGIN-DATA-SCHEMA.md) § Bundle to products validation (change “Phase 8” to implemented when done).
 
-### Stream E — Cart drawer suggestions
+### Stream E — Cart drawer suggestions ✓ done
 
 1. Create `template-parts/cart/drawer.php` — suggestion card from `resq_get_recommended_routine_addons()`.
 2. Hook Woo add-to-cart (AJAX + non-AJAX) to open drawer when `cart_drawer_suggestions_enabled`.
 3. Focus trap, escape close, no blocking overlay on checkout route.
 
-### Stream F — Product filters
+### Stream F — Product filters ✓ done
 
 1. Plugin: register `pre_get_posts` / `woocommerce_product_query` handlers for `resq_audience`, `resq_concern`, `resq_product_role`, compliance zone.
 2. Theme: upgrade `filter-shell.php` from placeholder list to real form controls (GET params).
@@ -197,12 +197,12 @@ wp db export backups/before-phase8-smoke.sql
 
 ## Phase 8 exit criteria (from [`06-BUILD-ROADMAP.md`](06-BUILD-ROADMAP.md))
 
-- [ ] Routine and bundle UI improves clarity without blocking checkout
-- [ ] Cross-sells respect CBD, audience, and baby/pet restrictions on PDP, cart, and drawer
-- [ ] Product cards remain claim-safe (badges/subtitles only from plugin data)
+- [x] Routine and bundle UI improves clarity without blocking checkout
+- [x] Cross-sells respect CBD, audience, and baby/pet restrictions on PDP, cart, and drawer
+- [x] Product cards remain claim-safe (badges/subtitles only from plugin data)
 - [x] Bundle engine decision documented (this file § Architecture decisions)
-- [ ] Missing template parts from [`03-WOO-TEMPLATE-MAP.md`](03-WOO-TEMPLATE-MAP.md) Phase 8 rows implemented or explicitly deferred with reason
-- [ ] Catalog smoke recipe above passes on LocalWP
+- [x] Missing template parts from [`03-WOO-TEMPLATE-MAP.md`](03-WOO-TEMPLATE-MAP.md) Phase 8 rows implemented (ingredient, FBT, bundle-options, cart/drawer)
+- [x] Catalog smoke recipe above passes on LocalWP (all streams A–F verified)
 
 When complete: update [`CHECKPOINT.md`](CHECKPOINT.md), archive this file to `docs/archive/phase-notes/` at a later cleanup, and add Phase 8 row to release markers in `06`.
 

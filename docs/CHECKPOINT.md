@@ -1,19 +1,19 @@
 # Docs Checkpoint — Current Status
 
-> Single source for where the ResQ Foundation Kit stands today. Updated at the post–catalog-import checkpoint (PR #9 merged).
+> Single source for where the ResQ Foundation Kit stands today. Updated after Phase 8 merchandising behavior complete.
 
 ## Release marker
 
 | Item | Value |
 | --- | --- |
 | Branch | `main` |
-| `resq-core` | `0.4.0` |
-| `resq-clean-pro` | `0.4.0` |
+| `resq-core` | `0.4.0` → target `0.5.0` after Phase 9 gate |
+| `resq-clean-pro` | `0.4.0` → target `0.5.0` after Phase 9 gate |
 | Catalog import | `wp resq-catalog` — ~28 families, 6 routines, 23 bundles (`RQ-*` SKUs) |
 | Demo fixtures | `wp resq-fixtures` — `fixture-*` SKUs (sandbox only) |
-| Local validation | Catalog import + storefront smoke verified on LocalWP |
+| Local validation | Catalog import + Phase 8 all streams verified on LocalWP |
 
-**Next roadmap focus:** Phase 8 — Merchandising behavior (runbook [`20`](20-PHASE-8-IMPLEMENTATION-NOTES.md)). Phase 9 partially satisfied by Local work; full fresh-install gate still applies before release.
+**Next roadmap focus:** Phase 9 — Local sandbox validation (fresh-install gate). Phase 10 compliance/accessibility/performance QA after that.
 
 Comprehensive documentation (single merged handbook) is **deferred** to a follow-up initiative. This checkpoint only prunes and syncs status.
 
@@ -32,7 +32,7 @@ Comprehensive documentation (single merged handbook) is **deferred** to a follow
 | 6 | Gateway and Learn surfaces | complete |
 | 7 | Demo fixture system | complete |
 | — | Real catalog import (`wp resq-catalog`) | complete (post–Phase 7) |
-| 8 | Merchandising behavior | **in progress** — runbook [`20`](20-PHASE-8-IMPLEMENTATION-NOTES.md) |
+| 8 | Merchandising behavior | **complete** — runbook [`20`](20-PHASE-8-IMPLEMENTATION-NOTES.md) |
 | 9 | Local sandbox validation | partial (Local smoke done; fresh-install gate open) |
 | 10 | Compliance, accessibility, performance QA | pending |
 | 11 | Preflight release package | pending |
@@ -47,7 +47,7 @@ Delivery records for phases 2A–6 live in [`docs/archive/phase-notes/`](archive
 | --- | --- |
 | Architecture and boundaries | [`00-PROJECT-BRIEF.md`](00-PROJECT-BRIEF.md) → [`01`](01-THEME-PLUGIN-CONTRACT.md)–[`12`](12-PLUGIN-HELPER-CONTRACTS.md) |
 | Phase order and gates | [`06-BUILD-ROADMAP.md`](06-BUILD-ROADMAP.md) |
-| Build Phase 8 merchandising | [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) |
+| Phase 8 delivery record | [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) |
 | Import demo data (sandbox) | [`18-PHASE-7-IMPLEMENTATION-NOTES.md`](18-PHASE-7-IMPLEMENTATION-NOTES.md) |
 | Import real catalog | [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) |
 | Owner compliance sign-off | [`Product Data and Strategy/compliance-review-checklist.md`](Product%20Data%20and%20Strategy/compliance-review-checklist.md) |

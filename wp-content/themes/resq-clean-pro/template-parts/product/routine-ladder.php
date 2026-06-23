@@ -31,6 +31,9 @@ $bundle_target = ! empty( $ladder_payload['bundle_target'] ) ? absint( $ladder_p
 $bundle_label  = ! empty( $ladder_payload['bundle_label'] )
 	? $ladder_payload['bundle_label']
 	: __( 'Upgrade to Full Routine Kit', 'resq-clean-pro' );
+$bundle_savings = ! empty( $ladder_payload['bundle_savings'] )
+	? (string) $ladder_payload['bundle_savings']
+	: '';
 ?>
 
 <section class="resq-routine-ladder" aria-labelledby="resq-routine-ladder-heading">
@@ -101,6 +104,17 @@ $bundle_label  = ! empty( $ladder_payload['bundle_label'] )
 				<div class="resq-routine-ladder__bundle-text">
 					<strong><?php esc_html_e( 'Want maximum performance and savings?', 'resq-clean-pro' ); ?></strong>
 					<span><?php esc_html_e( 'Get all steps combined into an outcome-oriented routine kit.', 'resq-clean-pro' ); ?></span>
+					<?php if ( '' !== $bundle_savings ) : ?>
+						<span class="resq-routine-ladder__bundle-savings">
+							<?php
+							printf(
+								/* translators: %s: formatted savings amount */
+								esc_html__( 'Save %s', 'resq-clean-pro' ),
+								esc_html( $bundle_savings )
+							);
+							?>
+						</span>
+					<?php endif; ?>
 				</div>
 				<a class="resq-routine-ladder__bundle-btn" href="<?php echo esc_url( $bundle_url ); ?>">
 					<?php echo esc_html( $bundle_label ); ?>

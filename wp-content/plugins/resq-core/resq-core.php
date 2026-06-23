@@ -43,6 +43,8 @@ require_once RESQ_CORE_INCLUDES . 'class-woocommerce-compat.php';
 require_once RESQ_CORE_INCLUDES . 'helpers/internal.php';
 require_once RESQ_CORE_INCLUDES . 'helpers/storefront.php';
 require_once RESQ_CORE_INCLUDES . 'class-product-sync.php';
+require_once RESQ_CORE_INCLUDES . 'woocommerce/class-merchandising-hooks.php';
+require_once RESQ_CORE_INCLUDES . 'woocommerce/class-product-filters.php';
 require_once RESQ_CORE_INCLUDES . 'class-plugin.php';
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
