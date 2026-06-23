@@ -58,7 +58,7 @@ Delivery records for phases 2A–6 live in [`docs/archive/phase-notes/`](archive
 
 ## WP-CLI quick reference
 
-Run from WordPress site root (LocalWP **Open site shell**). On **Windows CMD**, do not paste bash `#` comments — they are passed as extra arguments.
+Run from WordPress site root (LocalWP **Open site shell**). Agents: prefer site shell for verification — see root [`AGENTS.md`](../AGENTS.md) § Site shell first. On **Windows CMD**, do not paste bash `#` comments — they are passed as extra arguments.
 
 ```bat
 wp resq-catalog import

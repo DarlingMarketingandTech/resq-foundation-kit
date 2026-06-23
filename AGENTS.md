@@ -32,6 +32,45 @@ Add later (only after sandbox is stable):
 - **Local sandbox:** LocalWP or DDEV + WP-CLI (Phase 9 validates LocalWP; see `docs/06-BUILD-ROADMAP.md`)
 - **Write policy:** Plan mode for any file, DB, or config mutation; no production store writes in normal sessions
 
+## Site shell first (top priority)
+
+**Default verification and ops path:** LocalWP **Open site shell** at the WordPress site root. This is more efficient than browser automation or re-discovering state in chat — prefer it whenever a `wp` command can answer the question.
+
+### Agent workflow
+
+1. **Implement** in repo (`resq-core`, `resq-clean-pro`, docs).
+2. **End each build slice** with a short, copy-paste **site shell block** (import, counts, option reads, targeted `wp eval`) — see runbooks `18`–`20`.
+3. **User runs** commands in site shell; paste output back **only on failure**.
+4. **Do not** use browser/MCP to verify catalog counts, meta, options, or plugin state if shell can do it.
+5. **Do not** repeat long import/setup instructions when runbooks `18`/`19` already cover them — link + minimal smoke block.
+
+### Prefer site shell for
+
+| Task | Examples |
+|---|---|
+| Catalog / fixtures | `wp resq-catalog import`, `wp resq-fixtures import` |
+| Backups before writes | `wp db export backups/before-<task>.sql` |
+| Product / routine counts | `wp wc product list --format=count`, `wp post list --post_type=resq_routine --format=count` |
+| Options and flags | `wp option get resq_core_merchandising --format=json` |
+| Quick data checks | `wp post meta get <id> _resq_bundle_product_ids`, `wp eval '...'` |
+| Plugin/theme state | `wp plugin list`, `wp theme list`, `wp cache flush` |
+
+### Use browser / MCP only when shell cannot
+
+- Visual layout, CSS, drawer focus trap, responsive behavior
+- Checkout/payment iframe internals
+- JS console errors on interaction
+- Staging read-only review when explicitly approved
+
+### Windows CMD (Local site shell)
+
+Do not paste bash `#` inline comments on the same line — CMD passes them as extra arguments. One command per line.
+
+### Skills
+
+- `wp-wpcli-and-ops` — safe WP-CLI patterns, backups, targeting
+- Active phase runbooks — `docs/20-PHASE-8-IMPLEMENTATION-NOTES.md` (smoke recipe), `docs/19-CATALOG-IMPORT-NOTES.md`, `docs/18-PHASE-7-IMPLEMENTATION-NOTES.md`
+
 ## Read order
 
 Start at **`docs/CHECKPOINT.md`** for current versions and phase status. Full map: **`docs/README.md`**.

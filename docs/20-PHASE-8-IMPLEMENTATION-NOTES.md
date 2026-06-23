@@ -166,6 +166,8 @@ Work in roadmap order. Each stream should stay theme/plugin clean per [`01-THEME
 
 ## Local smoke recipe
 
+**Verification:** run in LocalWP **site shell** (not repo root). User executes; agent supplies commands — see root [`AGENTS.md`](../AGENTS.md) § Site shell first.
+
 Run from WordPress site root (LocalWP **Open site shell**). **Windows CMD:** no inline `#` comments.
 
 ```bat
