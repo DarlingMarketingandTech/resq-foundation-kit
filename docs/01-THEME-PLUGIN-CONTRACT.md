@@ -124,7 +124,7 @@ These functions are the public API between layers. The theme may call plugin hel
 
 ### Plugin Storefront Data Helpers
 
-Phase 2B provides empty-safe stubs for all 19 storefront helpers (see `12-PLUGIN-HELPER-CONTRACTS.md`). Theme templates may call them behind `function_exists()` / `resq_core_is_active()` guards; Phase 3 supplies real data.
+Phase 3 implemented all 19 storefront helpers with live data reads (see `12-PLUGIN-HELPER-CONTRACTS.md` and `14-PHASE-3-IMPLEMENTATION-NOTES.md`). Theme templates call them behind `function_exists()` / `resq_core_is_active()` guards; empty arrays and nulls remain valid when data is absent.
 
 | Function | Purpose | Returns |
 |---|---|---|
@@ -216,7 +216,7 @@ All ResQ keys are plugin-registered. Theme reads via helpers and must not update
 
 ### Product Meta
 
-> Phase 2A schema: `11-PLUGIN-DATA-SCHEMA.md`. Helper contracts: `12-PLUGIN-HELPER-CONTRACTS.md`.
+> Phase 2A schema: `11-PLUGIN-DATA-SCHEMA.md`. Helper contracts: `12-PLUGIN-HELPER-CONTRACTS.md`. Phase 3 implementation record: `14-PHASE-3-IMPLEMENTATION-NOTES.md`.
 
 | Meta key | Owner | Purpose | Consumer |
 |---|---|---|---|
@@ -241,7 +241,7 @@ All ResQ keys are plugin-registered. Theme reads via helpers and must not update
 
 **Not stored as meta (helper-derived):** `_resq_cbd_product`, `_resq_requires_compliance_notice` — computed from `_resq_compliance_flags`, `_resq_compliance_zone`, and context. See `11-PLUGIN-DATA-SCHEMA.md`.
 
-**Taxonomies (plugin-registered, Phase 3):** `resq_audience`, `resq_concern`, `resq_ingredient`, `resq_product_role`, `resq_compliance_zone` — assigned to products. Audience and concern use native taxonomy assignment, not `_ids` meta.
+**Taxonomies (registered in Phase 3):** `resq_audience`, `resq_concern`, `resq_ingredient`, `resq_product_role`, `resq_compliance_zone` — assigned to products. Audience and concern use native taxonomy assignment, not `_ids` meta.
 
 Standard Woo meta such as `_price`, `_stock`, `_sku`, `_tax_class`, and variation attributes remains Woo-owned.
 

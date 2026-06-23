@@ -147,4 +147,4 @@ Learn guides educate; they do not sell directly unless a plugin mapping supplies
 
 ## Implementation Guardrail
 
-Do not add major PHP implementation until the helper contracts and data ownership in `01-THEME-PLUGIN-CONTRACT.md` are accepted. Initial code should be stubs, empty-safe template slots, and fixture-safe display scaffolds.
+Helper contracts and data ownership in `01-THEME-PLUGIN-CONTRACT.md` are accepted; Phase 3 helpers and Phase 4 theme shell are implemented. For new surfaces, follow phase gates in `06-BUILD-ROADMAP.md` and the matching implementation notes (`14`, `15`) before adding major PHP.

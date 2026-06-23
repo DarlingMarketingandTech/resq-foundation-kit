@@ -1,6 +1,6 @@
 # 13 — Phase 2A Implementation Notes
 
-> Summary of Phase 2A decisions, Phase 2B delivery notes, deferred work, and Phase 3 risks.
+> **Historical checkpoint only.** Documents Phase 2A schema decisions and the Phase 2B PHP scaffold era. Do **not** use this file as a current implementation runbook — Phase 3 delivery is in `14-PHASE-3-IMPLEMENTATION-NOTES.md`; Phase 4 theme work is in `15-PHASE-4-IMPLEMENTATION-NOTES.md`.
 
 ## Checkpoint Context
 
@@ -18,7 +18,7 @@
 | Phase 3 | Plugin routine-commerce model — complete |
 | Phase 3 branch | `phase-3-routine-commerce-model` |
 | Phase 3 tag target | `v0.4-phase-3-routine-commerce-model` |
-| Current phase | Phase 4 pending — theme global foundation |
+| Current phase | Phase 4 in progress — theme global foundation (see `15-PHASE-4-IMPLEMENTATION-NOTES.md`) |
 
 ---
 
@@ -35,7 +35,7 @@ All six alignment checks pass:
 5. Bundles are routine-commerce offers with composition meta, not discount-only labels.
 6. Schema is WooCommerce-first with platform-neutral concept mapping in docs.
 
-### Taxonomies recommended (register in Phase 3)
+### Taxonomies recommended (implemented in Phase 3 — see doc `14`)
 
 | Taxonomy | Register |
 |---|---|
@@ -51,7 +51,7 @@ All six alignment checks pass:
 
 | CPT | Decision |
 |---|---|
-| `resq_routine` | Create in Phase 3 |
+| `resq_routine` | Created in Phase 3 |
 | `resq_ingredient_profile` | Defer |
 | `resq_learn_guide` | Defer |
 | `resq_bundle_recipe` | Defer |
@@ -110,9 +110,9 @@ Plus 7 infrastructure helpers from Phase 1 (implemented in Phase 2B).
 
 ---
 
-## What Phase 2B Delivered
+## What Phase 2B Delivered (historical)
 
-Phase 2B shipped the minimum PHP scaffold — still no admin UI, no fixture data, no live taxonomy/CPT registration.
+Phase 2B shipped the minimum PHP scaffold — no admin UI, no fixture data, and **no live taxonomy/CPT registration** (that arrived in Phase 3).
 
 ### Plugin bootstrap
 
@@ -132,12 +132,12 @@ Phase 2B shipped the minimum PHP scaffold — still no admin UI, no fixture data
 - Added `includes/helpers/infrastructure.php` with the 7 `resq_core_*` infrastructure helpers
 - No real taxonomy/CPT reads — deferred to Phase 3
 
-### Registration scaffolds (commented only)
+### Registration scaffolds (commented only — superseded in Phase 3)
 
 - Added `includes/registration-scaffold.php` with commented taxonomy registration referencing `11-PLUGIN-DATA-SCHEMA.md`
 - Commented CPT registration for `resq_routine`
 - Commented product meta registration list
-- Registration hooks are not yet called
+- Registration hooks were not called in Phase 2B; Phase 3 replaced this with active registration in `includes/registrations/`
 
 ### Verification
 
@@ -147,22 +147,24 @@ Phase 2B shipped the minimum PHP scaffold — still no admin UI, no fixture data
 
 ---
 
-## What Must Remain Deferred
+## Deferred at Phase 2B Close (historical — see doc `14` for what shipped in Phase 3)
 
-| Item | Until |
+| Item | Was deferred until |
 |---|---|
-| Taxonomy/CPT registration (active) | Phase 3 |
-| Admin product fields | Phase 3 |
-| Real helper data reads | Phase 3 |
+| Taxonomy/CPT registration (active) | Phase 3 — **complete** |
+| Admin product fields | Later phase |
+| Real helper data reads | Phase 3 — **complete** |
 | Fixture import | Phase 7 |
 | Bundle engine implementation | Phase 8 |
-| REST endpoints | Phase 3+ after helper stability |
-| Composer/autoload | Optional — defer unless file count grows in Phase 3+ |
+| REST endpoints | Post Phase 3 |
+| Composer/autoload | Optional |
 | Final product catalog data | Never in foundation kit without fixtures phase |
 
 ---
 
-## Risks to Watch During Phase 3 Implementation
+## Phase 3 Risks (historical — mitigations recorded in doc `14`)
+
+The risks below were identified before Phase 3 implementation. See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for how they were addressed.
 
 1. **Meta key drift:** Do not reintroduce `_resq_audience_ids` or `_resq_concern_ids` in code. Use taxonomy APIs.
 2. **Step order:** Never infer routine step order from taxonomy term order. Always read `_resq_routine_steps`.
@@ -219,21 +221,8 @@ over _ids meta.
 
 ---
 
-## Recommended Next Prompt (Phase 3)
-
-> Start Phase 3: Plugin Routine-Commerce Model.
->
-> Reference `docs/11-PLUGIN-DATA-SCHEMA.md` and `docs/12-PLUGIN-HELPER-CONTRACTS.md` for scope.
-> Build on the Phase 2B scaffold in `wp-content/plugins/resq-core/`:
-> - Activate the commented taxonomy/CPT/meta registration in `includes/registration-scaffold.php` per `docs/11`
-> - Implement the canonical resolver and CBD/compliance helper rules
-> - Replace the empty-safe storefront stubs with real data reads per `docs/12`
->
-> No admin UI and no fixture data yet — those are later phases per `docs/06`.
-
----
-
 ## Read Next
 
-1. `14-PHASE-3-IMPLEMENTATION-NOTES.md` — Phase 3 delivery summary
-2. `06-BUILD-ROADMAP.md` — Phase 4 tasks
+1. `14-PHASE-3-IMPLEMENTATION-NOTES.md` — Phase 3 delivery record (authoritative)
+2. `15-PHASE-4-IMPLEMENTATION-NOTES.md` — Phase 4 theme shell delivery record
+3. `06-BUILD-ROADMAP.md` — current phase status and upcoming work

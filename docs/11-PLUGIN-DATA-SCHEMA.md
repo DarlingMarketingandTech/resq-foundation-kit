@@ -1,13 +1,14 @@
 # 11 — Plugin Data Schema
 
-> Proposed plugin-owned data model for `resq-core`. Documentation and contracts only — no registration code in Phase 2A.
+> Plugin-owned data model for `resq-core`. Schema reference — registration and live reads implemented in Phase 3. See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for the delivery record.
 
 ## Status
 
 | Item | Value |
 |---|---|
-| Phase | 2A — schema and contracts |
-| Implementation | Phase 2B (stubs) / Phase 3 complete (registration and real data) |
+| Phase | 2A schema lock — implemented in Phase 3 |
+| Implementation | Registered in `wp-content/plugins/resq-core/includes/registrations/`; helpers read live data |
+| Implementation record | `14-PHASE-3-IMPLEMENTATION-NOTES.md` |
 | Source of truth for helpers | `12-PLUGIN-HELPER-CONTRACTS.md` |
 | Layer ownership | `01-THEME-PLUGIN-CONTRACT.md` |
 
@@ -29,13 +30,13 @@ All taxonomies register on the WooCommerce `product` post type unless noted. Fin
 
 | Taxonomy | Decision | Hierarchical | Primary use |
 |---|---|---|---|
-| `resq_audience` | Register in Phase 3 | No | Gateway routing, filters |
-| `resq_concern` | Register in Phase 3 | Yes | Problem-led discovery, filters |
+| `resq_audience` | Registered in Phase 3 | No | Gateway routing, filters |
+| `resq_concern` | Registered in Phase 3 | Yes | Problem-led discovery, filters |
 | `resq_routine` | **Do not register** | — | Use `resq_routine` CPT instead |
 | `resq_routine_step` | **Do not register** | — | Use ordered CPT meta instead |
-| `resq_ingredient` | Register in Phase 3 | No | Ingredient filter, Learn bridges |
-| `resq_product_role` | Register in Phase 3 | No | Routine role hints, shelf grouping |
-| `resq_compliance_zone` | Register in Phase 3 | No | Structural CBD/compliance isolation |
+| `resq_ingredient` | Registered in Phase 3 | No | Ingredient filter, Learn bridges |
+| `resq_product_role` | Registered in Phase 3 | No | Routine role hints, shelf grouping |
+| `resq_compliance_zone` | Registered in Phase 3 | No | Structural CBD/compliance isolation |
 
 ---
 
@@ -182,14 +183,14 @@ Example step shape:
 
 | Post type | Decision | Phase |
 |---|---|---|
-| `resq_routine` | Create — register in Phase 3 | Ordered regimen definitions |
+| `resq_routine` | Registered in Phase 3 | Ordered regimen definitions |
 | `resq_ingredient_profile` | Defer | Product meta suffices for now |
 | `resq_learn_guide` | Defer | Use WP Posts + plugin mappings |
 | `resq_bundle_recipe` | Defer | Bundle engine decision open |
 
 ---
 
-### `resq_routine` — Create (Phase 3)
+### `resq_routine` — Registered (Phase 3)
 
 | Field | Value |
 |---|---|
@@ -785,8 +786,8 @@ flowchart LR
 | `resq_learn_guide` CPT | Deferred | When Learn workflow requires it |
 | `resq_bundle_recipe` CPT | Deferred | After bundle engine decision |
 | CBD jurisdiction-level rules | Open | Compliance review before production |
-| REST API endpoint exposure | Deferred | Phase 3+ after helper stability |
-| Admin UI field registration | Deferred | Phase 3 after schema lock |
+| REST API endpoint exposure | Deferred | After helper stability — post Phase 3 |
+| Admin UI field registration | Deferred | Later phase — schema and helpers are live |
 | Isolated checkout mode (hide nav at checkout) | Open | Phase 5+ theme decision |
 | Donation mechanism and copy | Open | Operational proof required |
 
@@ -794,6 +795,7 @@ flowchart LR
 
 ## Read Next
 
-1. `12-PLUGIN-HELPER-CONTRACTS.md` — public helper signatures and return shapes
-2. `13-PHASE-2A-IMPLEMENTATION-NOTES.md` — Phase 2B scope and risks
+1. `14-PHASE-3-IMPLEMENTATION-NOTES.md` — Phase 3 registration and helper delivery record
+2. `12-PLUGIN-HELPER-CONTRACTS.md` — public helper signatures and return shapes
 3. `01-THEME-PLUGIN-CONTRACT.md` — updated metadata ownership table
+4. `13-PHASE-2A-IMPLEMENTATION-NOTES.md` — historical Phase 2A/2B checkpoint only
