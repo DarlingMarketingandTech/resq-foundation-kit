@@ -40,7 +40,10 @@ if ( ! function_exists( 'resq_theme_template_part' ) ) {
 		}
 		$templates[] = "template-parts/{$slug}.php";
 
-		locate_template( $templates, true, false );
+		$located = locate_template( $templates, false, false );
+		if ( '' !== $located ) {
+			require $located;
+		}
 	}
 }
 

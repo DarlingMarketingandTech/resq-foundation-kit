@@ -50,6 +50,7 @@ Add later (only after sandbox is stable):
 14. `docs/13-PHASE-2A-IMPLEMENTATION-NOTES.md` — **historical** Phase 2A/2B checkpoint (not a current runbook)
 15. `docs/14-PHASE-3-IMPLEMENTATION-NOTES.md` — **implementation authority** for Phase 3 (`resq-core`)
 16. `docs/15-PHASE-4-IMPLEMENTATION-NOTES.md` — **implementation authority** for Phase 4 (`resq-clean-pro`)
+17. `docs/16-PHASE-5-IMPLEMENTATION-NOTES.md` — **implementation authority** for Phase 5 (Woo template shells)
 
 ## Build phases (summary)
 

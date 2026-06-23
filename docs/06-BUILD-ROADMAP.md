@@ -19,9 +19,15 @@
 | Phase 3 branch | `phase-3-routine-commerce-model` |
 | Phase 3 tag target | `v0.4-phase-3-routine-commerce-model` |
 | Phase 3 status | complete — smoke verified |
-| Phase 4 branch target | `phase-4-theme-global-foundation` |
+| Phase 4 branch | `phase-4-theme-global-foundation` |
 | Phase 4 tag target | `v0.5-phase-4-theme-global-foundation` |
-| Current focus | Phase 4 — theme global foundation |
+| Phase 4 status | complete — smoke verified |
+| Phase 5 branch | `phase-5-woo-template-shells` |
+| Phase 5 tag target | `v0.6-phase-5-woo-template-shells` |
+| Phase 5 status | complete — smoke verified |
+| Phase 6 branch target | `phase-6-gateway-learn-surfaces` |
+| Current focus | Phase 6 — Gateway and Learn surfaces |
+| Current focus | Phase 5 — WooCommerce template shells |
 
 ## Phase Overview
 
@@ -177,6 +183,8 @@ See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for delivery details.
 ## Phase 5 — WooCommerce Template Shells
 
 **Goal:** Add minimal Woo template overrides mapped in `03-WOO-TEMPLATE-MAP.md`.
+
+**Implementation authority:** `16-PHASE-5-IMPLEMENTATION-NOTES.md`
 
 ### Key tasks
 
@@ -346,8 +354,8 @@ See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for delivery details.
 | 2A Plugin data schema (docs) | complete | Checkpoint: `phase-2a-contracts` @ `v0.2-phase-2a-contracts` — `11`, `12`, `13` |
 | 2B Plugin data contract (PHP) | complete | Checkpoint: `phase-2b-plugin-scaffold` @ `v0.3-phase-2b-plugin-scaffold` (`52f1cf5`) |
 | 3 Plugin routine-commerce model | complete | Checkpoint: `phase-3-routine-commerce-model` @ `v0.4-phase-3-routine-commerce-model` — doc `14`, plugin `0.2.0` |
-| 4 Theme global foundation | in progress | Shell: header, nav, tokens, routine-ladder part — doc `15` |
-| 5 Woo template shells | pending | |
+| 4 Theme global foundation | complete | Shell: header, nav, tokens, routine-ladder part — doc `15` |
+| 5 Woo template shells | complete | Smoke verified — doc `16`, theme `0.3.0` |
 | 6 Gateway and Learn surfaces | pending | |
 | 7 Demo fixture system | pending | |
 | 8 Merchandising behavior | pending | |
