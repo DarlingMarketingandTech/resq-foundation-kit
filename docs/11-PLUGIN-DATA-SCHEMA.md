@@ -404,7 +404,7 @@ Shape:
 ]
 ```
 
-Final shape may change when bundle engine is decided (Section F).
+Bundle engine decided in Phase 8: plugin-managed simple products + `_resq_bundle_product_ids` meta (see Section F).
 
 ---
 
@@ -748,7 +748,7 @@ flowchart LR
 ### Bundle to products
 
 - **Direction:** Bundle product → array of `{product_id, qty}`.
-- **Validation:** Plugin validates all included IDs are canonical, in stock, and compliance-compatible before cart add (Phase 8).
+- **Validation:** Plugin validates all included IDs are canonical, in stock, and compliance-compatible before cart add — implemented in Phase 8 (`ResQ_Core_Merchandising_Hooks::validate_bundle_add_to_cart()`).
 
 ---
 

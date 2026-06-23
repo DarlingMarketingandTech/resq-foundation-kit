@@ -11,7 +11,8 @@ Historical delivery records and checkpoints that are **no longer current runbook
 
 - Day-to-day implementation — start at [`../CHECKPOINT.md`](../CHECKPOINT.md) and architecture docs `00`–`12`.
 - Importing products — use [`../18-PHASE-7-IMPLEMENTATION-NOTES.md`](../18-PHASE-7-IMPLEMENTATION-NOTES.md) (fixtures) or [`../19-CATALOG-IMPORT-NOTES.md`](../19-CATALOG-IMPORT-NOTES.md) (real catalog).
-- Building Phase 8 merchandising — use [`../20-PHASE-8-IMPLEMENTATION-NOTES.md`](../20-PHASE-8-IMPLEMENTATION-NOTES.md) (active; not archived).
+- Phase 8 smoke reference — use [`../20-PHASE-8-IMPLEMENTATION-NOTES.md`](../20-PHASE-8-IMPLEMENTATION-NOTES.md) (complete; not yet archived — stays in `docs/` until Phase 11 release package).
+- Building Phase 9 sandbox validation — use [`../21-PHASE-9-IMPLEMENTATION-NOTES.md`](../21-PHASE-9-IMPLEMENTATION-NOTES.md) (active).
 
 ## Contents
 

@@ -47,6 +47,7 @@ Delivery records for phases 2A–6 live in [`docs/archive/phase-notes/`](archive
 | --- | --- |
 | Architecture and boundaries | [`00-PROJECT-BRIEF.md`](00-PROJECT-BRIEF.md) → [`01`](01-THEME-PLUGIN-CONTRACT.md)–[`12`](12-PLUGIN-HELPER-CONTRACTS.md) |
 | Phase order and gates | [`06-BUILD-ROADMAP.md`](06-BUILD-ROADMAP.md) |
+| Phase 9 runbook (active) | [`21-PHASE-9-IMPLEMENTATION-NOTES.md`](21-PHASE-9-IMPLEMENTATION-NOTES.md) |
 | Phase 8 delivery record | [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) |
 | Import demo data (sandbox) | [`18-PHASE-7-IMPLEMENTATION-NOTES.md`](18-PHASE-7-IMPLEMENTATION-NOTES.md) |
 | Import real catalog | [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) |

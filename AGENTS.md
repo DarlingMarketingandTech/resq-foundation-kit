@@ -82,7 +82,7 @@ Start at **`docs/CHECKPOINT.md`** for current versions and phase status. Full ma
 
 ### Tier 2 — Runbooks (when building or operating data)
 
-- `docs/20-PHASE-8-IMPLEMENTATION-NOTES.md` — **active** Phase 8 merchandising implementation authority
+- `docs/20-PHASE-8-IMPLEMENTATION-NOTES.md` — Phase 8 delivery record (complete); smoke recipe still useful for Phase 9 fresh-install gate
 - `docs/18-PHASE-7-IMPLEMENTATION-NOTES.md` — `wp resq-fixtures` (demo `fixture-*` SKUs)
 - `docs/19-CATALOG-IMPORT-NOTES.md` — `wp resq-catalog` (real `RQ-*` SKUs)
 

@@ -26,7 +26,8 @@ Read in order when building or extending theme/plugin surfaces:
 
 | Doc | Purpose |
 | --- | --- |
-| [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) | **Active** — merchandising behavior (Phase 8) |
+| [`21-PHASE-9-IMPLEMENTATION-NOTES.md`](21-PHASE-9-IMPLEMENTATION-NOTES.md) | **Active** — local sandbox validation (Phase 9) |
+| [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) | Phase 8 delivery record (complete); smoke recipe useful for Phase 9 |
 | [`18-PHASE-7-IMPLEMENTATION-NOTES.md`](18-PHASE-7-IMPLEMENTATION-NOTES.md) | `wp resq-fixtures` |
 | [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) | `wp resq-catalog` |
 

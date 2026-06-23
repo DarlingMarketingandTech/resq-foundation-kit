@@ -43,26 +43,29 @@ WooCommerce template overrides belong in the theme. Plugin work supplies data, h
 
 ## Planned Template and Part Paths
 
-| Surface | Theme path |
-|---|---|
-| Shop/category archive | `archive-product.php` |
-| Product card | `woocommerce/content-product.php` |
-| Single product | `single-product.php`, `woocommerce/content-single-product.php` |
-| PDP gallery/add-to-cart/tabs | `woocommerce/single-product/*` |
-| Routine ladder | `template-parts/product/routine-ladder.php` |
-| Ingredient profile | `template-parts/product/ingredient-profile.php` |
-| FBT | `template-parts/product/frequently-bought-together.php` |
-| Bundle card | `template-parts/product/bundle-card.php` |
-| Bundle PDP block | `template-parts/product/bundle-options.php` |
-| Audience gateway | `template-parts/archive/audience-gateway.php` or page template |
-| Concern landing | `template-parts/archive/concern-landing.php` or page template |
-| Cart drawer | `template-parts/cart/drawer.php` |
-| Compliance notices | `template-parts/compliance/notices.php` |
-| Learn guide bridge | `template-parts/learn/product-bridge.php` |
-| Cart | `woocommerce/cart/cart.php`, `cart-empty.php`, `cart-totals.php`, `cross-sells.php` |
-| Checkout | `woocommerce/checkout/form-checkout.php`, `review-order.php`, `payment.php`, `thankyou.php` |
-| Account | `woocommerce/myaccount/*.php` |
-| Search | `search.php`, optional `woocommerce/product-searchform.php` |
+Phase 8 template parts marked ✓ are implemented. All others are shells or planned.
+
+| Surface | Theme path | Status |
+|---|---|---|
+| Shop/category archive | `archive-product.php` | Phase 5 shell |
+| Product card | `woocommerce/content-product.php` | Phase 5 shell |
+| Single product | `single-product.php`, `woocommerce/content-single-product.php` | Phase 5 shell |
+| PDP gallery/add-to-cart/tabs | `woocommerce/single-product/*` | Phase 5 shell |
+| Routine ladder | `template-parts/product/routine-ladder.php` | Phase 6 shell; Phase 8 bundle savings ✓ |
+| Ingredient profile | `template-parts/product/ingredient-profile.php` | Phase 8 ✓ |
+| FBT | `template-parts/product/frequently-bought-together.php` | Phase 8 ✓ |
+| Bundle card | `template-parts/product/bundle-card.php` | Optional — not yet created |
+| Bundle PDP block | `template-parts/product/bundle-options.php` | Phase 8 ✓ |
+| Audience gateway | `template-parts/archive/audience-gateway.php` or page template | Phase 6 shell |
+| Concern landing | `template-parts/archive/concern-landing.php` or page template | Phase 6 shell |
+| Cart drawer | `template-parts/cart/drawer.php` | Phase 8 ✓ |
+| Filter shell | `template-parts/gateway/filter-shell.php` | Phase 8 ✓ — live taxonomy checkboxes |
+| Compliance notices | `template-parts/compliance/notices.php` | Phase 5/6 shell |
+| Learn guide bridge | `template-parts/learn/product-bridge.php` | Phase 6 shell |
+| Cart | `woocommerce/cart/cart.php`, `cart-empty.php`, `cart-totals.php`, `cross-sells.php` | Phase 5 shell |
+| Checkout | `woocommerce/checkout/form-checkout.php`, `review-order.php`, `payment.php`, `thankyou.php` | Phase 5 shell |
+| Account | `woocommerce/myaccount/*.php` | Phase 5 shell |
+| Search | `search.php`, optional `woocommerce/product-searchform.php` | Phase 5 shell |
 
 ## Hooks vs Templates Decision Guide
 
@@ -94,5 +97,6 @@ WooCommerce template overrides belong in the theme. Plugin work supplies data, h
 | Phase 4 | Global layout and navigation shell |
 | Phase 5 | Woo template shells |
 | Phase 6 | Gateway, Learn, and routine UI shells |
-| Phase 8 | Bundle/FBT/cart drawer implementation — authority [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) |
+| Phase 8 | Bundle/FBT/cart drawer implementation — **complete**; delivery record [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) |
+| Phase 9 | Fresh-install smoke across all surfaces — active; runbook [`21-PHASE-9-IMPLEMENTATION-NOTES.md`](21-PHASE-9-IMPLEMENTATION-NOTES.md) |
 | Phase 10 | Compliance and accessibility verification |

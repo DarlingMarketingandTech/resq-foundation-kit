@@ -421,7 +421,7 @@ resq_get_canonical_product_id( 'hot-spots', 'route' ); // null if unmapped
     'steps'          => [ /* from resq_get_routine_steps() */ ],
     'bundle_target'  => 305,
     'bundle_label'   => 'Upgrade to Full Routine Kit',
-    'bundle_savings' => '', // computed Phase 8; empty until then
+    'bundle_savings' => '$10.00', // computed in Phase 8 via bundle price vs sum-of-parts — empty string when data unavailable
 ]
 ```
 
@@ -671,6 +671,31 @@ resq_get_gateway_featured_products( 'human' ); // [101, 102, 103]
 **Fallback:** Default badge rules from options when no custom badge. `[]` when none apply.
 
 **Error handling:** Invalid ID → `[]`.
+
+---
+
+## Phase 8 WooCommerce Hook Classes
+
+Two new classes were added to `resq-core` in Phase 8. They are not storefront helper functions — they own Woo hooks and should not be called directly from the theme. Documented here for cross-reference.
+
+### `ResQ_Core_Merchandising_Hooks` (`includes/woocommerce/class-merchandising-hooks.php`)
+
+| Method | Hook | Responsibility |
+|---|---|---|
+| `filter_related_products()` | `woocommerce_related_products` | Remove related products that fail `resq_can_cross_sell_products()` — CBD, audience, baby-flag restrictions |
+| `filter_cart_crosssells()` | `woocommerce_cart_crosssell_ids` | Same compliance gate on cart cross-sell IDs |
+| `validate_bundle_add_to_cart()` | `woocommerce_add_to_cart_validation` | Before adding a bundle simple product: verify included IDs exist, are in stock, and are compliance-zone compatible; surfaces a cart notice on failure |
+| `ajax_cart_drawer_suggestions()` | `wp_ajax_resq_cart_drawer`, `wp_ajax_nopriv_resq_cart_drawer` | Returns `resq_get_recommended_routine_addons()` payload as JSON for the cart drawer fragment |
+
+**Theme interface:** Theme renders `template-parts/cart/drawer.php`; plugin provides the AJAX handler. No direct theme call to these methods.
+
+### `ResQ_Core_Product_Filters` (`includes/woocommerce/class-product-filters.php`)
+
+| Method | Hook | Responsibility |
+|---|---|---|
+| `apply_product_filters()` | `pre_get_posts` | Intercepts product archive/shop queries; applies `resq_audience`, `resq_concern`, and `resq_compliance_zone` taxonomy constraints from GET parameters |
+
+**Theme interface:** `template-parts/gateway/filter-shell.php` renders the live taxonomy checkbox controls; GET parameters are the wire. No direct theme call to this class.
 
 ---
 

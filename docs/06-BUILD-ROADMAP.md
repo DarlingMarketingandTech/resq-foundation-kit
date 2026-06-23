@@ -176,10 +176,10 @@ See [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-not
 
 ### Exit criteria
 
-- [ ] Theme activates with or without plugin.
-- [ ] Global layout renders on basic WP pages.
-- [ ] Navigation remains stable and accessible.
-- [ ] No product data is registered or mutated by the theme.
+- [x] Theme activates with or without plugin.
+- [x] Global layout renders on basic WP pages.
+- [x] Navigation remains stable and accessible.
+- [x] No product data is registered or mutated by the theme.
 
 ---
 
@@ -201,10 +201,10 @@ See [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-not
 
 ### Exit criteria
 
-- [ ] Every Phase 5 surface loads without PHP notices.
-- [ ] Woo hooks still fire.
-- [ ] Empty plugin data creates empty-safe UI.
-- [ ] Template map remains current.
+- [x] Every Phase 5 surface loads without PHP notices.
+- [x] Woo hooks still fire.
+- [x] Empty plugin data creates empty-safe UI.
+- [x] Template map remains current.
 
 ---
 
@@ -273,10 +273,10 @@ See [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-not
 
 ### Exit criteria
 
-- [ ] Routine and bundle UI improves clarity without blocking checkout.
-- [ ] Cross-sells respect CBD, audience, and baby/pet restrictions.
-- [ ] Product cards remain claim-safe.
-- [ ] Bundle engine decision is documented — see [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) (plugin-managed simple products)
+- [x] Routine and bundle UI improves clarity without blocking checkout.
+- [x] Cross-sells respect CBD, audience, and baby/pet restrictions.
+- [x] Product cards remain claim-safe.
+- [x] Bundle engine decision is documented — see [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) (plugin-managed simple products)
 
 ---
 
