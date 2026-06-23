@@ -95,7 +95,7 @@ Not allowed:
 
 Bundles and kits sell complete routines or replenishment packs. The plugin owns bundle composition, savings source, validation, and cart behavior. The theme renders bundle cards, included products, and cart drawer suggestions.
 
-Open decision: use WooCommerce Product Bundles extension, grouped products, or a plugin-managed bundle layer. Decide before implementing real bundle logic.
+Open decision: bundle composition uses plugin-managed meta on simple products (see [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md)). Phase 8 implements display, savings, validation, and cart behavior.
 
 ## Product Cards
 

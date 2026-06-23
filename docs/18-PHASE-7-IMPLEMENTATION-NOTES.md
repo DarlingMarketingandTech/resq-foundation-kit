@@ -66,4 +66,4 @@ All fixture SKUs use the `fixture-` prefix. Data is placeholder-only — no prod
 
 ## Next step
 
-For real catalog data, use [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) (`wp resq-catalog`). Phase 8 merchandising behavior is next per [`CHECKPOINT.md`](CHECKPOINT.md).
+For real catalog data, use [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) (`wp resq-catalog`). Phase 8 merchandising: [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md).

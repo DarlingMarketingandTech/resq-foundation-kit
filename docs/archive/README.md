@@ -11,6 +11,7 @@ Historical delivery records and checkpoints that are **no longer current runbook
 
 - Day-to-day implementation — start at [`../CHECKPOINT.md`](../CHECKPOINT.md) and architecture docs `00`–`12`.
 - Importing products — use [`../18-PHASE-7-IMPLEMENTATION-NOTES.md`](../18-PHASE-7-IMPLEMENTATION-NOTES.md) (fixtures) or [`../19-CATALOG-IMPORT-NOTES.md`](../19-CATALOG-IMPORT-NOTES.md) (real catalog).
+- Building Phase 8 merchandising — use [`../20-PHASE-8-IMPLEMENTATION-NOTES.md`](../20-PHASE-8-IMPLEMENTATION-NOTES.md) (active; not archived).
 
 ## Contents
 

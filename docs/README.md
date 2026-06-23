@@ -22,10 +22,11 @@ Read in order when building or extending theme/plugin surfaces:
 | [`11-PLUGIN-DATA-SCHEMA.md`](11-PLUGIN-DATA-SCHEMA.md) | Taxonomies, CPTs, meta |
 | [`12-PLUGIN-HELPER-CONTRACTS.md`](12-PLUGIN-HELPER-CONTRACTS.md) | Public helper signatures |
 
-## Tier 2 — Runbooks (operations)
+## Tier 2 — Runbooks (operations and active build)
 
-| Doc | Command |
+| Doc | Purpose |
 | --- | --- |
+| [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) | **Active** — merchandising behavior (Phase 8) |
 | [`18-PHASE-7-IMPLEMENTATION-NOTES.md`](18-PHASE-7-IMPLEMENTATION-NOTES.md) | `wp resq-fixtures` |
 | [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) | `wp resq-catalog` |
 

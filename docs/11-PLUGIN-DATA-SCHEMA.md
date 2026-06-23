@@ -780,11 +780,11 @@ flowchart LR
 
 | Decision | Status | Target phase |
 |---|---|---|
-| Bundle engine (WC Product Bundles vs grouped vs plugin-managed) | Open | Phase 8 |
-| Final taxonomy term catalog | Open | Phase 7 fixtures |
+| Bundle engine (WC Product Bundles vs grouped vs plugin-managed) | **Closed** — plugin-managed simple products + `_resq_bundle_product_ids` | [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) |
+| Final taxonomy term catalog | Closed — seeded via `wp resq-catalog` | [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) |
 | `resq_ingredient_profile` CPT | Deferred | When editorial hubs require it |
 | `resq_learn_guide` CPT | Deferred | When Learn workflow requires it |
-| `resq_bundle_recipe` CPT | Deferred | After bundle engine decision |
+| `resq_bundle_recipe` CPT | Deferred | Only if composition rules outgrow product meta |
 | CBD jurisdiction-level rules | Open | Compliance review before production |
 | REST API endpoint exposure | Deferred | After helper stability — post Phase 3 |
 | Admin UI field registration | Deferred | Later phase — schema and helpers are live |

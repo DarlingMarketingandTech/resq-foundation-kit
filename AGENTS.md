@@ -41,8 +41,9 @@ Start at **`docs/CHECKPOINT.md`** for current versions and phase status. Full ma
 1. `docs/CHECKPOINT.md` — current status
 2. `docs/00-PROJECT-BRIEF.md` through `docs/12-PLUGIN-HELPER-CONTRACTS.md` — goals, contracts, schema, helpers
 
-### Tier 2 — Runbooks (when operating data)
+### Tier 2 — Runbooks (when building or operating data)
 
+- `docs/20-PHASE-8-IMPLEMENTATION-NOTES.md` — **active** Phase 8 merchandising implementation authority
 - `docs/18-PHASE-7-IMPLEMENTATION-NOTES.md` — `wp resq-fixtures` (demo `fixture-*` SKUs)
 - `docs/19-CATALOG-IMPORT-NOTES.md` — `wp resq-catalog` (real `RQ-*` SKUs)
 
@@ -70,7 +71,7 @@ Follow the ordered roadmap in `docs/06-BUILD-ROADMAP.md`. Do not skip phases or 
 | 5 | WooCommerce template shells | complete |
 | 6 | Gateway and Learn surfaces | complete |
 | 7 | Demo fixture system + catalog import | complete |
-| 8 | Merchandising behavior | **next** |
+| 8 | Merchandising behavior | **in progress** — runbook `20` |
 | 9 | Local sandbox validation | partial |
 | 10 | Compliance, accessibility, performance QA | pending |
 | 11 | Preflight release package | pending |

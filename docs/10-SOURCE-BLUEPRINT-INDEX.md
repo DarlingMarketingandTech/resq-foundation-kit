@@ -47,7 +47,7 @@ Do not use the blueprints as:
 
 ## Remaining Open Questions
 
-- Which bundle engine will be used beyond composition meta (Phase 8)?
+- Which bundle engine will be used beyond composition meta? **Resolved:** plugin-managed simple products — [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md).
 - What claims are substantiated for production copy?
 - What donation/mission claims are operationally provable?
 - How should CBD age/compliance requirements vary by jurisdiction?

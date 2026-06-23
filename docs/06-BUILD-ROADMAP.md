@@ -30,7 +30,7 @@
 | Phase 7 status | complete — fixtures + catalog import |
 | `resq-core` version | `0.4.0` |
 | `resq-clean-pro` version | `0.4.0` |
-| Current focus | Phase 8 — Merchandising behavior |
+| Current focus | Phase 8 — Merchandising behavior (in progress) |
 
 ## Phase Overview
 
@@ -259,6 +259,8 @@ See [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-not
 
 **Goal:** Turn the documented data into useful storefront behavior.
 
+**Implementation authority:** [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) (shell vs behavior matrix, ADRs, file map, smoke recipe).
+
 ### Key tasks
 
 - Implement badges.
@@ -274,7 +276,7 @@ See [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-not
 - [ ] Routine and bundle UI improves clarity without blocking checkout.
 - [ ] Cross-sells respect CBD, audience, and baby/pet restrictions.
 - [ ] Product cards remain claim-safe.
-- [ ] Bundle engine decision is documented.
+- [ ] Bundle engine decision is documented — see [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) (plugin-managed simple products)
 
 ---
 
@@ -366,7 +368,7 @@ See [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-not
 | 6 Gateway and Learn surfaces | complete | Archive `17`; smoke verified |
 | 7 Demo fixture system | complete | Runbook `18`; `wp resq-fixtures` |
 | — Real catalog import | complete | Runbook `19`; `wp resq-catalog` |
-| 8 Merchandising behavior | **next** | |
+| 8 Merchandising behavior | **in progress** | Runbook [`20`](20-PHASE-8-IMPLEMENTATION-NOTES.md) |
 | 9 Local sandbox validation | partial | Local catalog smoke done; fresh-install gate open |
 | 10 Compliance/accessibility/performance QA | pending | |
 | 11 Preflight release package | pending | Tag targets per completed phases — see Release Marker |

@@ -1,6 +1,6 @@
 # 00 — Project Brief
 
-> Status: **Phase 8 next** — Phases 1–7 and real catalog import are complete. See [`CHECKPOINT.md`](CHECKPOINT.md) for versions and runbooks.
+> Status: **Phase 8 in progress** — Phases 1–7 and real catalog import are complete. Runbook: [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md). See [`CHECKPOINT.md`](CHECKPOINT.md) for versions and runbooks.
 
 ## Mission
 
@@ -47,7 +47,7 @@ Agents and humans treat `docs/` as the source of truth for implementation bounda
 
 ## Current Phase
 
-Phases 1–7 and catalog import are **complete**. Phase 8 (merchandising behavior) is next. Local catalog import and storefront smoke tests passed on LocalWP. See [`CHECKPOINT.md`](CHECKPOINT.md).
+Phases 1–7 and catalog import are **complete**. Phase 8 (merchandising behavior) is **in progress** — runbook [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md). See [`CHECKPOINT.md`](CHECKPOINT.md).
 
 ## Implementation Target
 
@@ -141,7 +141,7 @@ See `AGENTS.md` for agent operating rules.
 | Decision | Notes |
 |---|---|
 | Final catalog taxonomy | Phase 7+; blueprint categories are examples only |
-| Bundle engine | WooCommerce Product Bundles extension vs plugin-managed rules; decide by Phase 8 |
+| Bundle engine | Plugin-managed simple products + `_resq_bundle_product_ids` — see [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) |
 | Final CBD/legal copy | Requires compliance review before production use |
 | Donation/mission mechanism | Requires operational proof and policy review before storefront claims |
 | Local sandbox tool | LocalWP or DDEV; choose per developer machine |
@@ -176,7 +176,8 @@ resq-foundation-kit/
 ## Read Next
 
 1. [`CHECKPOINT.md`](CHECKPOINT.md) — current versions and phase status
-2. [`01-THEME-PLUGIN-CONTRACT.md`](01-THEME-PLUGIN-CONTRACT.md) — layer ownership
-3. [`06-BUILD-ROADMAP.md`](06-BUILD-ROADMAP.md) — Phase 8+ gates
-4. [`18-PHASE-7-IMPLEMENTATION-NOTES.md`](18-PHASE-7-IMPLEMENTATION-NOTES.md) — demo fixtures runbook
-5. [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) — real catalog runbook
+2. [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) — active Phase 8 build runbook
+3. [`01-THEME-PLUGIN-CONTRACT.md`](01-THEME-PLUGIN-CONTRACT.md) — layer ownership
+4. [`06-BUILD-ROADMAP.md`](06-BUILD-ROADMAP.md) — Phase 8+ gates
+5. [`18-PHASE-7-IMPLEMENTATION-NOTES.md`](18-PHASE-7-IMPLEMENTATION-NOTES.md) — demo fixtures runbook
+6. [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) — real catalog runbook

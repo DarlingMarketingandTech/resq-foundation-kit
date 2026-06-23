@@ -94,5 +94,5 @@ WooCommerce template overrides belong in the theme. Plugin work supplies data, h
 | Phase 4 | Global layout and navigation shell |
 | Phase 5 | Woo template shells |
 | Phase 6 | Gateway, Learn, and routine UI shells |
-| Phase 8 | Bundle/FBT/cart drawer implementation strategy |
+| Phase 8 | Bundle/FBT/cart drawer implementation — authority [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) |
 | Phase 10 | Compliance and accessibility verification |
