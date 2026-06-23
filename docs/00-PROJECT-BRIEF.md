@@ -1,6 +1,6 @@
 # 00 — Project Brief
 
-> Status: **Phase 6 next** — Phases 3, 4, and 5 are complete and smoke-verified. Phase 6 builds gateway and Learn surfaces. Implementation authority docs: `14` (Phase 3), `15` (Phase 4), `16` (Phase 5).
+> Status: **Phase 8 next** — Phases 1–7 and real catalog import are complete. See [`CHECKPOINT.md`](CHECKPOINT.md) for versions and runbooks.
 
 ## Mission
 
@@ -30,8 +30,8 @@ Core strategy:
 | Architecture docs | Project brief, theme/plugin contract, brand foundation, Woo template map, merchandising system, compliance rules, roadmap, IA, routine-commerce framework, canonical product strategy, source-blueprint index |
 | Source blueprints | Preserved reference material in `docs/source-blueprints/`; examples only, not final product truth |
 | Agent infrastructure | `AGENTS.md`, `.codex/skills/`, `.codex/agents/` |
-| Implementation code | `resq-core` (Phase 3 complete) and `resq-clean-pro` global shell (Phase 4 in progress) |
-| Fixtures/scripts later | WP-CLI import helpers and demo data (Phase 7+) |
+| Implementation code | `resq-core` `0.4.0` and `resq-clean-pro` `0.4.0` — routine-commerce model, gateways, fixtures, catalog import |
+| Data import | `wp resq-fixtures` (demo) and `wp resq-catalog` (real `RQ-*` SKUs) — see docs `18` and `19` |
 
 Agents and humans treat `docs/` as the source of truth for implementation boundaries. Source blueprints inform these docs but are not edited in place.
 
@@ -47,7 +47,7 @@ Agents and humans treat `docs/` as the source of truth for implementation bounda
 
 ## Current Phase
 
-Phases 3, 4, and 5 are **complete and smoke-verified**. Phase 5 delivered WooCommerce template overrides (archive, card, PDP, cart, checkout, account, search) with plugin-guarded data slots. Phase 6 (gateway and Learn surfaces) is next. See `docs/16-PHASE-5-IMPLEMENTATION-NOTES.md` for the Phase 5 record.
+Phases 1–7 and catalog import are **complete**. Phase 8 (merchandising behavior) is next. Local catalog import and storefront smoke tests passed on LocalWP. See [`CHECKPOINT.md`](CHECKPOINT.md).
 
 ## Implementation Target
 
@@ -153,15 +153,15 @@ See `AGENTS.md` for agent operating rules.
 ```text
 resq-foundation-kit/
   AGENTS.md                    # Agent operating guide
-  docs/                        # Architecture docs and source blueprints
+  docs/                        # Architecture docs, runbooks, archive
+    CHECKPOINT.md              # Current status (start here)
     source-blueprints/         # Preserved source strategy references
+    archive/phase-notes/       # Historical phase delivery records
   wp-content/
     themes/resq-clean-pro/     # Presentation layer
-    plugins/resq-core/         # Business logic layer
-  .codex/skills/               # Project-specific agent skills
-  .codex/agents/               # Review/planning subagents
-  fixtures/                    # Demo data (later)
-  scripts/                     # WP-CLI helpers (later)
+    plugins/resq-core/         # Business logic, fixtures, catalog import
+  scripts/                     # CSV generator, taxonomy seed snippet
+  fixtures/                    # Placeholder (.gitkeep); data lives in plugin
 ```
 
 ## Success Criteria
@@ -175,11 +175,8 @@ resq-foundation-kit/
 
 ## Read Next
 
-1. `01-THEME-PLUGIN-CONTRACT.md` — layer ownership and helper contracts
-2. `07-INFORMATION-ARCHITECTURE.md` — navigation, URL, content type, and route strategy
-3. `08-ROUTINE-COMMERCE-FRAMEWORK.md` — routines, steps, bundles, kits, and UI/data needs
-4. `09-CANONICAL-PRODUCT-STRATEGY.md` — canonical product rules
-5. `10-SOURCE-BLUEPRINT-INDEX.md` — source blueprint provenance
-6. `14-PHASE-3-IMPLEMENTATION-NOTES.md` — Phase 3 plugin delivery record
-7. `15-PHASE-4-IMPLEMENTATION-NOTES.md` — Phase 4 theme shell delivery record
-8. `16-PHASE-5-IMPLEMENTATION-NOTES.md` — Phase 5 Woo template shells delivery record
+1. [`CHECKPOINT.md`](CHECKPOINT.md) — current versions and phase status
+2. [`01-THEME-PLUGIN-CONTRACT.md`](01-THEME-PLUGIN-CONTRACT.md) — layer ownership
+3. [`06-BUILD-ROADMAP.md`](06-BUILD-ROADMAP.md) — Phase 8+ gates
+4. [`18-PHASE-7-IMPLEMENTATION-NOTES.md`](18-PHASE-7-IMPLEMENTATION-NOTES.md) — demo fixtures runbook
+5. [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) — real catalog runbook

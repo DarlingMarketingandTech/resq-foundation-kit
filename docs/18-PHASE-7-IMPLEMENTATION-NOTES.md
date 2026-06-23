@@ -7,22 +7,19 @@
 | Item | Value |
 | --- | --- |
 | Phase 6 | Gateway and Learn surfaces — complete |
-| Phase 7 | Demo fixture system — in progress |
-| Plugin version | `0.3.0` |
+| Phase 7 | Demo fixture system — complete |
+| Plugin version | `0.4.0` |
 | WP-CLI command | `wp resq-fixtures` |
 
 ## Commands
 
-Run from your WordPress site root (LocalWP site shell, DDEV, etc.):
+Run from your WordPress site root (LocalWP site shell, DDEV, etc.).
 
-```bash
-# Import or update fixtures (idempotent)
+**Windows CMD:** Do not paste bash `#` comments on the same line — CMD treats them as extra arguments.
+
+```bat
 wp resq-fixtures import
-
-# Clean import
 wp resq-fixtures import --reset
-
-# Remove all fixture SKUs and routines
 wp resq-fixtures reset --yes
 ```
 
@@ -69,4 +66,4 @@ All fixture SKUs use the `fixture-` prefix. Data is placeholder-only — no prod
 
 ## Next step
 
-Phase 9: fresh LocalWP/DDEV install → activate theme/plugin → `wp resq-fixtures import` → smoke test gateways, PDP, cart, checkout.
+For real catalog data, use [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) (`wp resq-catalog`). Phase 8 merchandising behavior is next per [`CHECKPOINT.md`](CHECKPOINT.md).

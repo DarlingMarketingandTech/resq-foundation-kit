@@ -34,48 +34,50 @@ Add later (only after sandbox is stable):
 
 ## Read order
 
-1. `docs/00-PROJECT-BRIEF.md` — goals, scope, constraints
-2. `docs/01-THEME-PLUGIN-CONTRACT.md` — what lives in theme vs plugin
-3. `docs/02-BRAND-FOUNDATION.md` — tokens, voice, visual rules
-4. `docs/03-WOO-TEMPLATE-MAP.md` — template ownership and overrides
-5. `docs/04-PRODUCT-MERCHANDISING-SYSTEM.md` — PDP/PLP, badges, cross-sells
-6. `docs/05-COMPLIANCE-RULES.md` — accessibility, performance, legal, checkout safety
-7. `docs/06-BUILD-ROADMAP.md` — phases, milestones, verification gates
-8. `docs/07-INFORMATION-ARCHITECTURE.md` — navigation, routes, content types
-9. `docs/08-ROUTINE-COMMERCE-FRAMEWORK.md` — routines, bundles, kits, Learn bridges
-10. `docs/09-CANONICAL-PRODUCT-STRATEGY.md` — Single Parent Rule, duplicate avoidance
-11. `docs/10-SOURCE-BLUEPRINT-INDEX.md` — source blueprint provenance and open decisions
-12. `docs/11-PLUGIN-DATA-SCHEMA.md` — plugin taxonomies, CPTs, meta keys, options
-13. `docs/12-PLUGIN-HELPER-CONTRACTS.md` — public helper signatures and return shapes
-14. `docs/13-PHASE-2A-IMPLEMENTATION-NOTES.md` — **historical** Phase 2A/2B checkpoint (not a current runbook)
-15. `docs/14-PHASE-3-IMPLEMENTATION-NOTES.md` — **implementation authority** for Phase 3 (`resq-core`)
-16. `docs/15-PHASE-4-IMPLEMENTATION-NOTES.md` — **implementation authority** for Phase 4 (`resq-clean-pro`)
-17. `docs/16-PHASE-5-IMPLEMENTATION-NOTES.md` — **implementation authority** for Phase 5 (Woo template shells)
-18. `docs/17-PHASE-6-IMPLEMENTATION-NOTES.md` — **implementation authority** for Phase 6 (gateway and Learn surfaces)
-19. `docs/18-PHASE-7-IMPLEMENTATION-NOTES.md` — **implementation authority** for Phase 7 (demo fixture system)
-20. `docs/19-CATALOG-IMPORT-NOTES.md` — **implementation authority** for real catalog import (`wp resq-catalog`)
+Start at **`docs/CHECKPOINT.md`** for current versions and phase status. Full map: **`docs/README.md`**.
+
+### Tier 1 — Architecture (always)
+
+1. `docs/CHECKPOINT.md` — current status
+2. `docs/00-PROJECT-BRIEF.md` through `docs/12-PLUGIN-HELPER-CONTRACTS.md` — goals, contracts, schema, helpers
+
+### Tier 2 — Runbooks (when operating data)
+
+- `docs/18-PHASE-7-IMPLEMENTATION-NOTES.md` — `wp resq-fixtures` (demo `fixture-*` SKUs)
+- `docs/19-CATALOG-IMPORT-NOTES.md` — `wp resq-catalog` (real `RQ-*` SKUs)
+
+### Tier 3 — Compliance and strategy artifacts
+
+- `docs/Product Data and Strategy/compliance-review-checklist.md` — owner sign-off before launch
+- `docs/Product Data and Strategy/README.md` — strategy CSV index
+
+### Tier 4 — Historical / reference only
+
+- `docs/archive/phase-notes/` — completed phase delivery records (13–17); stubs at old `docs/13–17` paths
+- `docs/source-blueprints/` — frozen strategy references (read via `10-SOURCE-BLUEPRINT-INDEX.md`; **do not edit**)
+- `docs/research/` — background only; not implementation authority
 
 ## Build phases (summary)
 
 Follow the ordered roadmap in `docs/06-BUILD-ROADMAP.md`. Do not skip phases or verification gates.
 
-| Phase | Focus |
-|---|---|
-| 1 | Foundation blueprint lock |
-| 2 | Plugin data contract |
-| 3 | Plugin routine-commerce model |
-| 4 | Theme global foundation |
-| 5 | WooCommerce template shells |
-| 6 | Gateway and Learn surfaces |
-| 7 | Demo fixture system |
-| 8 | Merchandising behavior |
-| 9 | Local sandbox validation |
-| 10 | Compliance, accessibility, performance QA |
-| 11 | Preflight release package |
+| Phase | Focus | Status |
+|---|---|---|
+| 1 | Foundation blueprint lock | complete |
+| 2 | Plugin data contract | complete |
+| 3 | Plugin routine-commerce model | complete |
+| 4 | Theme global foundation | complete |
+| 5 | WooCommerce template shells | complete |
+| 6 | Gateway and Learn surfaces | complete |
+| 7 | Demo fixture system + catalog import | complete |
+| 8 | Merchandising behavior | **next** |
+| 9 | Local sandbox validation | partial |
+| 10 | Compliance, accessibility, performance QA | pending |
+| 11 | Preflight release package | pending |
 
 Planning-level nav concepts only: **People, Pets, CBD, Bundles, Learn** — not hardcoded product data. Routine-commerce concepts include audiences, concerns/problems, routines, canonical parent products, bundles/FBT, Learn-to-shop bridges, and CBD isolation.
 
-Phases 1–3 and Phase 4 (in progress) already ship implementation in `resq-core` and `resq-clean-pro`. Before expanding a surface, confirm the affected architecture docs and the matching Phase 3/4 implementation notes (`14`, `15`) still agree. Do not add major code for a phase whose docs and verification gate are not aligned.
+Phases 1–7 and catalog import ship in `resq-core` `0.4.0` and `resq-clean-pro` `0.4.0`. Before expanding a surface, confirm [`docs/CHECKPOINT.md`](docs/CHECKPOINT.md) and the affected architecture docs still agree. Do not add major code for a phase whose docs and verification gate are not aligned.
 
 ## Project skills (`.codex/skills/`)
 
