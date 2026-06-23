@@ -14,7 +14,9 @@
 
 ---
 
-## What Phase 4 Delivered
+## What Phase 4 Implements
+
+> Code is in the branch; exit criteria below remain unchecked until local verification passes.
 
 ### Theme structure
 

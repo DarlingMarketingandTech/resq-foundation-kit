@@ -45,6 +45,11 @@ Add later (only after sandbox is stable):
 9. `docs/08-ROUTINE-COMMERCE-FRAMEWORK.md` — routines, bundles, kits, Learn bridges
 10. `docs/09-CANONICAL-PRODUCT-STRATEGY.md` — Single Parent Rule, duplicate avoidance
 11. `docs/10-SOURCE-BLUEPRINT-INDEX.md` — source blueprint provenance and open decisions
+12. `docs/11-PLUGIN-DATA-SCHEMA.md` — plugin taxonomies, CPTs, meta keys, options
+13. `docs/12-PLUGIN-HELPER-CONTRACTS.md` — public helper signatures and return shapes
+14. `docs/13-PHASE-2A-IMPLEMENTATION-NOTES.md` — **historical** Phase 2A/2B checkpoint (not a current runbook)
+15. `docs/14-PHASE-3-IMPLEMENTATION-NOTES.md` — **implementation authority** for Phase 3 (`resq-core`)
+16. `docs/15-PHASE-4-IMPLEMENTATION-NOTES.md` — **implementation authority** for Phase 4 (`resq-clean-pro`)
 
 ## Build phases (summary)
 
@@ -66,7 +71,7 @@ Follow the ordered roadmap in `docs/06-BUILD-ROADMAP.md`. Do not skip phases or 
 
 Planning-level nav concepts only: **People, Pets, CBD, Bundles, Learn** — not hardcoded product data. Routine-commerce concepts include audiences, concerns/problems, routines, canonical parent products, bundles/FBT, Learn-to-shop bridges, and CBD isolation.
 
-No major implementation code should be added until architecture docs align for the affected surface.
+Phases 1–3 and Phase 4 (in progress) already ship implementation in `resq-core` and `resq-clean-pro`. Before expanding a surface, confirm the affected architecture docs and the matching Phase 3/4 implementation notes (`14`, `15`) still agree. Do not add major code for a phase whose docs and verification gate are not aligned.
 
 ## Project skills (`.codex/skills/`)
 

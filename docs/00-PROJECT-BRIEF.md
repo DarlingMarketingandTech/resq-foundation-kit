@@ -1,6 +1,6 @@
 # 00 — Project Brief
 
-> Status: **foundation-blueprint draft** — architecture docs now absorb source-blueprint strategy while preserving the source files unchanged.
+> Status: **Phase 4 in progress** — Phase 3 plugin routine-commerce model is complete and smoke-verified. Architecture docs remain source of truth; implementation authority for shipped code is in `14-PHASE-3-IMPLEMENTATION-NOTES.md` and `15-PHASE-4-IMPLEMENTATION-NOTES.md`.
 
 ## Mission
 
@@ -30,8 +30,8 @@ Core strategy:
 | Architecture docs | Project brief, theme/plugin contract, brand foundation, Woo template map, merchandising system, compliance rules, roadmap, IA, routine-commerce framework, canonical product strategy, source-blueprint index |
 | Source blueprints | Preserved reference material in `docs/source-blueprints/`; examples only, not final product truth |
 | Agent infrastructure | `AGENTS.md`, `.codex/skills/`, `.codex/agents/` |
-| Scaffold code | Minimal theme and plugin bootstrap only |
-| Fixtures/scripts later | WP-CLI import helpers and demo data after architecture alignment |
+| Implementation code | `resq-core` (Phase 3 complete) and `resq-clean-pro` global shell (Phase 4 in progress) |
+| Fixtures/scripts later | WP-CLI import helpers and demo data (Phase 7+) |
 
 Agents and humans treat `docs/` as the source of truth for implementation boundaries. Source blueprints inform these docs but are not edited in place.
 
@@ -41,7 +41,7 @@ Agents and humans treat `docs/` as the source of truth for implementation bounda
 - A turnkey production WooCommerce site
 - A finished product catalog, taxonomy tree, or copy deck
 - A source of final legal, medical, veterinary, CBD, donation, or ad-policy claims
-- A place for major PHP implementation before architecture docs align
+- A place for new major PHP on surfaces whose docs and phase gate are not aligned
 - A Medusa, Shopify, or headless storefront implementation
 - A production database, staging deployment pipeline, payment integration, or email system
 
@@ -100,9 +100,9 @@ The finished storefront should feel:
 
 ## Goals
 
-- [ ] Align docs around routine-commerce, canonical products, CBD isolation, and source-blueprint traceability
-- [ ] Preserve theme/plugin separation: theme renders, plugin decides and supplies data
-- [ ] Map all WooCommerce storefront surfaces before override work expands
+- [x] Align docs around routine-commerce, canonical products, CBD isolation, and source-blueprint traceability
+- [x] Preserve theme/plugin separation: theme renders, plugin decides and supplies data
+- [ ] Map all WooCommerce storefront surfaces before Phase 5 override work expands
 - [ ] Keep source-blueprint examples as references, not hardcoded catalog data
 - [ ] Support future platform comparison by documenting concepts separately from Woo details
 - [ ] Deliver phased implementation with verification gates
@@ -110,7 +110,7 @@ The finished storefront should feel:
 ## Non-goals
 
 - Rewriting source blueprint files
-- Adding major PHP implementation during architecture alignment
+- Adding major PHP on unscoped surfaces before docs and phase gates align
 - Creating real product SKUs, prices, claims, or legal copy from blueprint examples
 - Importing production catalog, customer, order, or analytics data
 - Implementing production CBD, donation, payment, or advertising compliance workflows
@@ -168,7 +168,7 @@ resq-foundation-kit/
 
 - [ ] Docs `00` through `10` are internally consistent
 - [ ] Source blueprint index maps each source file to the architecture docs it informs
-- [ ] Theme/plugin contract names all routine-commerce helper surfaces before implementation
+- [x] Theme/plugin contract names all routine-commerce helper surfaces (implemented in Phase 3)
 - [ ] Woo template map covers global nav, gateway pages, PLP/PDP, cart drawer, cart, checkout, account, Learn, bundles, FBT, routine ladders, and compliance notice slots
 - [ ] Roadmap includes branch `foundation-blueprint` and tag `v0.1-foundation-blueprint`
 - [ ] No source blueprint file was rewritten in place
@@ -180,3 +180,5 @@ resq-foundation-kit/
 3. `08-ROUTINE-COMMERCE-FRAMEWORK.md` — routines, steps, bundles, kits, and UI/data needs
 4. `09-CANONICAL-PRODUCT-STRATEGY.md` — canonical product rules
 5. `10-SOURCE-BLUEPRINT-INDEX.md` — source blueprint provenance
+6. `14-PHASE-3-IMPLEMENTATION-NOTES.md` — Phase 3 plugin delivery record
+7. `15-PHASE-4-IMPLEMENTATION-NOTES.md` — Phase 4 theme shell delivery record

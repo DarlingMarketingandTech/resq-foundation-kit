@@ -20,6 +20,7 @@
 | Phase 3 tag target | `v0.4-phase-3-routine-commerce-model` |
 | Phase 3 status | complete — smoke verified |
 | Phase 4 branch target | `phase-4-theme-global-foundation` |
+| Phase 4 tag target | `v0.5-phase-4-theme-global-foundation` |
 | Current focus | Phase 4 — theme global foundation |
 
 ## Phase Overview
@@ -30,7 +31,7 @@
 | 2A | Plugin data schema (docs) | `11`, `12`, `13` — schema, helper contracts, implementation notes |
 | 2B | Plugin data contract (PHP) | `resq-core` helper stubs, options, Woo dependency check |
 | 3 | Plugin routine-commerce model | Audience, concern, routine, canonical, bundle, FBT, CBD data structures |
-| 4 | Theme global foundation | Header/nav/mega-menu/mobile drawer/footer, assets, tokens |
+| 4 | Theme global foundation | Header/nav/mobile drawer/footer, assets, tokens (mega-menu panels deferred to Phase 6) |
 | 5 | WooCommerce template shells | Shop, category, card, PDP, cart, checkout, account, search shells |
 | 6 | Gateway and Learn surfaces | Human, pet, bundle, CBD, Learn bridge templates |
 | 7 | Demo fixture system | Safe fixture categories/products/routines via WP-CLI |
@@ -153,13 +154,16 @@ See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for delivery details.
 
 **Goal:** Build the display shell without business logic.
 
+**Implementation authority:** `15-PHASE-4-IMPLEMENTATION-NOTES.md`
+
 ### Key tasks
 
-- Add header, footer, primary nav, mega-menu shell, mobile drawer, cart link shell.
+- Add header, footer, primary nav, mobile drawer, cart link shell.
 - Add theme helper functions.
 - Add asset loading and CSS token shell.
 - Add responsive containers, grid primitives, focus states, reduced-motion defaults.
 - Add plugin guard pattern for all data slots.
+- Defer mega-menu content panels to Phase 6 (gateway and Learn surfaces).
 
 ### Exit criteria
 
@@ -309,10 +313,10 @@ See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for delivery details.
 ### Key tasks
 
 - Run `preflight-package-check`.
-- Confirm docs and implementation agree.
+- Confirm docs and implementation agree (authority chain: `14` for Phase 3, `15` for Phase 4).
 - Confirm no secrets, PII, or production data.
-- Confirm branch `foundation-blueprint`.
-- Prepare tag `v0.1-foundation-blueprint` after approval.
+- Confirm release branch/tag targets match `06` Phase Status Tracker.
+- Prepare phase tags after explicit approval (e.g. `v0.4-phase-3-routine-commerce-model`, `v0.5-phase-4-theme-global-foundation`).
 - Draft PR/release notes with rollback notes.
 
 ### Exit criteria
@@ -349,4 +353,4 @@ See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for delivery details.
 | 8 Merchandising behavior | pending | |
 | 9 Local sandbox validation | pending | |
 | 10 Compliance/accessibility/performance QA | pending | |
-| 11 Preflight release package | pending | Tag target: `v0.1-foundation-blueprint` |
+| 11 Preflight release package | pending | Tag targets per completed phases — see Release Marker and Phase Status Tracker |
