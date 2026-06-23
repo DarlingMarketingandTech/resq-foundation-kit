@@ -51,6 +51,9 @@ Add later (only after sandbox is stable):
 15. `docs/14-PHASE-3-IMPLEMENTATION-NOTES.md` — **implementation authority** for Phase 3 (`resq-core`)
 16. `docs/15-PHASE-4-IMPLEMENTATION-NOTES.md` — **implementation authority** for Phase 4 (`resq-clean-pro`)
 17. `docs/16-PHASE-5-IMPLEMENTATION-NOTES.md` — **implementation authority** for Phase 5 (Woo template shells)
+18. `docs/17-PHASE-6-IMPLEMENTATION-NOTES.md` — **implementation authority** for Phase 6 (gateway and Learn surfaces)
+19. `docs/18-PHASE-7-IMPLEMENTATION-NOTES.md` — **implementation authority** for Phase 7 (demo fixture system)
+20. `docs/19-CATALOG-IMPORT-NOTES.md` — **implementation authority** for real catalog import (`wp resq-catalog`)
 
 ## Build phases (summary)
 

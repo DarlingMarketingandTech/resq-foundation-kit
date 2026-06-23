@@ -1,0 +1,78 @@
+Type,SKU,Name,Published,"Regular price",Categories,"Short description",Parent,"Attribute 1 name","Attribute 1 value(s)"
+variable,RQ-HUM-AIOCREAM,"All-in-One Intensive Skin Treatment & Moisturizer",1,29.95,"Women's Skincare > Therapeutic Skin Care","Manuka honey daily moisture support",,,
+variation,RQ-HUM-AIOCREAM-2OZ,"All-in-One Intensive Skin Treatment & Moisturizer",1,29.95,,,RQ-HUM-AIOCREAM,Size,2oz
+variation,RQ-HUM-AIOCREAM-4OZ,"All-in-One Intensive Skin Treatment & Moisturizer",1,39.95,,,RQ-HUM-AIOCREAM,Size,4oz
+variation,RQ-HUM-AIOCREAM-8OZ,"All-in-One Intensive Skin Treatment & Moisturizer",1,59.95,,,RQ-HUM-AIOCREAM,Size,8oz
+simple,RQ-HUM-WASH,"Women's Restoring Face & Body Wash",1,39.95,"Women's Skincare > Therapeutic Skin Care","Gentle Manuka honey cleanse",,,
+simple,RQ-HUM-SCRUB,"Women's Microdermabrasion Scrub",1,44.95,"Women's Skincare > Therapeutic Skin Care > Anti-Aging Serums","Periodic exfoliation step",,,
+simple,RQ-HUM-NIGHTSERUM,"Age-Defying Night Serum",1,69.95,"Women's Skincare > Therapeutic Skin Care > Anti-Aging Serums","Overnight renewal support",,,
+variable,RQ-HUM-MOISTURIZER,"Men's Face & Body Moisturizer",1,39.95,"Men's Grooming","Fast-absorbing daily moisture",,,
+variation,RQ-HUM-MOISTURIZER-4OZ,"Men's Face & Body Moisturizer",1,39.95,,,RQ-HUM-MOISTURIZER,Size,4oz
+variation,RQ-HUM-MOISTURIZER-8OZ,"Men's Face & Body Moisturizer",1,59.95,,,RQ-HUM-MOISTURIZER,Size,8oz
+simple,RQ-HUM-MENSWASH,"Men's Face & Body Wash + Shave Cream",1,39.95,"Men's Grooming","Dual-use cleanse and shave prep",,,
+simple,RQ-HUM-MENSSERUM,"Men's Anti-Aging Repairing Night Serum",1,69.95,"Men's Grooming > Anti-Aging Serums","Men's premium night step",,,
+simple,RQ-HUM-MENSSCRUB,"Men's Microdermabrasion Scrub",1,44.95,"Men's Grooming","Shave prep exfoliation",,,
+simple,RQ-HUM-MENSHAMPOO,"Men's Sulfate-Free Shampoo",1,29.95,"Hair & Scalp Care","Scalp comfort cleanse",,,
+simple,RQ-HUM-MENSCOND,"Men's Strengthening Conditioner",1,29.95,"Hair & Scalp Care","Cuticle and scalp support",,,
+simple,RQ-HUM-SHAMPOO,"Manuka Honey Shampoo",1,29.95,"Hair & Scalp Care","pH-balanced scalp wash",,,
+simple,RQ-HUM-CONDITIONER,"Manuka Honey Conditioner",1,29.95,"Hair & Scalp Care","Hydrating hair companion",,,
+simple,RQ-HUM-MANUKAHONEY,"UMF Medical Grade Manuka Honey",1,44.95,"Therapeutic Skin Care","Flagship ingredient anchor",,,
+simple,RQ-BABY-WASH,"Gentle Baby Face & Body Wash",1,39.95,"Baby & Infant Care","Gentle baby bath routine",,,
+variable,RQ-BABY-CREAM,"Soothing Baby Diaper Rash + Skin Care Cream",1,24.95,"Baby & Infant Care","Diaper bag to home sizes",,,
+variation,RQ-BABY-CREAM-2OZ,"Soothing Baby Diaper Rash + Skin Care Cream",1,24.95,,,RQ-BABY-CREAM,Size,2oz
+variation,RQ-BABY-CREAM-4OZ,"Soothing Baby Diaper Rash + Skin Care Cream",1,39.95,,,RQ-BABY-CREAM,Size,4oz
+variation,RQ-BABY-CREAM-8OZ,"Soothing Baby Diaper Rash + Skin Care Cream",1,59.95,,,RQ-BABY-CREAM,Size,8oz
+variable,RQ-PET-SKINCREAM,"Pet Skin Treatment Cream",1,29.95,"Topical Skin Care","Topical skin & paw support",,,
+variation,RQ-PET-SKINCREAM-2OZ,"Pet Skin Treatment Cream",1,29.95,,,RQ-PET-SKINCREAM,Size,2oz
+variation,RQ-PET-SKINCREAM-4OZ,"Pet Skin Treatment Cream",1,39.95,,,RQ-PET-SKINCREAM,Size,4oz
+variation,RQ-PET-SKINCREAM-8OZ,"Pet Skin Treatment Cream",1,59.95,,,RQ-PET-SKINCREAM,Size,8oz
+variable,RQ-PET-HORSECREAM,"Horse Skin Care Treatment Cream",1,39.95,"Topical Skin Care > Horse & Large Animal Care","Rain rot & large-area support",,,
+variation,RQ-PET-HORSECREAM-4OZ,"Horse Skin Care Treatment Cream",1,39.95,,,RQ-PET-HORSECREAM,Size,4oz
+variation,RQ-PET-HORSECREAM-8OZ,"Horse Skin Care Treatment Cream",1,59.95,,,RQ-PET-HORSECREAM,Size,8oz
+simple,RQ-PET-SHAMPOO,"All-Natural Manuka Honey Pet Shampoo",1,29.95,"Coat & Grooming","Coat cleanse & allergen flush",,,
+simple,RQ-PET-CONDITIONER,"Manuka Honey Pet Conditioner",1,29.95,"Coat & Grooming","High-slip coat support",,,
+simple,RQ-PET-DIABETIC-TREATS,"Diabetic Dog Treats",1,19.95,"Pet Treats & Diabetic Care","Low-glycemic treat option",,,
+variable,RQ-PCBD-OIL,"Pet CBD Hemp Oil",1,39.95,"CBD & Calming Oils","Strength by dog size",,,
+variation,RQ-PCBD-OIL-300MG,"Pet CBD Hemp Oil",1,39.95,,,RQ-PCBD-OIL,Strength,300mg
+variation,RQ-PCBD-OIL-500MG,"Pet CBD Hemp Oil",1,84.95,,,RQ-PCBD-OIL,Strength,500mg
+variation,RQ-PCBD-OIL-1000MG,"Pet CBD Hemp Oil",1,149.95,,,RQ-PCBD-OIL,Strength,1000mg
+variable,RQ-PCBD-TREATS,"CBD-Infused Organic Dog Treats",1,26.95,"CBD & Calming Oils > Pet Treats & Diabetic Care","Treat-format calm support",,,
+variation,RQ-PCBD-TREATS-2MG,"CBD-Infused Organic Dog Treats",1,26.95,,,RQ-PCBD-TREATS,Strength,2mg
+variation,RQ-PCBD-TREATS-5MG,"CBD-Infused Organic Dog Treats",1,31.95,,,RQ-PCBD-TREATS,Strength,5mg
+variable,RQ-HCBD-OIL,"Full Spectrum CBD Oil",1,39.95,"CBD & Wellness","Strength & flavor selector",,,
+variation,RQ-HCBD-OIL-300MG,"Full Spectrum CBD Oil",1,39.95,,,RQ-HCBD-OIL,Strength,300mg
+variation,RQ-HCBD-OIL-500MG,"Full Spectrum CBD Oil",1,84.95,,,RQ-HCBD-OIL,Strength,500mg
+variation,RQ-HCBD-OIL-1000MG,"Full Spectrum CBD Oil",1,149.95,,,RQ-HCBD-OIL,Strength,1000mg
+variation,RQ-HCBD-OIL-1500MG,"Full Spectrum CBD Oil",1,169.95,,,RQ-HCBD-OIL,Strength,1500mg
+simple,RQ-HCBD-GUMMIES,"CBD Gummies",1,49.95,"CBD & Wellness","Daily wellness gummies",,,
+simple,RQ-HCBD-SLEEPGUMMIES,"Sleep Gummies — 10mg CBN & 25mg CBD",1,59.95,"CBD & Wellness","Nighttime routine gummies",,,
+simple,RQ-HCBD-RUB,"CBD Intensive Relief Rub — 2000mg",1,69.95,"CBD & Wellness","Localized topical comfort",,,
+variable,RQ-HCBD-BATHBOMB,"CBD Bath Bomb",1,19.95,"CBD & Wellness","Self-care scent selector",,,
+variation,RQ-HCBD-BATHBOMB-LAV,"CBD Bath Bomb",1,19.95,,,RQ-HCBD-BATHBOMB,Scent,Lavender
+variation,RQ-HCBD-BATHBOMB-EUC,"CBD Bath Bomb",1,19.95,,,RQ-HCBD-BATHBOMB,Scent,Eucalyptus
+variation,RQ-HCBD-BATHBOMB-CIT,"CBD Bath Bomb",1,19.95,,,RQ-HCBD-BATHBOMB,Scent,Citrus
+variation,RQ-HCBD-BATHBOMB-UNS,"CBD Bath Bomb",1,19.95,,,RQ-HCBD-BATHBOMB,Scent,Unscented
+simple,RQ-HCBD-SOFTGELS,"Weight Control Softgels — CBD & THCv",1,79.95,"CBD & Wellness","Specialty cannabinoid softgels",,,
+simple,RQ-KIT-PET-HOTSPOT,"Pet Hot Spot Rescue Kit",1,89.95,"Bundles & Savings",,,,
+simple,RQ-DUO-PET-COAT,"Pet Coat Care Duo",1,54.95,"Bundles & Savings",,,,
+simple,RQ-KIT-PCBD-CALM-500,"Canine Calm Starter Kit — 500mg",1,104.95,"Bundles & Savings",,,,
+simple,RQ-KIT-PCBD-CALM-1000,"Canine Calm Starter Kit — 1000mg",1,164.95,"Bundles & Savings",,,,
+simple,RQ-KIT-PET-SENIOR,"Senior Dog Comfort Bundle",1,129.95,"Bundles & Savings",,,,
+simple,RQ-KIT-HORSE-SKIN,"Horse Skin & Coat Care Kit",1,99.95,"Bundles & Savings",,,,
+simple,RQ-KIT-HUM-WOMENS,"Women's Daily Repair Routine",1,134.95,"Bundles & Savings",,,,
+simple,RQ-KIT-HUM-ANTIAGING,"Anti-Aging Routine Bundle",1,139.95,"Bundles & Savings",,,,
+simple,RQ-KIT-HUM-WOMENS-STARTER,"Women's Sensitive Skin Starter Set",1,69.95,"Bundles & Savings",,,,
+simple,RQ-KIT-HUM-MENS,"Men's Core Grooming Kit",1,134.95,"Bundles & Savings",,,,
+simple,RQ-KIT-HUM-MENS-ELITE,"Men's Elite Grooming Routine",1,169.95,"Bundles & Savings",,,,
+simple,RQ-DUO-HUM-MENSHAIR,"Men's Hair Duo",1,54.95,"Bundles & Savings",,,,
+simple,RQ-DUO-HUM-HAIR,"Manuka Hair Care Duo",1,54.95,"Bundles & Savings",,,,
+simple,RQ-DUO-BABY-BATH,"Baby Bath + Skin Care Duo",1,72.95,"Bundles & Savings",,,,
+simple,RQ-KIT-HCBD-NIGHT,"CBD Night Routine",1,72.95,"Bundles & Savings",,,,
+simple,RQ-KIT-HCBD-RELIEF,"CBD Relief Routine",1,79.95,"Bundles & Savings",,,,
+simple,RQ-KIT-HCBD-DAILY,"CBD Daily Wellness Bundle",1,119.95,"Bundles & Savings",,,,
+simple,RQ-PK-HCBD-BATH-3,"CBD Bath Bomb Variety 3-Pack",1,54.95,"Bundles & Savings",,,,
+simple,RQ-PK-HCBD-BATH-5,"CBD Bath Bomb Variety 5-Pack",1,84.95,"Bundles & Savings",,,,
+simple,RQ-PK-HCBD-GUMMIES-2,"CBD Gummies 2-Pack",1,89.95,"Bundles & Savings",,,,
+simple,RQ-PK-HCBD-GUMMIES-3,"CBD Gummies 3-Pack",1,129.95,"Bundles & Savings",,,,
+simple,RQ-PK-PET-DIABETIC-2,"Diabetic Dog Treats 2-Pack",1,36.95,"Bundles & Savings",,,,
+simple,RQ-PK-PET-DIABETIC-3,"Diabetic Dog Treats 3-Pack",1,52.95,"Bundles & Savings",,,,
