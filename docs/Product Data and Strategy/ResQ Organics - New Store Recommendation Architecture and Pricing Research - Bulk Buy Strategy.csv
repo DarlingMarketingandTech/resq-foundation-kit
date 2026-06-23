@@ -1,0 +1,15 @@
+Bulk-Buy and Quantity-Break Strategy,,,,,,
+"Recommended stock-up, size ladder, multipack, and quantity-break opportunities. These should be tested after margin review rather than treated as final pricing.",,,,,,
+,,,,,,
+Product / Family,Recommended Bulk / Size Structure,Best Customer Segment,Fit,Reasoning,Pricing Tactic,Implementation Notes
+Diabetic Dog Treats,2-pack / 3-pack / case option,Repeat treat buyers,High,Treats are easy stock-up products and can raise order value without confusing product architecture,Quantity discount or automatic tiered pricing,Use pack-count SKU or dynamic quantity break
+CBD Dog Treats,2-pack / 3-pack,CBD pet routine buyers,High,"Treats are replenishable, and pack bundles reduce repeat checkout friction",Quantity discount after margin review,CBD restrictions and age gate required
+Pet Skin Treatment Cream,"Size ladder: 2oz trial, 4oz standard, 8oz value",New vs repeat pet care customers,High,Existing sizes support a good-better-best structure,Show savings per ounce on PDP,Avoid separate duplicate products for each audience
+All-in-One Intensive Moisturizer,"2oz trial, 4oz standard, 8oz value",Human skincare customers,High,Existing sizes can guide purchase without creating new products,Show best value badge,Use one variable product
+Baby Diaper Rash + Skin Care Cream,"2oz diaper bag, 4oz standard, 8oz home size",Parents,High,Use-case naming can make sizes intuitive,Value-size price ladder,Validate packaging and use-case language
+Pet Shampoo + Conditioner,Duo + 2x duo,Pet grooming customers,High,Natural pairing and frequent repeat purchase,Duo bundle plus subscribe/save,Simple bundle
+Human Shampoo + Conditioner,Duo + 2x duo,Hair care customers,Medium,Routine replenishment and reduced decision friction,Duo pricing,Split general vs men’s if needed
+CBD Gummies,2-pack / 3-pack monthly stock-up,Human CBD customers,Medium,30-count product fits stock-up behavior,Pack discount,CBD guardrails
+Sleep Gummies,2-pack / 3-pack,Nighttime routine customers,Medium,Nightly use supports monthly replenishment,Pack discount,Avoid medical sleep claims
+CBD Bath Bombs,3-pack / 5-pack / 8-pack variety,Self-care/gift buyers,Medium,Scent variations are bundle-friendly,Quantity break,Great cart add-on
+Full Spectrum CBD Oil,2-bottle stock-up by same strength,CBD routine customers,Medium,Consumable product with high price point; small discount can support repeat,Quantity discount or subscription,Compliance and margin review
