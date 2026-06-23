@@ -773,14 +773,39 @@ if ( ! function_exists( 'resq_get_product_routine_ladder' ) ) {
 			return array();
 		}
 
+		$bundle_target  = (int) ( $primary['bundle_target'] ?? 0 );
+		$bundle_savings = '';
+
+		if ( $bundle_target > 0 && resq_is_woocommerce_available() ) {
+			$bundle_product = wc_get_product( $bundle_target );
+			if ( $bundle_product ) {
+				$steps_total = 0.0;
+				foreach ( $steps as $step ) {
+					$step_id = (int) ( $step['product_id'] ?? 0 );
+					if ( $step_id <= 0 ) {
+						continue;
+					}
+					$summary = resq_get_wc_product_summary( $step_id );
+					if ( $summary ) {
+						$steps_total += (float) $summary['price'];
+					}
+				}
+
+				$bundle_price = (float) $bundle_product->get_price();
+				if ( $steps_total > $bundle_price && $bundle_price > 0 ) {
+					$bundle_savings = wp_strip_all_tags( wc_price( $steps_total - $bundle_price ) );
+				}
+			}
+		}
+
 		return array(
 			'routine_id'     => (int) $primary['routine_id'],
 			'title'          => (string) $primary['title'],
 			'description'    => '',
 			'steps'          => $steps,
-			'bundle_target'  => (int) ( $primary['bundle_target'] ?? 0 ),
+			'bundle_target'  => $bundle_target,
 			'bundle_label'   => __( 'Upgrade to Full Routine Kit', 'resq-core' ),
-			'bundle_savings' => '',
+			'bundle_savings' => $bundle_savings,
 		);
 	}
 }

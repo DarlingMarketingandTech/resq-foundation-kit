@@ -64,7 +64,20 @@ class ResQ_Core_Options {
 		return array(
 			'routine_ladder_enabled'          => true,
 			'cart_drawer_suggestions_enabled' => true,
-			'default_badge_config'            => array(),
+			'default_badge_config'            => array(
+				array(
+					'condition' => 'on_sale',
+					'label'     => __( 'Sale', 'resq-core' ),
+					'type'      => 'sale',
+					'priority'  => 5,
+				),
+				array(
+					'condition' => 'is_bundle',
+					'label'     => __( 'Bundle', 'resq-core' ),
+					'type'      => 'bundle',
+					'priority'  => 10,
+				),
+			),
 		);
 	}
 
