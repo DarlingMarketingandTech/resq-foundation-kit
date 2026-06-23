@@ -95,7 +95,7 @@ Not allowed:
 
 Bundles and kits sell complete routines or replenishment packs. The plugin owns bundle composition, savings source, validation, and cart behavior. The theme renders bundle cards, included products, and cart drawer suggestions.
 
-Open decision: bundle composition uses plugin-managed meta on simple products (see [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md)). Phase 8 implements display, savings, validation, and cart behavior.
+**Decided (Phase 8):** bundle composition uses plugin-managed meta (`_resq_bundle_product_ids`) on WooCommerce simple products. Phase 8 implemented display (`bundle-options.php`), savings math in `resq_get_product_routine_ladder()`, cart validation (`ResQ_Core_Merchandising_Hooks::validate_bundle_add_to_cart()`), and cart drawer suggestions. See [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md).
 
 ## Product Cards
 

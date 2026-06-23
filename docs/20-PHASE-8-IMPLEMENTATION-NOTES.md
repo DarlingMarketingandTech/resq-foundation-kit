@@ -204,7 +204,7 @@ wp db export backups/before-phase8-smoke.sql
 - [x] Missing template parts from [`03-WOO-TEMPLATE-MAP.md`](03-WOO-TEMPLATE-MAP.md) Phase 8 rows implemented (ingredient, FBT, bundle-options, cart/drawer)
 - [x] Catalog smoke recipe above passes on LocalWP (all streams A–F verified)
 
-When complete: update [`CHECKPOINT.md`](CHECKPOINT.md), archive this file to `docs/archive/phase-notes/` at a later cleanup, and add Phase 8 row to release markers in `06`.
+**Done:** [`CHECKPOINT.md`](CHECKPOINT.md) and `06-BUILD-ROADMAP.md` updated. Phase 8 release marker added. This file remains in `docs/` (not yet archived) as an active smoke reference for Phase 9 fresh-install validation; archive to `docs/archive/phase-notes/` at the Phase 11 release package.
 
 ---
 
