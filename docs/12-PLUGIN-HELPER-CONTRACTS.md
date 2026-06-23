@@ -1,13 +1,13 @@
 # 12 — Plugin Helper Contracts
 
-> Public helper function contracts for `resq-core`. Theme may call these functions. Plugin must not call theme helpers. **Phase 3 implemented live data reads for all helpers** — see `14-PHASE-3-IMPLEMENTATION-NOTES.md`.
+> Public helper function contracts for `resq-core`. Theme may call these functions. Plugin must not call theme helpers. **Phase 3 implemented live data reads for all helpers** — delivery record: [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md).
 
 ## Status
 
 | Item | Value |
 |---|---|
 | Phase | 2A contracts — Phase 3 complete (live reads in `includes/helpers/`) |
-| Implementation record | `14-PHASE-3-IMPLEMENTATION-NOTES.md` |
+| Implementation record | [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md) |
 | Schema reference | `11-PLUGIN-DATA-SCHEMA.md` |
 | Ownership | `01-THEME-PLUGIN-CONTRACT.md` |
 
@@ -706,6 +706,6 @@ Before theme templates rely on a helper:
 
 ## Read Next
 
-1. `14-PHASE-3-IMPLEMENTATION-NOTES.md` — Phase 3 helper delivery record
-2. `11-PLUGIN-DATA-SCHEMA.md` — data model details
-3. `13-PHASE-2A-IMPLEMENTATION-NOTES.md` — historical Phase 2A/2B checkpoint only
+1. [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md) — Phase 3 helper delivery record
+2. [`CHECKPOINT.md`](CHECKPOINT.md) — current status
+3. [`archive/phase-notes/13-PHASE-2A-IMPLEMENTATION-NOTES.md`](archive/phase-notes/13-PHASE-2A-IMPLEMENTATION-NOTES.md) — historical Phase 2A/2B checkpoint only

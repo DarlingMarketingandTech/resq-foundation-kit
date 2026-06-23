@@ -147,4 +147,4 @@ Learn guides educate; they do not sell directly unless a plugin mapping supplies
 
 ## Implementation Guardrail
 
-Helper contracts and data ownership in `01-THEME-PLUGIN-CONTRACT.md` are accepted; Phase 3 helpers and Phase 4 theme shell are implemented. For new surfaces, follow phase gates in `06-BUILD-ROADMAP.md` and the matching implementation notes (`14`, `15`) before adding major PHP.
+Helper contracts and data ownership in `01-THEME-PLUGIN-CONTRACT.md` are accepted; Phases 3–7 and catalog import are implemented. For new surfaces, follow [`CHECKPOINT.md`](CHECKPOINT.md) and phase gates in `06-BUILD-ROADMAP.md` before adding major PHP.

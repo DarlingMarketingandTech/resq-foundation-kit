@@ -1,6 +1,6 @@
 # 11 — Plugin Data Schema
 
-> Plugin-owned data model for `resq-core`. Schema reference — registration and live reads implemented in Phase 3. See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for the delivery record.
+> Plugin-owned data model for `resq-core`. Schema reference — registration and live reads implemented in Phase 3. Delivery record: [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md).
 
 ## Status
 
@@ -8,7 +8,7 @@
 |---|---|
 | Phase | 2A schema lock — implemented in Phase 3 |
 | Implementation | Registered in `wp-content/plugins/resq-core/includes/registrations/`; helpers read live data |
-| Implementation record | `14-PHASE-3-IMPLEMENTATION-NOTES.md` |
+| Implementation record | [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md) |
 | Source of truth for helpers | `12-PLUGIN-HELPER-CONTRACTS.md` |
 | Layer ownership | `01-THEME-PLUGIN-CONTRACT.md` |
 
@@ -795,7 +795,7 @@ flowchart LR
 
 ## Read Next
 
-1. `14-PHASE-3-IMPLEMENTATION-NOTES.md` — Phase 3 registration and helper delivery record
-2. `12-PLUGIN-HELPER-CONTRACTS.md` — public helper signatures and return shapes
-3. `01-THEME-PLUGIN-CONTRACT.md` — updated metadata ownership table
-4. `13-PHASE-2A-IMPLEMENTATION-NOTES.md` — historical Phase 2A/2B checkpoint only
+1. [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md) — Phase 3 registration and helper delivery record
+2. [`CHECKPOINT.md`](CHECKPOINT.md) — current status
+3. [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) — catalog data mapping
+4. [`archive/phase-notes/13-PHASE-2A-IMPLEMENTATION-NOTES.md`](archive/phase-notes/13-PHASE-2A-IMPLEMENTATION-NOTES.md) — historical Phase 2A/2B checkpoint only

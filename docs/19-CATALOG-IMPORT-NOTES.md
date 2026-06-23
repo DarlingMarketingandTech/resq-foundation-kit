@@ -7,27 +7,22 @@
 | Item | Value |
 | --- | --- |
 | Phase 7 | Demo fixture system — complete |
-| Catalog import | Real ~28 families + 21 bundles/packs |
+| Catalog import | Real ~28 families + 23 bundles/packs |
 | Plugin version | `0.4.0` |
 | WP-CLI command | `wp resq-catalog` |
 
 ## Commands
 
-Run from WordPress site root (LocalWP site shell, DDEV, etc.):
+Run from WordPress site root (LocalWP site shell, DDEV, etc.).
 
-```bash
-# Import or update catalog (idempotent)
+**Windows CMD:** Do not paste bash `#` comments on the same line — CMD treats them as extra arguments.
+
+```bat
 wp resq-catalog import
-
-# Clean reimport
 wp resq-catalog import --reset
-
-# Remove all RQ- SKUs and rq- routines
 wp resq-catalog reset --yes
-
-# Export reference WooCommerce CSV
 wp resq-catalog export-csv
-wp resq-catalog export-csv --file=/path/to/resq-catalog-import.csv
+wp resq-fixtures reset --yes
 ```
 
 ## Prerequisites
@@ -36,11 +31,7 @@ wp resq-catalog export-csv --file=/path/to/resq-catalog-import.csv
 - `resq-core` **0.4.0+** active (taxonomies, `resq_product_role`, `resq_routine` CPT)
 - `resq-clean-pro` recommended for gateway/PDP smoke tests
 
-Optional: remove demo fixtures after catalog validation:
-
-```bash
-wp resq-fixtures reset --yes
-```
+Optional: `wp resq-fixtures reset --yes` removes demo `fixture-*` SKUs after catalog validation.
 
 ## SKU strategy
 
@@ -72,7 +63,7 @@ Bundles/packs:
 | Pet health | `RQ-PET-SKINCREAM`, `RQ-PET-DIABETIC-TREATS` |
 | Medical-adjacent | `RQ-PET-DIABETIC-TREATS`, `RQ-HCBD-SOFTGELS` |
 | Routines | 6 routines (`rq-routine-*`) with steps + `_resq_primary_routine_id` |
-| Bundles | 21 bundles via `_resq_bundle_product_ids` (variation SKUs resolved) |
+| Bundles | 23 bundles via `_resq_bundle_product_ids` (variation SKUs resolved) |
 | FBT | `_resq_fbt_product_ids` where defined in catalog data |
 | Cross-audience | `RQ-HUM-MANUKAHONEY` → audiences `human` + `pet` |
 
@@ -101,7 +92,7 @@ All meta passes through sanitizers in `includes/registrations/class-post-meta.ph
 | `includes/catalog/data/catalog.php` | `resq_catalog_get_data()` entry point |
 | `includes/catalog/data/products.php` | 28 product families |
 | `includes/catalog/data/routines.php` | 6 routines |
-| `includes/catalog/data/bundles.php` | 21 bundles/packs |
+| `includes/catalog/data/bundles.php` | 23 bundles/packs |
 | `includes/catalog/data/helpers.php` | Size/strength variation builders |
 | `includes/catalog/class-catalog-importer.php` | Extends `ResQ_Core_Fixture_Importer` |
 | `includes/cli/class-catalog-cli.php` | `wp resq-catalog` commands |

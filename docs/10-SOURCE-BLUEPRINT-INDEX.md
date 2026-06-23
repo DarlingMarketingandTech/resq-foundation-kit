@@ -43,12 +43,12 @@ Do not use the blueprints as:
 - Theme owns presentation and empty-safe render slots.
 - CBD isolation is required across navigation, recommendations, cart, and checkout.
 - Canonical products protect inventory, SEO, margin, and operations.
+- Taxonomy terms and catalog SKUs are seeded operationally via `wp resq-catalog` (see [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md)) — not from source blueprints.
 
 ## Remaining Open Questions
 
-- What are the final audience, concern, routine, and ingredient taxonomies?
-- Which bundle engine will be used?
+- Which bundle engine will be used beyond composition meta (Phase 8)?
 - What claims are substantiated for production copy?
 - What donation/mission claims are operationally provable?
 - How should CBD age/compliance requirements vary by jurisdiction?
-- Which Learn content types ship in the first fixture set?
+- Which Learn content types ship beyond gateway bridge shells?

@@ -124,7 +124,7 @@ These functions are the public API between layers. The theme may call plugin hel
 
 ### Plugin Storefront Data Helpers
 
-Phase 3 implemented all 19 storefront helpers with live data reads (see `12-PLUGIN-HELPER-CONTRACTS.md` and `14-PHASE-3-IMPLEMENTATION-NOTES.md`). Theme templates call them behind `function_exists()` / `resq_core_is_active()` guards; empty arrays and nulls remain valid when data is absent.
+Phase 3 implemented all 19 storefront helpers with live data reads (see `12-PLUGIN-HELPER-CONTRACTS.md` and [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md)). Theme templates call them behind `function_exists()` / `resq_core_is_active()` guards; empty arrays and nulls remain valid when data is absent.
 
 | Function | Purpose | Returns |
 |---|---|---|
@@ -216,7 +216,7 @@ All ResQ keys are plugin-registered. Theme reads via helpers and must not update
 
 ### Product Meta
 
-> Phase 2A schema: `11-PLUGIN-DATA-SCHEMA.md`. Helper contracts: `12-PLUGIN-HELPER-CONTRACTS.md`. Phase 3 implementation record: `14-PHASE-3-IMPLEMENTATION-NOTES.md`.
+> Phase 2A schema: `11-PLUGIN-DATA-SCHEMA.md`. Helper contracts: `12-PLUGIN-HELPER-CONTRACTS.md`. Phase 3 delivery record: [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md). Current status: [`CHECKPOINT.md`](CHECKPOINT.md).
 
 | Meta key | Owner | Purpose | Consumer |
 |---|---|---|---|

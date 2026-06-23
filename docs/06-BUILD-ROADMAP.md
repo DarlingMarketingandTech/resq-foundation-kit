@@ -25,9 +25,12 @@
 | Phase 5 branch | `phase-5-woo-template-shells` |
 | Phase 5 tag target | `v0.6-phase-5-woo-template-shells` |
 | Phase 5 status | complete — smoke verified |
-| Phase 6 branch target | `phase-6-gateway-learn-surfaces` |
-| Current focus | Phase 6 — Gateway and Learn surfaces |
-| Current focus | Phase 5 — WooCommerce template shells |
+| Phase 6 branch | `phase-6-gateway-learn-surfaces` |
+| Phase 6 status | complete — smoke verified |
+| Phase 7 status | complete — fixtures + catalog import |
+| `resq-core` version | `0.4.0` |
+| `resq-clean-pro` version | `0.4.0` |
+| Current focus | Phase 8 — Merchandising behavior |
 
 ## Phase Overview
 
@@ -152,7 +155,7 @@
 - [x] CBD isolation can be evaluated from data.
 - [x] Canonical resolver has documented fallbacks.
 
-See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for delivery details.
+See [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md) for delivery details.
 
 ---
 
@@ -160,7 +163,7 @@ See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for delivery details.
 
 **Goal:** Build the display shell without business logic.
 
-**Implementation authority:** `15-PHASE-4-IMPLEMENTATION-NOTES.md`
+**Implementation authority:** [`archive/phase-notes/15-PHASE-4-IMPLEMENTATION-NOTES.md`](archive/phase-notes/15-PHASE-4-IMPLEMENTATION-NOTES.md)
 
 ### Key tasks
 
@@ -184,7 +187,7 @@ See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for delivery details.
 
 **Goal:** Add minimal Woo template overrides mapped in `03-WOO-TEMPLATE-MAP.md`.
 
-**Implementation authority:** `16-PHASE-5-IMPLEMENTATION-NOTES.md`
+**Implementation authority:** [`archive/phase-notes/16-PHASE-5-IMPLEMENTATION-NOTES.md`](archive/phase-notes/16-PHASE-5-IMPLEMENTATION-NOTES.md)
 
 ### Key tasks
 
@@ -221,10 +224,12 @@ See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for delivery details.
 
 ### Exit criteria
 
-- [ ] Gateway pages render without hardcoded final product truth.
-- [ ] Learn bridges use plugin helper fallbacks.
-- [ ] CBD visual isolation is present.
-- [ ] Source-blueprint examples remain examples only.
+- [x] Gateway pages render without hardcoded final product truth.
+- [x] Learn bridges use plugin helper fallbacks.
+- [x] CBD visual isolation is present.
+- [x] Source-blueprint examples remain examples only.
+
+**Implementation authority:** [`archive/phase-notes/17-PHASE-6-IMPLEMENTATION-NOTES.md`](archive/phase-notes/17-PHASE-6-IMPLEMENTATION-NOTES.md)
 
 ---
 
@@ -241,10 +246,12 @@ See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for delivery details.
 
 ### Exit criteria
 
-- [ ] Fixtures import idempotently on fresh local install.
-- [ ] No production SKUs, prices, claims, images, customer data, or order data.
-- [ ] At least one fixture covers CBD isolation.
-- [ ] At least one fixture covers canonical mapping and routine ladder.
+- [x] Fixtures import idempotently on fresh local install.
+- [x] No production SKUs, prices, claims, images, customer data, or order data in fixture set.
+- [x] At least one fixture covers CBD isolation.
+- [x] At least one fixture covers canonical mapping and routine ladder.
+
+**Runbooks:** [`18-PHASE-7-IMPLEMENTATION-NOTES.md`](18-PHASE-7-IMPLEMENTATION-NOTES.md) (demo), [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) (real catalog).
 
 ---
 
@@ -321,7 +328,7 @@ See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for delivery details.
 ### Key tasks
 
 - Run `preflight-package-check`.
-- Confirm docs and implementation agree (authority chain: `14` for Phase 3, `15` for Phase 4).
+- Confirm docs and implementation agree (see [`CHECKPOINT.md`](CHECKPOINT.md); delivery records in `archive/phase-notes/`).
 - Confirm no secrets, PII, or production data.
 - Confirm release branch/tag targets match `06` Phase Status Tracker.
 - Prepare phase tags after explicit approval (e.g. `v0.4-phase-3-routine-commerce-model`, `v0.5-phase-4-theme-global-foundation`).
@@ -351,14 +358,15 @@ See `14-PHASE-3-IMPLEMENTATION-NOTES.md` for delivery details.
 | Phase | Status | Notes |
 |---|---|---|
 | 1 Foundation blueprint lock | complete | Checkpoint: `foundation-blueprint` @ `v0.1-foundation-blueprint` (`77430b6`) |
-| 2A Plugin data schema (docs) | complete | Checkpoint: `phase-2a-contracts` @ `v0.2-phase-2a-contracts` — `11`, `12`, `13` |
+| 2A Plugin data schema (docs) | complete | Checkpoint: `phase-2a-contracts` @ `v0.2-phase-2a-contracts` — `11`, `12`, archive `13` |
 | 2B Plugin data contract (PHP) | complete | Checkpoint: `phase-2b-plugin-scaffold` @ `v0.3-phase-2b-plugin-scaffold` (`52f1cf5`) |
-| 3 Plugin routine-commerce model | complete | Checkpoint: `phase-3-routine-commerce-model` @ `v0.4-phase-3-routine-commerce-model` — doc `14`, plugin `0.2.0` |
-| 4 Theme global foundation | complete | Shell: header, nav, tokens, routine-ladder part — doc `15` |
-| 5 Woo template shells | complete | Smoke verified — doc `16`, theme `0.3.0` |
-| 6 Gateway and Learn surfaces | pending | |
-| 7 Demo fixture system | pending | |
-| 8 Merchandising behavior | pending | |
-| 9 Local sandbox validation | pending | |
+| 3 Plugin routine-commerce model | complete | Archive `14`; plugin shipped through `0.4.0` |
+| 4 Theme global foundation | complete | Archive `15`; theme `0.4.0` |
+| 5 Woo template shells | complete | Archive `16`; smoke verified |
+| 6 Gateway and Learn surfaces | complete | Archive `17`; smoke verified |
+| 7 Demo fixture system | complete | Runbook `18`; `wp resq-fixtures` |
+| — Real catalog import | complete | Runbook `19`; `wp resq-catalog` |
+| 8 Merchandising behavior | **next** | |
+| 9 Local sandbox validation | partial | Local catalog smoke done; fresh-install gate open |
 | 10 Compliance/accessibility/performance QA | pending | |
-| 11 Preflight release package | pending | Tag targets per completed phases — see Release Marker and Phase Status Tracker |
+| 11 Preflight release package | pending | Tag targets per completed phases — see Release Marker |
