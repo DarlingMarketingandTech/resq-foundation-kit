@@ -1,6 +1,6 @@
 # 00 — Project Brief
 
-> Status: **Phase 4 in progress** — Phase 3 plugin routine-commerce model is complete and smoke-verified. Architecture docs remain source of truth; implementation authority for shipped code is in `14-PHASE-3-IMPLEMENTATION-NOTES.md` and `15-PHASE-4-IMPLEMENTATION-NOTES.md`.
+> Status: **Phase 6 next** — Phases 3, 4, and 5 are complete and smoke-verified. Phase 6 builds gateway and Learn surfaces. Implementation authority docs: `14` (Phase 3), `15` (Phase 4), `16` (Phase 5).
 
 ## Mission
 
@@ -47,7 +47,7 @@ Agents and humans treat `docs/` as the source of truth for implementation bounda
 
 ## Current Phase
 
-The project is in **Phase 4 in progress**. Phase 3 (plugin routine-commerce model) is complete with smoke verification. Phase 4 builds the `resq-clean-pro` global layout shell (header, nav, footer, tokens, plugin guards). See `docs/15-PHASE-4-IMPLEMENTATION-NOTES.md`.
+Phases 3, 4, and 5 are **complete and smoke-verified**. Phase 5 delivered WooCommerce template overrides (archive, card, PDP, cart, checkout, account, search) with plugin-guarded data slots. Phase 6 (gateway and Learn surfaces) is next. See `docs/16-PHASE-5-IMPLEMENTATION-NOTES.md` for the Phase 5 record.
 
 ## Implementation Target
 
@@ -182,3 +182,4 @@ resq-foundation-kit/
 5. `10-SOURCE-BLUEPRINT-INDEX.md` — source blueprint provenance
 6. `14-PHASE-3-IMPLEMENTATION-NOTES.md` — Phase 3 plugin delivery record
 7. `15-PHASE-4-IMPLEMENTATION-NOTES.md` — Phase 4 theme shell delivery record
+8. `16-PHASE-5-IMPLEMENTATION-NOTES.md` — Phase 5 Woo template shells delivery record

@@ -40,9 +40,16 @@ function resq_theme_enqueue_assets(): void {
 	);
 
 	wp_enqueue_style(
+		'resq-theme-gateway',
+		resq_theme_get_asset_url( 'assets/css/gateway.css' ),
+		array( 'resq-theme-components' ),
+		RESQ_THEME_VERSION
+	);
+
+	wp_enqueue_style(
 		'resq-theme-style',
 		get_stylesheet_uri(),
-		array( 'resq-theme-components' ),
+		array( 'resq-theme-gateway' ),
 		RESQ_THEME_VERSION
 	);
 

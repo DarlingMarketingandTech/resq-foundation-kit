@@ -16,6 +16,7 @@
 
 	const panel = drawer.querySelector( '.mobile-drawer__panel' );
 	const overlay = drawer.querySelector( '.mobile-drawer__overlay' );
+	const closeBtn = drawer.querySelector( '.mobile-drawer__close' );
 	const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 	function setOpen( isOpen ) {
@@ -38,6 +39,13 @@
 	if ( overlay ) {
 		overlay.addEventListener( 'click', function () {
 			setOpen( false );
+		} );
+	}
+
+	if ( closeBtn ) {
+		closeBtn.addEventListener( 'click', function () {
+			setOpen( false );
+			toggle.focus();
 		} );
 	}
 

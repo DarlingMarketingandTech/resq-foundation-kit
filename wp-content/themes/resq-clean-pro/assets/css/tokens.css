@@ -59,9 +59,9 @@
 	--resq-radius-lg: 8px;
 
 	--resq-container-max-width: 1280px;
-	--resq-z-index-drawer: 400;
 	--resq-z-index-header: 500;
-	--resq-z-index-overlay: 450;
+	--resq-z-index-overlay: 550;
+	--resq-z-index-drawer: 600;
 
 	--resq-transition-speed-fast: 150ms;
 	--resq-transition-speed-base: 250ms;
