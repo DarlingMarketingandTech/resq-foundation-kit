@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResQ Brand Harmonization Proofs</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: #f5f5f4;
+      color: #1c1917;
+      line-height: 1.5;
+    }
+    .wrap {
+      width: min(100% - 2rem, 56rem);
+      margin: 0 auto;
+      padding: 2.5rem 0 4rem;
+    }
+    h1 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      margin: 0 0 0.5rem;
+    }
+    .lead {
+      color: #57534e;
+      max-width: 52ch;
+      margin: 0 0 2rem;
+    }
+    .meta {
+      font-size: 0.8125rem;
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      padding: 0.75rem 1rem;
+      margin-bottom: 2rem;
+    }
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 640px) {
+      .grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #e7e5e4;
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s;
+    }
+    .card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .card__preview {
+      height: 8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.875rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .card__preview--a {
+      background: linear-gradient(135deg, #d8f3dc, #1a3d2e);
+      color: #fff;
+    }
+    .card__preview--b {
+      background: linear-gradient(90deg, #eef5f0 50%, #fff5eb 50%);
+      color: #333;
+    }
+    .card__preview--c {
+      background: #232f3e;
+      color: #ffd814;
+    }
+    .card__body { padding: 1.25rem; flex: 1; }
+    .card__tag {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #78716c;
+      margin: 0 0 0.375rem;
+    }
+    .card__title {
+      font-size: 1.125rem;
+      margin: 0 0 0.5rem;
+    }
+    .card__desc {
+      font-size: 0.875rem;
+      color: #57534e;
+      margin: 0 0 1rem;
+    }
+    .card__cta {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #1a3d2e;
+    }
+    .recommended {
+      border-color: #1a3d2e;
+      box-shadow: 0 0 0 1px #1a3d2e;
+    }
+    .recommended .card__tag { color: #1a3d2e; }
+    section { margin-top: 2.5rem; }
+    h2 { font-size: 1.125rem; margin: 0 0 0.75rem; }
+    ul { margin: 0; padding-left: 1.25rem; color: #57534e; font-size: 0.9375rem; }
+    li { margin-bottom: 0.375rem; }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.8125rem;
+      color: #78716c;
+    }
+    a { color: #1a3d2e; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>ResQ brand harmonization proofs</h1>
+    <p class="lead">Three visual directions for combining ResQ People and ResQ Pets into one reboot — without committing to theme changes yet. Same content slice in each mockup; only styling differs.</p>
+
+    <p class="meta"><strong>For Terry:</strong> Open each link below, compare on phone and desktop, and note which direction feels like one company you’d trust — not two sites merged.</p>
+
+    <div class="grid">
+      <a class="card recommended" href="direction-a-masterbrand.html">
+        <div class="card__preview card__preview--a">Direction A</div>
+        <div class="card__body">
+          <p class="card__tag">Recommended</p>
+          <h2 class="card__title">Unified masterbrand</h2>
+          <p class="card__desc">One logo, type, and layout. People / Pets / CBD differ by accent color and imagery only.</p>
+          <span class="card__cta">View mockup →</span>
+        </div>
+      </a>
+
+      <a class="card" href="direction-b-house-of-brands.html">
+        <div class="card__preview card__preview--b">Direction B</div>
+        <div class="card__body">
+          <p class="card__tag">Alternative</p>
+          <h2 class="card__title">House of brands</h2>
+          <p class="card__desc">Distinct Pets vs People looks under a thin shared header. Preserves sub-brand equity; may feel split.</p>
+          <span class="card__cta">View mockup →</span>
+        </div>
+      </a>
+
+      <a class="card" href="direction-c-amazon-anchored.html">
+        <div class="card__preview card__preview--c">Direction C</div>
+        <div class="card__body">
+          <p class="card__tag">Alternative</p>
+          <h2 class="card__title">Amazon-anchored</h2>
+          <p class="card__desc">White packshots, star ratings, infographic bullets — extends your stronger Amazon listing look to the web.</p>
+          <span class="card__cta">View mockup →</span>
+        </div>
+      </a>
+    </div>
+
+    <section>
+      <h2>What each mockup includes</h2>
+      <ul>
+        <li>Header + logo lockup</li>
+        <li>Hero with claim-safe copy (no legacy disease claims)</li>
+        <li>People / Pets / CBD gateway tiles</li>
+        <li>Four product cards (All-in-One, Manuka Shampoo, Pet Treatment, CBD Oil)</li>
+        <li>Trust strip + footer</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Background</h2>
+      <ul>
+        <li>Brand DNA audit: <a href="assets/brand-dna.md">assets/brand-dna.md</a></li>
+        <li>Current site: <a href="https://resqorganics.com/shop/" target="_blank" rel="noopener">resqorganics.com</a></li>
+        <li>Amazon store: listing-style photography reference</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Mockups only — not connected to WordPress. After Terry picks a direction, tokens go into <code>docs/02-BRAND-FOUNDATION.md</code> and <code>tokens.css</code>.</p>
+    </footer>
+  </div>
+</body>
+</html>

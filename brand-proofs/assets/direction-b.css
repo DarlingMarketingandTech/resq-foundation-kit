@@ -1,0 +1,289 @@
+/**
+ * Direction B — House of brands
+ * Distinct Pets vs People visual languages under a thin shared shell.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Nunito:wght@600;800&family=Playfair+Display:wght@600;700&display=swap');
+
+:root {
+  --shell-bg: #f8f8f8;
+  --shell-border: #ddd;
+  --people-bg: #eef5f0;
+  --people-primary: #3d6b4f;
+  --people-accent: #8fbc8f;
+  --people-font: 'Playfair Display', Georgia, serif;
+  --people-body: 'Lato', system-ui, sans-serif;
+  --pets-bg: #fff5eb;
+  --pets-primary: #c44d0a;
+  --pets-accent: #ff9f43;
+  --pets-font: 'Nunito', system-ui, sans-serif;
+  --cbd-bg: #f3f0f7;
+  --cbd-primary: #4a3f6b;
+}
+
+body.direction-b {
+  font-family: var(--people-body);
+  background: var(--shell-bg);
+  color: #333;
+}
+
+.direction-b .proof-banner {
+  background: #333;
+  color: #fff;
+}
+
+.direction-b .proof-banner a { color: #ffb347; }
+
+/* Thin shared shell */
+.direction-b .site-header {
+  background: #fff;
+  border-bottom: 2px solid var(--shell-border);
+  padding: 0.75rem 0;
+}
+
+.direction-b .site-header__logo {
+  font-family: var(--people-font);
+  font-size: 1.125rem;
+  color: #222;
+}
+
+.direction-b .site-header__logo-sub {
+  font-family: var(--people-body);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: #888;
+  display: block;
+}
+
+.direction-b .site-header__nav a {
+  font-size: 0.875rem;
+  color: #555;
+}
+
+.direction-b .shell-note {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #888;
+  padding: 0.5rem;
+  background: #fff;
+  border-bottom: 1px solid var(--shell-border);
+}
+
+/* People hero zone */
+.direction-b .hero--people {
+  background: var(--people-bg);
+  padding: 3rem 0;
+  border-bottom: 4px solid var(--people-primary);
+}
+
+.direction-b .hero--people .hero__title {
+  font-family: var(--people-font);
+  color: var(--people-primary);
+  font-style: italic;
+}
+
+.direction-b .hero--people .hero__eyebrow {
+  color: var(--people-accent);
+  font-family: var(--people-body);
+}
+
+.direction-b .hero--people .hero__cta {
+  background: var(--people-primary);
+  color: #fff;
+  border-radius: 0;
+  font-family: var(--people-body);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+}
+
+.direction-b .hero--people .hero__visual {
+  background: linear-gradient(135deg, #d4e8dc, var(--people-bg));
+  border: 1px solid var(--people-accent);
+}
+
+/* Pets hero zone */
+.direction-b .hero--pets {
+  background: var(--pets-bg);
+  padding: 3rem 0;
+  border-bottom: 4px solid var(--pets-primary);
+}
+
+.direction-b .hero--pets .hero__title {
+  font-family: var(--pets-font);
+  color: var(--pets-primary);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.direction-b .hero--pets .hero__eyebrow {
+  color: var(--pets-accent);
+  font-family: var(--pets-font);
+}
+
+.direction-b .hero--pets .hero__lead {
+  font-family: var(--pets-font);
+  font-weight: 600;
+}
+
+.direction-b .hero--pets .hero__cta {
+  background: var(--pets-primary);
+  color: #fff;
+  border-radius: 999px;
+  font-family: var(--pets-font);
+  font-weight: 800;
+}
+
+.direction-b .hero--pets .hero__visual {
+  background: linear-gradient(135deg, #ffe0b2, var(--pets-bg));
+  border: 3px dashed var(--pets-accent);
+  border-radius: 1rem;
+}
+
+/* Split showcase */
+.direction-b .split-showcase {
+  display: grid;
+  gap: 0;
+}
+
+@media (min-width: 768px) {
+  .direction-b .split-showcase {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.direction-b .split-panel {
+  padding: 2.5rem 1.5rem;
+}
+
+.direction-b .split-panel--people {
+  background: var(--people-bg);
+  font-family: var(--people-body);
+}
+
+.direction-b .split-panel--pets {
+  background: var(--pets-bg);
+  font-family: var(--pets-font);
+}
+
+.direction-b .split-panel__title {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem;
+}
+
+.direction-b .split-panel--people .split-panel__title {
+  font-family: var(--people-font);
+  color: var(--people-primary);
+}
+
+.direction-b .split-panel--pets .split-panel__title {
+  font-family: var(--pets-font);
+  color: var(--pets-primary);
+  text-transform: uppercase;
+}
+
+.direction-b .gateway-grid {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .direction-b .gateway-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.direction-b .gateway-card--people {
+  background: var(--people-bg);
+  border: 2px solid var(--people-primary);
+  font-family: var(--people-body);
+}
+
+.direction-b .gateway-card--people .gateway-card__title {
+  font-family: var(--people-font);
+}
+
+.direction-b .gateway-card--pets {
+  background: var(--pets-bg);
+  border: 3px solid var(--pets-primary);
+  border-radius: 1rem;
+  font-family: var(--pets-font);
+}
+
+.direction-b .gateway-card--cbd {
+  background: var(--cbd-bg);
+  border: 1px solid var(--cbd-primary);
+  font-family: var(--people-body);
+}
+
+.direction-b .product-card--people {
+  border: 1px solid var(--people-accent);
+  background: #fff;
+}
+
+.direction-b .product-card--people .product-card__name {
+  font-family: var(--people-font);
+}
+
+.direction-b .product-card--pets {
+  border: 3px solid var(--pets-accent);
+  border-radius: 1rem;
+  background: #fff;
+}
+
+.direction-b .product-card--pets .product-card__name {
+  font-family: var(--pets-font);
+  font-weight: 800;
+}
+
+.direction-b .product-card--cbd {
+  border: 1px solid var(--cbd-primary);
+  background: var(--cbd-bg);
+}
+
+.direction-b .product-card__image { background: #fafafa; }
+
+.direction-b .product-placeholder--people {
+  background: linear-gradient(180deg, #fff, var(--people-bg));
+  border: 1px solid var(--people-accent);
+}
+
+.direction-b .product-placeholder--pets {
+  background: linear-gradient(180deg, #fff, var(--pets-bg));
+  border: 2px solid var(--pets-primary);
+  border-radius: 0.5rem;
+}
+
+.direction-b .trust-strip {
+  background: #fff;
+  border-top: 2px solid var(--shell-border);
+  border-bottom: 2px solid var(--shell-border);
+}
+
+.direction-b .trust-item__icon {
+  background: #eee;
+}
+
+.direction-b .site-footer {
+  background: #222;
+  color: #ccc;
+}
+
+.direction-b .direction-tag {
+  display: inline-block;
+  margin: 1rem 0;
+  padding: 0.375rem 0.75rem;
+  background: #333;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.direction-b .contrast-callout {
+  margin: 2rem 0;
+  padding: 1rem 1.25rem;
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  font-size: 0.875rem;
+}

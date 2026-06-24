@@ -1,0 +1,210 @@
+/**
+ * Direction A — Unified masterbrand + audience accent lanes
+ * One design system; People / Pets / CBD differ by accent only.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap');
+
+:root {
+  --brand-primary: #1a3d2e;
+  --brand-primary-light: #2d6a4f;
+  --brand-bg: #faf9f6;
+  --brand-surface: #ffffff;
+  --brand-text: #1c1917;
+  --brand-text-muted: #57534e;
+  --brand-border: #e7e5e4;
+  --accent-people: #2d6a4f;
+  --accent-pets: #bc6c25;
+  --accent-cbd: #5c4d7d;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+
+body.direction-a {
+  font-family: var(--font-body);
+  background: var(--brand-bg);
+  color: var(--brand-text);
+}
+
+.direction-a .proof-banner {
+  background: var(--brand-primary);
+  color: #fff;
+}
+
+.direction-a .proof-banner a { color: #d8f3dc; }
+
+.direction-a .site-header {
+  border-bottom: 1px solid var(--brand-border);
+  background: var(--brand-surface);
+}
+
+.direction-a .site-header__logo {
+  color: var(--brand-primary);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+}
+
+.direction-a .site-header__logo-mark {
+  width: 2.25rem;
+  height: 2.25rem;
+  background: var(--brand-primary);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.direction-a .site-header__nav a {
+  color: var(--brand-text-muted);
+  font-weight: 500;
+}
+
+.direction-a .site-header__nav a:hover { color: var(--brand-primary); }
+
+.direction-a .site-header__cart {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--brand-primary);
+  text-decoration: none;
+}
+
+.direction-a .hero {
+  background: linear-gradient(135deg, #f0f7f4 0%, var(--brand-bg) 60%);
+}
+
+.direction-a .hero__eyebrow { color: var(--brand-primary-light); }
+
+.direction-a .hero__title {
+  font-family: var(--font-display);
+  color: var(--brand-primary);
+}
+
+.direction-a .hero__lead { color: var(--brand-text-muted); }
+
+.direction-a .hero__cta {
+  background: var(--brand-primary);
+  color: #fff;
+  border-radius: 4px;
+}
+
+.direction-a .hero__visual {
+  background: linear-gradient(160deg, #d8f3dc 0%, #b7e4c7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.direction-a .hero__visual-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 20rem;
+}
+
+.direction-a .hero__visual-tile {
+  aspect-ratio: 1;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+
+.direction-a .hero__visual-tile--people { background: var(--accent-people); }
+.direction-a .hero__visual-tile--pets { background: var(--accent-pets); }
+.direction-a .hero__visual-tile--cbd { background: var(--accent-cbd); }
+
+.direction-a .section { background: var(--brand-surface); }
+
+.direction-a .section--alt { background: var(--brand-bg); }
+
+.direction-a .section__title {
+  font-family: var(--font-display);
+  color: var(--brand-primary);
+}
+
+.direction-a .section__lead { color: var(--brand-text-muted); }
+
+.direction-a .gateway-card {
+  border: 1px solid var(--brand-border);
+  background: var(--brand-surface);
+  transition: box-shadow 0.2s;
+}
+
+.direction-a .gateway-card:hover {
+  box-shadow: 0 4px 20px rgba(26, 61, 46, 0.12);
+}
+
+.direction-a .gateway-card--people .gateway-card__media { background: color-mix(in srgb, var(--accent-people) 12%, white); }
+.direction-a .gateway-card--people .gateway-card__label { color: var(--accent-people); }
+
+.direction-a .gateway-card--pets .gateway-card__media { background: color-mix(in srgb, var(--accent-pets) 12%, white); }
+.direction-a .gateway-card--pets .gateway-card__label { color: var(--accent-pets); }
+
+.direction-a .gateway-card--cbd .gateway-card__media { background: color-mix(in srgb, var(--accent-cbd) 12%, white); }
+.direction-a .gateway-card--cbd .gateway-card__label { color: var(--accent-cbd); }
+
+.direction-a .gateway-card__icon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.direction-a .product-card {
+  border: 1px solid var(--brand-border);
+  background: var(--brand-surface);
+}
+
+.direction-a .product-card__image { background: #f5f5f4; }
+
+.direction-a .product-card--people .product-card__audience { color: var(--accent-people); }
+.direction-a .product-card--pets .product-card__audience { color: var(--accent-pets); }
+.direction-a .product-card--cbd .product-card__audience { color: var(--accent-cbd); }
+
+.direction-a .product-placeholder {
+  background: linear-gradient(180deg, #fff 0%, #e7e5e4 100%);
+  border: 1px solid var(--brand-border);
+  color: var(--brand-text-muted);
+}
+
+.direction-a .product-card__price { color: var(--brand-primary); }
+
+.direction-a .trust-strip {
+  background: var(--brand-primary);
+  color: #fff;
+}
+
+.direction-a .trust-item__icon {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.direction-a .site-footer {
+  background: var(--brand-text);
+  color: #e7e5e4;
+}
+
+.direction-a .site-footer__links a { color: #d6d3d1; }
+.direction-a .site-footer__links a:hover { color: #fff; }
+
+.direction-a .direction-tag {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.375rem 0.75rem;
+  background: color-mix(in srgb, var(--brand-primary) 10%, white);
+  color: var(--brand-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border-left: 3px solid var(--brand-primary);
+}
