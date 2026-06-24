@@ -17,7 +17,7 @@ class ResQ_Core_Registrations_Term_Meta {
 	 */
 	public static function register(): void {
 		$keys = array(
-			'_resq_canonical_targets'   => array( 'type' => 'array', 'default' => array() ),
+			'_resq_canonical_targets'   => array( 'type' => 'array', 'default' => array(), 'rest_item_type' => 'integer' ),
 			'_resq_category_hero_image' => array( 'type' => 'integer', 'default' => 0 ),
 			'_resq_category_intro'      => array( 'type' => 'string', 'default' => '' ),
 			'_resq_audience_type'       => array( 'type' => 'string', 'default' => '' ),
@@ -42,7 +42,9 @@ class ResQ_Core_Registrations_Term_Meta {
 						'type'              => $config['type'],
 						'single'            => true,
 						'default'           => $config['default'],
-						'show_in_rest'      => true,
+						'show_in_rest'      => 'array' === $config['type']
+							? ResQ_Core_Registrations_Post_Meta::rest_array_schema( $config['rest_item_type'] ?? 'string' )
+							: true,
 						'sanitize_callback' => self::get_sanitize_callback( $meta_key ),
 						'auth_callback'     => static function (): bool {
 							return current_user_can( 'manage_woocommerce' );

@@ -28,9 +28,9 @@
 | Phase 6 branch | `phase-6-gateway-learn-surfaces` |
 | Phase 6 status | complete — smoke verified |
 | Phase 7 status | complete — fixtures + catalog import |
-| `resq-core` version | `0.4.0` |
-| `resq-clean-pro` version | `0.4.0` |
-| Current focus | Phase 8 — Merchandising behavior (in progress) |
+| `resq-core` version | `0.5.0` |
+| `resq-clean-pro` version | `0.5.0` |
+| Current focus | Phase 10 — Compliance, accessibility, performance QA (Phase 9 gate passed) |
 
 ## Phase Overview
 
@@ -294,10 +294,12 @@ See [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-not
 
 ### Exit criteria
 
-- [ ] Fresh install smoke passes.
-- [ ] Plugin deactivate/reactivate passes.
-- [ ] Theme active without plugin passes.
-- [ ] No PHP fatals or critical JS console errors.
+- [x] Fresh install smoke passes.
+- [x] Plugin deactivate/reactivate passes.
+- [x] Theme active without plugin passes.
+- [x] No PHP fatals or critical JS console errors.
+
+**Status: complete** — gate passed on LocalWP. Delivery record and validation results in [`21-PHASE-9-IMPLEMENTATION-NOTES.md`](21-PHASE-9-IMPLEMENTATION-NOTES.md).
 
 ---
 
@@ -368,7 +370,7 @@ See [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-not
 | 6 Gateway and Learn surfaces | complete | Archive `17`; smoke verified |
 | 7 Demo fixture system | complete | Runbook `18`; `wp resq-fixtures` |
 | — Real catalog import | complete | Runbook `19`; `wp resq-catalog` |
-| 8 Merchandising behavior | **in progress** | Runbook [`20`](20-PHASE-8-IMPLEMENTATION-NOTES.md) |
-| 9 Local sandbox validation | partial | Local catalog smoke done; fresh-install gate open |
+| 8 Merchandising behavior | complete | Runbook [`20`](20-PHASE-8-IMPLEMENTATION-NOTES.md) |
+| 9 Local sandbox validation | complete | Fresh-install gate passed on LocalWP; runbook `21`; plugin + theme `0.5.0` |
 | 10 Compliance/accessibility/performance QA | pending | |
 | 11 Preflight release package | pending | Tag targets per completed phases — see Release Marker |
