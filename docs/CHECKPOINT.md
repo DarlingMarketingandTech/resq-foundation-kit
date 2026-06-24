@@ -52,6 +52,7 @@ Delivery records for phases 2A–6 live in [`docs/archive/phase-notes/`](archive
 | Import demo data (sandbox) | [`18-PHASE-7-IMPLEMENTATION-NOTES.md`](18-PHASE-7-IMPLEMENTATION-NOTES.md) |
 | Import real catalog | [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) |
 | Owner compliance sign-off | [`Product Data and Strategy/compliance-review-checklist.md`](Product%20Data%20and%20Strategy/compliance-review-checklist.md) |
+| Future features (Phase 10+ and post-launch) | [`22-FUTURE-FEATURES-ROADMAP.md`](22-FUTURE-FEATURES-ROADMAP.md) |
 | Historical delivery detail | [`docs/archive/phase-notes/`](archive/phase-notes/) |
 | Source strategy (read-only) | [`source-blueprints/`](source-blueprints/) via [`10-SOURCE-BLUEPRINT-INDEX.md`](10-SOURCE-BLUEPRINT-INDEX.md) |
 
