@@ -2,6 +2,8 @@
 
 Standalone HTML mockups for comparing three brand-unification directions before any WordPress or theme work.
 
+**v2 — Premium mockups:** Full homepage slices (not wireframes). Each direction includes hero, bento gateways, routine ladder, product grid, bundle spotlight, reviews, Learn bridge, CBD compliance strip, and newsletter.
+
 ## View locally
 
 1. Open `brand-proofs/index.html` in any browser (double-click or drag into Chrome/Edge/Firefox).
