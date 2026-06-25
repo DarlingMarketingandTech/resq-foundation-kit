@@ -110,21 +110,54 @@ Confirm WooCommerce pages and checkout still work with fallback theme. Reactivat
 
 ## Exit criteria (from [`06-BUILD-ROADMAP.md`](06-BUILD-ROADMAP.md))
 
-- [ ] Fresh install smoke passes (all surfaces above).
-- [ ] Plugin deactivate/reactivate passes — no PHP fatals or broken theme.
-- [ ] Theme active without plugin passes — empty-safe throughout.
-- [ ] No PHP fatals or critical JS console errors on any smoked surface.
+- [x] Fresh install smoke passes (all surfaces above).
+- [x] Plugin deactivate/reactivate passes — no PHP fatals or broken theme.
+- [x] Theme active without plugin passes — empty-safe throughout.
+- [x] No PHP fatals or critical JS console errors on any smoked surface.
+
+**Gate result: PASS** — see Validation results below.
 
 ---
 
-## Known open items entering Phase 9
+## Validation results (2026-06-24)
 
-| Item | Source | Notes |
+Validated on LocalWP (`resq-foundation-kit.local`, WP 7.0, WooCommerce 10.8.1,
+PHP 8.2). Catalog rebuilt cleanly via `wp resq-catalog import --reset`
+(removed 51 products + 6 routines, reimported 54 SKUs + 6 routines + 23
+bundles → 51 published products). DB backed up to
+`backups/before-phase9-fresh-install.sql` before the reset.
+
+Verification ran with `WP_DEBUG`/`WP_DEBUG_LOG` temporarily enabled (reverted
+after) so every smoked surface was checked against `debug.log`.
+
+| Area | Result |
+| --- | --- |
+| All 20 storefront surfaces (home, shop, 4 gateways, learn, category, 4 PDP types, cart, checkout→cart redirect, account, search, 3 filters) | 200, **zero** PHP notices/warnings/fatals after fixes |
+| CBD isolation | Zero CBD products in human PDP FBT/cross-sells (data + rendered HTML); human PDP/gateway/category carry no `RQ-*CBD-*` links |
+| Filters | `?resq_audience`, `?resq_concern` (valid slugs), `?resq_compliance_zone` all narrow results; unknown taxonomy term → standard WP 404 (expected) |
+| Cart drawer | Opens on AJAX add; cart count increments; focus moves into panel and is trapped; Escape closes; next-step suggestion logic returns correct Step N+1 + upgrade-to-kit cards (`resq_get_recommended_routine_addons`) |
+| JS console | Zero errors/warnings across PDP load, add-to-cart, drawer open/close |
+| Plugin deactivate/reactivate | Theme renders all surfaces with `resq-core` off — no fatals, no resq log entries |
+| Theme fallback | WooCommerce shop/PDP/cart/account work under `twentytwentyfour`; `resq-clean-pro` restored |
+
+### Fixes applied during the gate (validation-driven)
+
+| Fix | File | Issue |
 | --- | --- | --- |
-| `resq_theme_get_gateway_page_url()` nav fix | Phase 8 nav fix | Resolves gateway URLs from `_wp_page_template` meta — verify correct URLs on fresh install |
-| Cart drawer focus trap | Phase 8 Stream E | Verify via browser (not shell) — see `assets/js/cart-drawer.js` |
-| Filter GET params | Phase 8 Stream F | Verify `?resq_audience=`, `?resq_concern=`, `?resq_compliance_zone=` all filter correctly |
-| Bundle add-to-cart validation error message | Phase 8 Stream D | Verify cart notice surfaces correctly on invalid bundle attempt |
+| REST `items` schema for array meta | `resq-core/includes/registrations/class-post-meta.php`, `class-term-meta.php` | `register_meta` `_doing_it_wrong` notice on every request — array meta registered with `show_in_rest => true` but no `schema.items`. Added `rest_array_schema()` helper. |
+| Empty `sidebar.php` stub | `resq-clean-pro/sidebar.php` | "Theme without sidebar.php is deprecated" (WP 6.7) fired via WooCommerce's `woocommerce_sidebar` hook. |
+| Footer gateway links | `resq-clean-pro/footer.php` | Footer hardcoded `/shop/human/` and `/shop/pet/`; `/shop/pet/` canonical-redirected to a **CBD product PDP**. Now uses `resq_theme_get_gateway_page_url()` like the header → `/human/`, `/pets/`. |
+
+---
+
+## Known open items entering Phase 9 — resolution
+
+| Item | Source | Status |
+| --- | --- | --- |
+| `resq_theme_get_gateway_page_url()` nav fix | Phase 8 nav fix | **Resolved** — header URLs correct; footer migrated to the same helper (was leaking to a CBD PDP). |
+| Cart drawer focus trap | Phase 8 Stream E | **Verified** in browser — focus enters panel, traps on Tab, Escape closes, focus restored. |
+| Filter GET params | Phase 8 Stream F | **Verified** — all three filter params narrow results with valid terms. |
+| Bundle add-to-cart validation error message | Phase 8 Stream D | Bundle PDP renders + adds to cart (plugin-managed simple-product model). Invalid-attempt error path not separately exercised — no blocking surface in the simple-product bundle flow. |
 
 ---
 

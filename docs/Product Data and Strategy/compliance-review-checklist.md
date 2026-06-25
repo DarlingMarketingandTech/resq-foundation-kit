@@ -3,7 +3,7 @@
 > Owner sign-off before public launch. All flagged SKUs are **published** in the catalog import with compliance zones and `_resq_compliance_flags`; storefront notices and CBD isolation apply automatically.
 
 **Import command:** `wp resq-catalog import`  
-**Plugin version:** `0.4.0`  
+**Plugin version:** `0.5.0`  
 **Generated from:** strategy CSVs + `includes/catalog/data/*.php`
 
 ---

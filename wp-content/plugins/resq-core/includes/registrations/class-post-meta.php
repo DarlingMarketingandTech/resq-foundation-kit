@@ -48,6 +48,32 @@ class ResQ_Core_Registrations_Post_Meta {
 	}
 
 	/**
+	 * Build a REST schema for an array meta value.
+	 *
+	 * WordPress emits a "_doing_it_wrong" notice when an "array" meta type is
+	 * registered with show_in_rest === true but without an item schema. This
+	 * returns a minimal, valid show_in_rest array describing the item type.
+	 *
+	 * @param string $item_type Primitive item type ("string", "integer", "object").
+	 * @return array<string, mixed>
+	 */
+	public static function rest_array_schema( string $item_type ): array {
+		$items = array( 'type' => $item_type );
+
+		if ( 'object' === $item_type ) {
+			// Item shape is enforced by the sanitize_callback; allow its keys through REST.
+			$items['additionalProperties'] = true;
+		}
+
+		return array(
+			'schema' => array(
+				'type'  => 'array',
+				'items' => $items,
+			),
+		);
+	}
+
+	/**
 	 * Register product meta keys.
 	 */
 	private static function register_product_meta(): void {
@@ -84,6 +110,7 @@ class ResQ_Core_Registrations_Post_Meta {
 				array(
 					'type'              => 'array',
 					'default'           => array(),
+					'show_in_rest'      => self::rest_array_schema( 'string' ),
 					'sanitize_callback' => array( self::class, 'sanitize_compliance_flags' ),
 				)
 			)
@@ -109,6 +136,7 @@ class ResQ_Core_Registrations_Post_Meta {
 				array(
 					'type'              => 'array',
 					'default'           => array(),
+					'show_in_rest'      => self::rest_array_schema( 'integer' ),
 					'sanitize_callback' => array( self::class, 'sanitize_int_array' ),
 				)
 			)
@@ -152,6 +180,7 @@ class ResQ_Core_Registrations_Post_Meta {
 				array(
 					'type'              => 'array',
 					'default'           => array(),
+					'show_in_rest'      => self::rest_array_schema( 'object' ),
 					'sanitize_callback' => array( self::class, 'sanitize_bundle_product_ids' ),
 				)
 			)
@@ -165,6 +194,7 @@ class ResQ_Core_Registrations_Post_Meta {
 				array(
 					'type'              => 'array',
 					'default'           => array(),
+					'show_in_rest'      => self::rest_array_schema( 'integer' ),
 					'sanitize_callback' => array( self::class, 'sanitize_int_array' ),
 				)
 			)
@@ -178,6 +208,7 @@ class ResQ_Core_Registrations_Post_Meta {
 				array(
 					'type'              => 'array',
 					'default'           => array(),
+					'show_in_rest'      => self::rest_array_schema( 'object' ),
 					'sanitize_callback' => array( self::class, 'sanitize_ingredient_profile' ),
 				)
 			)
@@ -191,6 +222,7 @@ class ResQ_Core_Registrations_Post_Meta {
 				array(
 					'type'              => 'array',
 					'default'           => array(),
+					'show_in_rest'      => self::rest_array_schema( 'string' ),
 					'sanitize_callback' => array( self::class, 'sanitize_benefit_tags' ),
 				)
 			)
@@ -218,6 +250,7 @@ class ResQ_Core_Registrations_Post_Meta {
 				array(
 					'type'              => 'array',
 					'default'           => array(),
+					'show_in_rest'      => self::rest_array_schema( 'string' ),
 					'sanitize_callback' => array( self::class, 'sanitize_gateway_featured' ),
 				)
 			)
@@ -231,6 +264,7 @@ class ResQ_Core_Registrations_Post_Meta {
 				array(
 					'type'              => 'array',
 					'default'           => array(),
+					'show_in_rest'      => self::rest_array_schema( 'object' ),
 					'sanitize_callback' => array( self::class, 'sanitize_learn_links' ),
 				)
 			)
@@ -301,6 +335,7 @@ class ResQ_Core_Registrations_Post_Meta {
 				array(
 					'type'              => 'array',
 					'default'           => array(),
+					'show_in_rest'      => self::rest_array_schema( 'object' ),
 					'sanitize_callback' => array( self::class, 'sanitize_routine_steps' ),
 				)
 			)
@@ -344,6 +379,7 @@ class ResQ_Core_Registrations_Post_Meta {
 				array(
 					'type'              => 'array',
 					'default'           => array(),
+					'show_in_rest'      => self::rest_array_schema( 'string' ),
 					'sanitize_callback' => static function ( $value ): array {
 						return is_array( $value ) ? $value : array();
 					},

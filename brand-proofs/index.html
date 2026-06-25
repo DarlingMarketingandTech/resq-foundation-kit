@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResQ Brand Harmonization Proofs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: #0a0a0a;
+      color: #fafafa;
+      line-height: 1.5;
+    }
+    .wrap { width: min(100% - 2rem, 64rem); margin: 0 auto; padding: 3rem 0 4rem; }
+    h1 { font-size: clamp(2rem, 5vw, 2.75rem); letter-spacing: -0.03em; margin: 0 0 0.75rem; }
+    .lead { color: #a3a3a3; max-width: 52ch; font-size: 1.0625rem; margin: 0 0 2rem; }
+    .meta {
+      background: linear-gradient(135deg, #1a3d2e, #0f2e24);
+      border: 1px solid #2d6a4f;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.5rem;
+      font-size: 0.9375rem;
+    }
+    .meta strong { color: #d8f3dc; }
+    .grid { display: grid; gap: 1.5rem; }
+    @media (min-width: 768px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+    .card {
+      background: #171717;
+      border: 1px solid #262626;
+      border-radius: 16px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #404040;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+    }
+    .card--rec { border-color: #40916c; box-shadow: 0 0 0 1px #40916c; }
+    .card__preview {
+      height: 11rem;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .card__preview--a {
+      background: linear-gradient(160deg, #1a3d2e 0%, #40916c 40%, #faf8f5 100%);
+    }
+    .card__preview--b {
+      background: linear-gradient(90deg, #e8f0eb 50%, #fff4eb 50%);
+    }
+    .card__preview--b::after {
+      content: 'People | Pets';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #333;
+      letter-spacing: 0.1em;
+    }
+    .card__preview--c {
+      background: linear-gradient(180deg, #232f3e 0%, #fff 45%);
+    }
+    .card__preview-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
+    .card__preview--b .card__preview-label { color: #333; text-shadow: none; }
+    .card__body { padding: 1.5rem; flex: 1; }
+    .card__tag { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #737373; margin: 0 0 0.5rem; }
+    .card--rec .card__tag { color: #40916c; }
+    .card__title { font-size: 1.25rem; margin: 0 0 0.5rem; letter-spacing: -0.02em; }
+    .card__desc { font-size: 0.875rem; color: #a3a3a3; margin: 0 0 1rem; line-height: 1.55; }
+    .card__features { list-style: none; margin: 0 0 1.25rem; padding: 0; font-size: 0.8125rem; color: #737373; }
+    .card__features li { padding: 0.2rem 0; padding-left: 1rem; position: relative; }
+    .card__features li::before { content: '→'; position: absolute; left: 0; color: #525252; }
+    .card__cta { font-size: 0.9375rem; font-weight: 600; color: #fafafa; }
+    section { margin-top: 3rem; }
+    h2 { font-size: 1rem; font-weight: 600; margin: 0 0 1rem; color: #d4d4d4; }
+    ul { margin: 0; padding-left: 1.25rem; color: #a3a3a3; font-size: 0.9375rem; }
+    li { margin-bottom: 0.35rem; }
+    a { color: #86efac; }
+    footer { margin-top: 3rem; font-size: 0.8125rem; color: #525252; }
+    code { background: #262626; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.875em; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>ResQ brand harmonization</h1>
+    <p class="lead">Premium 2026 ecommerce mockups — full homepage slices with routine commerce, bundles, reviews, and compliance. Same content in each; styling shows how People + Pets merge.</p>
+
+    <p class="meta"><strong>For Terry:</strong> Open each mockup on phone and desktop. Each includes hero, bento gateways, routine ladder, product grid, bundle spotlight, reviews, Learn bridge, CBD strip, and newsletter — not wireframes.</p>
+
+    <div class="grid">
+      <a class="card card--rec" href="direction-a-masterbrand.html">
+        <div class="card__preview card__preview--a">
+          <span class="card__preview-label">Direction A</span>
+        </div>
+        <div class="card__body">
+          <p class="card__tag">Recommended</p>
+          <h2 class="card__title">Unified masterbrand</h2>
+          <p class="card__desc">Editorial DTC — Instrument Serif + Plus Jakarta. One house; audience accent lanes only.</p>
+          <ul class="card__features">
+            <li>Sticky glass header + announcement bar</li>
+            <li>Bento shop lanes + routine ladder</li>
+            <li>Quick-add product cards</li>
+          </ul>
+          <span class="card__cta">Open full mockup →</span>
+        </div>
+      </a>
+
+      <a class="card" href="direction-b-house-of-brands.html">
+        <div class="card__preview card__preview--b">
+          <span class="card__preview-label">Direction B</span>
+        </div>
+        <div class="card__body">
+          <p class="card__tag">Alternative</p>
+          <h2 class="card__title">House of brands</h2>
+          <p class="card__desc">Split hero — spa serif (People) vs bold sans (Pets). Shared checkout, distinct personalities.</p>
+          <ul class="card__features">
+            <li>Dual-panel hero side-by-side</li>
+            <li>Per-lane card styling</li>
+            <li>Shows merge tension explicitly</li>
+          </ul>
+          <span class="card__cta">Open full mockup →</span>
+        </div>
+      </a>
+
+      <a class="card" href="direction-c-amazon-anchored.html">
+        <div class="card__preview card__preview--c">
+          <span class="card__preview-label">Direction C</span>
+        </div>
+        <div class="card__body">
+          <p class="card__tag">Alternative</p>
+          <h2 class="card__title">Amazon-anchored</h2>
+          <p class="card__desc">Elevated marketplace layer — packshot gallery, star ratings, infographic row, FBT routine.</p>
+          <ul class="card__features">
+            <li>Search-forward dark header</li>
+            <li>Listing-style PDP hero</li>
+            <li>Reuse Amazon asset strategy</li>
+          </ul>
+          <span class="card__cta">Open full mockup →</span>
+        </div>
+      </a>
+    </div>
+
+    <section>
+      <h2>Each mockup includes</h2>
+      <ul>
+        <li>Announcement bar + sticky navigation</li>
+        <li>Editorial hero with social proof stats</li>
+        <li>Bento audience gateways (People / Pets / CBD / Bundles)</li>
+        <li>Routine ladder / frequently-bought-together</li>
+        <li>Product grid with ratings + quick-add</li>
+        <li>Bundle savings spotlight</li>
+        <li>Review carousel</li>
+        <li>Learn-to-shop editorial block</li>
+        <li>CBD compliance strip</li>
+        <li>Newsletter capture + rich footer</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>How to share</h2>
+      <ul>
+        <li>Local: open <code>index.html</code> in a browser</li>
+        <li>Zip: see <a href="README.md">README.md</a></li>
+        <li>URL: deploy folder to Vercel or Netlify Drop</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Mockups only — claim-safe copy. After Terry picks a direction, codify tokens in <code>docs/02-BRAND-FOUNDATION.md</code>.</p>
+    </footer>
+  </div>
+</body>
+</html>

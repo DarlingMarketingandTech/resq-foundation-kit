@@ -31,12 +31,13 @@ Read in order when building or extending theme/plugin surfaces:
 | [`18-PHASE-7-IMPLEMENTATION-NOTES.md`](18-PHASE-7-IMPLEMENTATION-NOTES.md) | `wp resq-fixtures` |
 | [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) | `wp resq-catalog` |
 
-## Tier 3 — Product strategy and compliance
+## Tier 3 — Product strategy, compliance, and planning
 
 | Path | Purpose |
 | --- | --- |
 | [`Product Data and Strategy/README.md`](Product%20Data%20and%20Strategy/README.md) | Index of strategy CSVs and artifacts |
 | [`Product Data and Strategy/compliance-review-checklist.md`](Product%20Data%20and%20Strategy/compliance-review-checklist.md) | Owner sign-off before launch |
+| [`22-FUTURE-FEATURES-ROADMAP.md`](22-FUTURE-FEATURES-ROADMAP.md) | All planned features beyond Phase 9 — CBD/compliance, promotions, shipping, CRM, reviews, analytics, admin ops; organized by phase with open decisions table |
 
 ## Tier 4 — Archive and research (not current authority)
 
