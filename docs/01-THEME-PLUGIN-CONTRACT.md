@@ -147,6 +147,7 @@ Phase 3 implemented all 19 storefront helpers with live data reads (see `12-PLUG
 | `resq_get_gateway_featured_products( string $gateway )` | Gateway shelf product IDs | `int[]` |
 | `resq_get_learn_links_for_product( int $product_id )` | PDP Learn bridge links | `array[]` |
 | `resq_get_product_badges( int $product_id )` | Badge objects sorted by priority | `array[]` |
+| `resq_get_product_cbd_disclosure( int $product_id )` | CBD COA URL + THC disclosure (Phase 10 A1) | `array` |
 
 ### Theme Helpers
 
@@ -158,8 +159,20 @@ Phase 3 implemented all 19 storefront helpers with live data reads (see `12-PLUG
 | `resq_theme_render_badge( int $product_id )` | Render badge markup from plugin data | void |
 | `resq_theme_render_compliance_notices( string $context, int $product_id = 0, string $zone = '' )` | Render notice slot; pass `$zone` (with `$product_id` 0) for zone-scoped slots | void |
 | `resq_theme_wc_active()` | Whether WooCommerce is active | bool |
+| `resq_theme_feature_on( string $feature, bool $default = false )` | Plugin feature flag, safe when plugin off (Phase 10) | bool |
+| `resq_theme_is_cbd_context()` | Whether current request is a CBD surface — gateway/PDP/category (Phase 10) | bool |
+| `resq_theme_has_analytics_consent()` | Whether visitor granted cookie consent; analytics tags gate on this (Phase 10 H3) | bool |
 
 Theme helpers that consume plugin data must guard with `function_exists()` or `resq_core_is_active()`.
+
+### Phase 10 compliance surfaces (theme-owned, plugin-flagged)
+
+| Surface | File | Feature flag | Plugin-owned data/logic |
+|---|---|---|---|
+| CBD COA/THC PDP slot | `template-parts/product/compliance-coa.php` | `coa_disclosure` | `resq_get_product_cbd_disclosure()`, `_resq_coa_url`, `_resq_thc_disclosure` |
+| Age verification gate | `template-parts/compliance/age-gate-modal.php`, `assets/js/age-gate.js` | `age_gate` | `age_gate_min_age` option; `resq_is_cbd_product()` |
+| Cookie consent banner | `template-parts/compliance/cookie-consent.php`, `assets/js/cookie-consent.js` | `cookie_consent` | — (consent signal read back via `resq_theme_has_analytics_consent()`) |
+| State restriction (checkout) | plugin-only | `state_restriction` | `ResQ_Core_Compliance_Gates`, `restricted_states`, `state_restriction_notice` |
 
 ---
 

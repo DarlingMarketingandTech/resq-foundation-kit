@@ -85,6 +85,7 @@ class ResQ_Core_Plugin {
 		} else {
 			ResQ_Core_Merchandising_Hooks::init();
 			ResQ_Core_Product_Filters::init();
+			ResQ_Core_Compliance_Gates::init();
 		}
 
 		$this->initialized = true;

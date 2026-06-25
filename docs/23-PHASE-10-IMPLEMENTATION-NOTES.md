@@ -26,8 +26,12 @@ Verify CBD isolation, claim-safe copy patterns, WCAG 2.2 AA readiness, checkout 
 
 ## Delivered hardening (code changes this phase)
 
-Two unblocked, dev-actionable items from [`22-FUTURE-FEATURES-ROADMAP.md`](22-FUTURE-FEATURES-ROADMAP.md)
-landed as code in this phase (the rest of Phase 10 is validation + owner/legal-gated work).
+The dev-actionable Phase 10 items from [`22-FUTURE-FEATURES-ROADMAP.md`](22-FUTURE-FEATURES-ROADMAP.md)
+landed as code this phase — A1, A2, A3, A4, H1 (partial), H3, plus the notice-gap
+fix. Each compliance feature is flag-gated and ships with neutral chrome copy;
+legal/claim strings stay empty for owner sign-off (H2). The remaining Phase 10
+work is the browser-based validation in the streams below and owner/legal decisions
+(OD-1/5/6/8 in doc 22).
 
 ### D-A2. CBD cart isolation — add-to-cart validation (roadmap A2)
 
@@ -70,6 +74,66 @@ existing `resq_core_compliance`, so sites activated before D-A2 don't persist
 `cart_isolation_enabled` in the DB. Runtime reads default it to `true`, so
 enforcement is active regardless; the future compliance settings panel must merge
 `default_compliance()` into the stored option so the key is editable.
+
+### D-A1. CBD COA / THC disclosure PDP slot (roadmap A1)
+
+New product meta `_resq_coa_url` and `_resq_thc_disclosure`, helper
+`resq_get_product_cbd_disclosure()` (CBD-lane + `coa_disclosure` flag gated), and a
+PDP slot (`template-parts/product/compliance-coa.php`, hooked at
+`woocommerce_single_product_summary` priority 26). Renders only when a CBD product
+has COA/THC data populated, so it stays silent until the owner adds real values.
+
+### D-A3. CBD state-restriction checkout gate (roadmap A3)
+
+`ResQ_Core_Compliance_Gates::validate_state_restriction()` on
+`woocommerce_after_checkout_validation` blocks checkout to a restricted state when
+the cart contains CBD. Gated by the `state_restriction` flag. **Inert until the
+owner supplies `restricted_states`** (empty default blocks nothing); notice copy
+falls back to a neutral message when `state_restriction_notice` is blank.
+
+### D-A4. Age verification gate (roadmap A4)
+
+Cookie-based soft gate on CBD surfaces — `template-parts/compliance/age-gate-modal.php`
++ `assets/js/age-gate.js` (focus-trapped, scroll-locked, confirm sets
+`resq_age_confirmed` cookie, decline exits to home). Wired in theme
+`inc/compliance.php`, gated by the `age_gate` flag; min age from
+`age_gate_min_age` (21). Context = CBD gateway page, CBD PDP, or CBD category.
+**Owner decision pending (OD-5):** whether a soft cookie gate satisfies the
+payment processor or a third-party verification service is required — a swap
+behind the same flag.
+
+### D-H3. Cookie consent banner (roadmap H3)
+
+Site-wide banner — `template-parts/compliance/cookie-consent.php` +
+`assets/js/cookie-consent.js`. Records accept/decline in `resq_cookie_consent`,
+dispatches a `resq-consent` JS event, and exposes `resq_theme_has_analytics_consent()`
+for Phase 11 analytics tags to gate on. Gated by `cookie_consent`. Privacy-policy
+link uses WP's `get_privacy_policy_url()` (owner sets the page).
+
+### D-H1. Static accessibility pass (roadmap H1, partial)
+
+All new compliance surfaces are built accessibly (dialog roles, labelled regions,
+focus trap on the age gate, SR-only "opens in new tab" on the COA link). Fixed an
+existing defect: the mobile-drawer and cart-drawer **close** buttons carried a
+static `aria-expanded="true"` (invalid on a non-toggle) — removed. Added a real
+`.btn` component base (previously undefined project-wide; existing cart buttons
+relied on it). **Still pending:** axe/Lighthouse scan and screen-reader walkthrough
+on a running site, color-contrast verification against final token values, and the
+product-image `alt` audit (needs real catalog images — none in repo yet).
+
+### H2. FTC/FDA copy compliance review — owner action
+
+No code: this is a structured copy review + owner sign-off against
+[`05-COMPLIANCE-RULES.md`](05-COMPLIANCE-RULES.md), recorded in
+[`Product Data and Strategy/compliance-review-checklist.md`](Product%20Data%20and%20Strategy/compliance-review-checklist.md).
+Mechanism is ready (all plugin copy fields are claim-safe by design); the sign-off
+is an owner/legal task before the Phase 11 gate.
+
+> **Dev-site posture:** every Phase 10 feature flag ships **enabled** so the owner
+> can see each surface live. All chrome copy is neutral; all legal/claim strings
+> (CBD disclaimer `notice_text`, `restricted_states`, `state_restriction_notice`)
+> are **empty pending owner/legal sign-off**. Flip any flag off in
+> `resq_core_features`, or leave the claim strings empty, to keep a surface dormant.
 
 ---
 

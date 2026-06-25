@@ -34,6 +34,14 @@ class ResQ_Core_Options {
 			'donation_display'        => false,
 			'gateway_featured'        => true,
 			'learn_bridges'           => true,
+			// Phase 10 compliance features. Enabled on the dev site so the owner
+			// can review each surface; all chrome copy is neutral (non-claim) and
+			// every legal/claim string (CBD disclaimer, restricted-state list) is
+			// left empty for owner/legal sign-off before launch.
+			'coa_disclosure'          => true,
+			'state_restriction'       => true,
+			'age_gate'                => true,
+			'cookie_consent'          => true,
 		);
 	}
 
@@ -53,6 +61,17 @@ class ResQ_Core_Options {
 				'baby'       => '',
 				'pet-health' => '',
 			),
+
+			// Phase 10 A3 — state restriction. `restricted_states` is the
+			// owner/legal-supplied list of USPS state codes blocked at checkout
+			// for CBD carts. Empty by default → blocks nothing until configured.
+			// `state_restriction_notice` is owner copy; empty → a neutral
+			// fallback is shown.
+			'restricted_states'        => array(),
+			'state_restriction_notice' => '',
+
+			// Phase 10 A4 — age gate minimum age for CBD surfaces.
+			'age_gate_min_age'         => 21,
 		);
 	}
 

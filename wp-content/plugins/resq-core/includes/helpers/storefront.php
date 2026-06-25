@@ -723,6 +723,45 @@ if ( ! function_exists( 'resq_can_cross_sell_products' ) ) {
 	}
 }
 
+if ( ! function_exists( 'resq_get_product_cbd_disclosure' ) ) {
+	/**
+	 * Return CBD disclosure data (COA link + THC value) for a product.
+	 *
+	 * Phase 10 A1. Returns an empty array unless the `coa_disclosure` feature is
+	 * enabled, the product is in the CBD lane, and at least one field is set —
+	 * so the PDP slot stays silent until the owner populates real COA/THC data.
+	 *
+	 * @param int $product_id WooCommerce product or variation ID.
+	 * @return array{coa_url: string, thc_disclosure: string} Empty when nothing to show.
+	 */
+	function resq_get_product_cbd_disclosure( int $product_id ): array {
+		$product_id = resq_resolve_product_id( $product_id );
+		if ( $product_id <= 0 ) {
+			return array();
+		}
+
+		if ( ! resq_core_feature_enabled( 'coa_disclosure' ) ) {
+			return array();
+		}
+
+		if ( ! resq_is_cbd_product( $product_id ) ) {
+			return array();
+		}
+
+		$coa_url = esc_url_raw( (string) resq_get_product_meta( $product_id, '_resq_coa_url', '' ) );
+		$thc     = sanitize_text_field( (string) resq_get_product_meta( $product_id, '_resq_thc_disclosure', '' ) );
+
+		if ( '' === $coa_url && '' === $thc ) {
+			return array();
+		}
+
+		return array(
+			'coa_url'        => $coa_url,
+			'thc_disclosure' => $thc,
+		);
+	}
+}
+
 /*
  * ──────────────────────────────────────────────────
  *  Routine Commerce

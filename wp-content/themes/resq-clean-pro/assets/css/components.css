@@ -609,3 +609,205 @@ body.cart-drawer-open {
 		width: 100%;
 	}
 }
+
+/* ==========================================================================
+   Button base — shared by cart drawer, compliance surfaces, etc.
+   ========================================================================== */
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--resq-spacing-2xs);
+	padding: var(--resq-spacing-sm) var(--resq-spacing-lg);
+	font-size: var(--resq-font-size-sm);
+	font-weight: var(--resq-font-weight-bold);
+	line-height: 1.2;
+	text-decoration: none;
+	text-align: center;
+	border: 1px solid transparent;
+	border-radius: var(--resq-radius-md);
+	cursor: pointer;
+	transition: opacity var(--resq-transition-speed-fast) var(--resq-transition-timing),
+		background-color var(--resq-transition-speed-fast) var(--resq-transition-timing);
+}
+
+.btn:hover,
+.btn:focus-visible {
+	opacity: 0.92;
+}
+
+.btn--primary {
+	color: var(--resq-color-text-on-dark);
+	background-color: var(--resq-color-primary);
+	border-color: var(--resq-color-primary);
+}
+
+.btn--secondary {
+	color: var(--resq-color-text-primary);
+	background-color: var(--resq-color-bg-muted);
+	border-color: var(--resq-color-border-light);
+}
+
+.btn--small {
+	padding: var(--resq-spacing-2xs) var(--resq-spacing-sm);
+	font-size: var(--resq-font-size-xs);
+}
+
+/* ==========================================================================
+   CBD disclosure — PDP COA link + THC value (Phase 10 A1)
+   ========================================================================== */
+
+.resq-cbd-disclosure {
+	margin: var(--resq-spacing-md) 0;
+	padding: var(--resq-spacing-md);
+	background: var(--resq-color-bg-surface);
+	border: 1px solid var(--resq-color-status-warning);
+	border-radius: var(--resq-radius-md);
+}
+
+.resq-cbd-disclosure__title {
+	margin: 0 0 var(--resq-spacing-sm);
+	font-size: var(--resq-font-size-sm);
+	font-weight: var(--resq-font-weight-bold);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--resq-color-text-secondary);
+}
+
+.resq-cbd-disclosure__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: var(--resq-spacing-xs);
+}
+
+.resq-cbd-disclosure__label {
+	font-weight: var(--resq-font-weight-bold);
+	color: var(--resq-color-text-primary);
+}
+
+.resq-cbd-disclosure__value {
+	color: var(--resq-color-text-secondary);
+}
+
+.resq-cbd-disclosure__coa-link {
+	font-weight: var(--resq-font-weight-medium);
+	color: var(--resq-color-text-primary);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+/* ==========================================================================
+   Age verification gate (Phase 10 A4)
+   ========================================================================== */
+
+.resq-age-gate {
+	position: fixed;
+	inset: 0;
+	z-index: 2000;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	padding: var(--resq-spacing-lg);
+}
+
+.resq-age-gate.is-open {
+	display: flex;
+}
+
+.resq-age-gate__overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(17, 24, 39, 0.72);
+}
+
+.resq-age-gate__panel {
+	position: relative;
+	width: min(28rem, 100%);
+	padding: var(--resq-spacing-xl);
+	background: var(--resq-color-bg-main);
+	border-radius: var(--resq-radius-lg);
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+	text-align: center;
+}
+
+.resq-age-gate__title {
+	margin: 0 0 var(--resq-spacing-sm);
+	font-family: var(--resq-font-family-display);
+	font-size: var(--resq-font-size-2xl);
+	font-weight: var(--resq-font-weight-bold);
+	color: var(--resq-color-text-primary);
+}
+
+.resq-age-gate__desc {
+	margin: 0 0 var(--resq-spacing-lg);
+	font-size: var(--resq-font-size-md);
+	color: var(--resq-color-text-secondary);
+}
+
+.resq-age-gate__actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--resq-spacing-sm);
+}
+
+body.resq-age-gate-open {
+	overflow: hidden;
+}
+
+/* ==========================================================================
+   Cookie consent banner (Phase 10 H3)
+   ========================================================================== */
+
+.resq-cookie-consent {
+	position: fixed;
+	inset-inline: 0;
+	bottom: 0;
+	z-index: 1500;
+	background: var(--resq-color-bg-main);
+	border-top: 1px solid var(--resq-color-border-light);
+	box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+	transform: translateY(100%);
+	transition: transform var(--resq-transition-speed-base) var(--resq-transition-timing);
+}
+
+.resq-cookie-consent.is-visible {
+	transform: translateY(0);
+}
+
+.resq-cookie-consent__inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--resq-spacing-md);
+	padding-block: var(--resq-spacing-md);
+}
+
+.resq-cookie-consent__text {
+	margin: 0;
+	flex: 1 1 18rem;
+	font-size: var(--resq-font-size-sm);
+	color: var(--resq-color-text-secondary);
+}
+
+.resq-cookie-consent__link {
+	color: var(--resq-color-text-primary);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.resq-cookie-consent__actions {
+	display: flex;
+	gap: var(--resq-spacing-sm);
+	flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.resq-cookie-consent {
+		transition: none;
+	}
+}

@@ -50,6 +50,16 @@ function resq_theme_pdp_compliance_notices(): void {
 	resq_theme_render_compliance_notices( 'pdp', (int) $product->get_id() );
 }
 
+// PDP CBD disclosure (COA link + THC value) — right after the compliance notice.
+add_action( 'woocommerce_single_product_summary', 'resq_theme_pdp_cbd_disclosure', 26 );
+
+/**
+ * Render the CBD COA / THC disclosure slot on the PDP summary.
+ */
+function resq_theme_pdp_cbd_disclosure(): void {
+	get_template_part( 'template-parts/product/compliance', 'coa' );
+}
+
 // PDP extended slots — rendered below the product summary tabs area.
 add_action( 'woocommerce_after_single_product_summary', 'resq_theme_pdp_bundle_options_slot', 4 );
 add_action( 'woocommerce_after_single_product_summary', 'resq_theme_pdp_routine_ladder_slot', 5 );

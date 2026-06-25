@@ -396,6 +396,24 @@ resq_get_canonical_product_id( 'hot-spots', 'route' ); // null if unmapped
 
 ---
 
+### `resq_get_product_cbd_disclosure`
+
+| Field | Value |
+|---|---|
+| Purpose | COA URL + THC disclosure for CBD PDPs (Phase 10 A1) |
+| Signature | `resq_get_product_cbd_disclosure( int $product_id ): array` |
+| Parameters | Woo product or variation ID |
+| Return type | `array{coa_url: string, thc_disclosure: string}` — empty when nothing to show |
+| Theme-safe | Yes |
+| REST later | Yes |
+| WooCommerce dependency | Yes (CBD-lane check) |
+| Data dependencies | `_resq_coa_url`, `_resq_thc_disclosure` meta; `coa_disclosure` feature flag |
+
+**Fallback:** `[]` unless `coa_disclosure` is enabled, the product is CBD-lane, and at
+least one field is populated. Theme slot: `template-parts/product/compliance-coa.php`.
+
+---
+
 ## Routine Commerce
 
 ### `resq_get_product_routine_ladder`

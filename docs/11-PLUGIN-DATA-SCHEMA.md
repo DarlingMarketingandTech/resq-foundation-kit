@@ -550,6 +550,19 @@ Display requires `resq_core_feature_enabled( 'donation_display' )` AND the `resq
 
 ---
 
+#### CBD disclosure (Phase 10 A1)
+
+| Meta key | Type | Sanitize | Purpose |
+|---|---|---|---|
+| `_resq_coa_url` | string (URL) | `esc_url_raw` | Certificate of Analysis document URL; rendered on CBD PDPs |
+| `_resq_thc_disclosure` | string | `sanitize_text_field` | THC disclosure value (e.g. `<0.3% THC`); owner-worded, rendered verbatim |
+
+Read via `resq_get_product_cbd_disclosure( $product_id )`, which returns data only
+for CBD-lane products when the `coa_disclosure` feature is enabled and at least one
+field is populated. Theme slot: `template-parts/product/compliance-coa.php`.
+
+---
+
 ## D. Options and Settings
 
 Options use the `resq_core_*` namespace. Stored in `wp_options`. Defaults set on plugin activation (Phase 2B).
@@ -588,6 +601,32 @@ Options use the `resq_core_*` namespace. Stored in `wp_options`. Defaults set on
 | Purpose | Cart-level CBD isolation — rejects an add-to-cart that would mix CBD and non-CBD products in one cart (backstop for direct `?add-to-cart=ID` URLs). Independent of merchandising-UI cross-sell enforcement. |
 | Admin | Compliance settings panel |
 | Notes | Enforcement also requires the `cbd_isolation` feature flag and `cbd_isolation_enabled`. See `22-FUTURE-FEATURES-ROADMAP.md` A2. |
+
+---
+
+#### State restriction (Phase 10 A3)
+
+| Field | Value |
+|---|---|
+| Keys | `resq_core_compliance['restricted_states']` (array of USPS state codes), `resq_core_compliance['state_restriction_notice']` (string) |
+| Default | `[]` and `''` |
+| Type | array of strings; string |
+| Purpose | Block checkout to a restricted state when the cart contains CBD products. Empty list → gate is inert. Notice copy falls back to a neutral message when blank. |
+| Gate | `state_restriction` feature flag; enforced in `ResQ_Core_Compliance_Gates::validate_state_restriction()` on `woocommerce_after_checkout_validation` |
+| Owner action | **Supply restricted-state list and reviewed notice copy before launch.** |
+
+---
+
+#### Age gate (Phase 10 A4)
+
+| Field | Value |
+|---|---|
+| Key | `resq_core_compliance['age_gate_min_age']` |
+| Default | `21` |
+| Type | int |
+| Purpose | Minimum age shown in the CBD age-verification modal |
+| Gate | `age_gate` feature flag; cookie-based soft gate on CBD surfaces (theme `inc/compliance.php` + `template-parts/compliance/age-gate-modal.php`). Cookie: `resq_age_confirmed`. |
+| Owner action | Confirm whether a soft cookie gate satisfies the payment processor, or whether a third-party verification service is required (OD-5). |
 
 ---
 
@@ -681,8 +720,15 @@ Example rule:
 | `donation_display` | `false` | Mission/donation modules |
 | `gateway_featured` | `true` | Gateway product shelves |
 | `learn_bridges` | `true` | Learn-to-shop modules |
+| `coa_disclosure` | `true` | CBD COA/THC PDP slot (Phase 10 A1) |
+| `state_restriction` | `true` | CBD state-restriction checkout gate (Phase 10 A3) |
+| `age_gate` | `true` | Age verification gate on CBD surfaces (Phase 10 A4) |
+| `cookie_consent` | `true` | Site-wide cookie consent banner (Phase 10 H3) |
 
-Access via `resq_core_feature_enabled( string $feature )`.
+Access via `resq_core_feature_enabled( string $feature )`. The Phase 10 flags are
+**enabled by default for owner review on the dev site**; their chrome copy is
+neutral and every legal/claim string (CBD disclaimer text, restricted-state list)
+is left empty for owner/legal sign-off before launch.
 
 ---
 
