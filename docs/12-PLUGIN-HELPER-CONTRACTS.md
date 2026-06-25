@@ -396,6 +396,24 @@ resq_get_canonical_product_id( 'hot-spots', 'route' ); // null if unmapped
 
 ---
 
+### `resq_get_product_cbd_disclosure`
+
+| Field | Value |
+|---|---|
+| Purpose | COA URL + THC disclosure for CBD PDPs (Phase 10 A1) |
+| Signature | `resq_get_product_cbd_disclosure( int $product_id ): array` |
+| Parameters | Woo product or variation ID |
+| Return type | `array{coa_url: string, thc_disclosure: string}` — empty when nothing to show |
+| Theme-safe | Yes |
+| REST later | Yes |
+| WooCommerce dependency | Yes (CBD-lane check) |
+| Data dependencies | `_resq_coa_url`, `_resq_thc_disclosure` meta; `coa_disclosure` feature flag |
+
+**Fallback:** `[]` unless `coa_disclosure` is enabled, the product is CBD-lane, and at
+least one field is populated. Theme slot: `template-parts/product/compliance-coa.php`.
+
+---
+
 ## Routine Commerce
 
 ### `resq_get_product_routine_ladder`
@@ -710,7 +728,7 @@ These are documented in `01-THEME-PLUGIN-CONTRACT.md` and implemented in Phase 2
 | `resq_core_feature_enabled( string $feature )` | bool |
 | `resq_core_get_badge_data( int $product_id )` | `array\|null` — superseded by `resq_get_product_badges()` for theme use |
 | `resq_core_get_cross_sells( int $product_id )` | `int[]` |
-| `resq_core_get_compliance_notices( string $context, int $product_id = 0 )` | `array[]` |
+| `resq_core_get_compliance_notices( string $context, int $product_id = 0, string $zone = '' )` | `array[]` — product mode resolves the product's zone; zone mode (`$product_id` 0 + `$zone`) returns a zone-scoped notice for context-level slots |
 | `resq_core_is_active()` | bool |
 
 **Note:** Theme templates should prefer the storefront helpers in this doc. Infrastructure helpers remain for plugin internals and legacy call sites.

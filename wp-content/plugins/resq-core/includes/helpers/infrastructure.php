@@ -92,28 +92,56 @@ if ( ! function_exists( 'resq_core_get_cross_sells' ) ) {
 
 if ( ! function_exists( 'resq_core_get_compliance_notices' ) ) {
 	/**
-	 * Return compliance notices for a given context and product.
+	 * Return compliance notices for a given context.
+	 *
+	 * Two lookup modes:
+	 *  - Product mode ($product_id > 0): resolves the product's compliance zone and
+	 *    returns its notice only when the product actually requires one.
+	 *  - Zone mode ($product_id <= 0 and $zone provided): returns the configured
+	 *    notice for a zone with no specific product — used by context-level slots
+	 *    such as the CBD gateway disclaimer strip, which is scoped by zone, not by
+	 *    an individual product.
+	 *
+	 * Returns an empty array when no notice copy is configured for the resolved
+	 * zone, so a slot stays silent until the owner sets reviewed copy.
 	 *
 	 * @param string $context    Display context.
-	 * @param int    $product_id Optional product ID.
+	 * @param int    $product_id Optional product ID (product mode).
+	 * @param string $zone       Optional compliance zone slug (zone mode).
 	 * @return array[]
 	 */
-	function resq_core_get_compliance_notices( string $context, int $product_id = 0 ): array {
+	function resq_core_get_compliance_notices( string $context, int $product_id = 0, string $zone = '' ): array {
 		if ( $product_id <= 0 ) {
-			return array();
+			$zone = sanitize_key( $zone );
+			if ( '' === $zone ) {
+				return array();
+			}
+
+			return resq_core_build_zone_notice( $zone, $context );
 		}
 
 		if ( ! resq_requires_compliance_notice( $product_id, $context ) ) {
 			return array();
 		}
 
-		$zone        = resq_get_compliance_zone( $product_id );
-		$notice_text = resq_core_get_option( 'resq_core_compliance.notice_text', array() );
-		$text        = '';
+		return resq_core_build_zone_notice( resq_get_compliance_zone( $product_id ), $context );
+	}
+}
 
-		if ( is_array( $notice_text ) && ! empty( $notice_text[ $zone ] ) ) {
-			$text = (string) $notice_text[ $zone ];
-		}
+if ( ! function_exists( 'resq_core_build_zone_notice' ) ) {
+	/**
+	 * Build the notice payload for a compliance zone from configured copy.
+	 *
+	 * @param string $zone    Compliance zone slug.
+	 * @param string $context Display context.
+	 * @return array[] Single-notice array, or empty when no copy is set.
+	 */
+	function resq_core_build_zone_notice( string $zone, string $context ): array {
+		$notice_text = resq_core_get_option( 'resq_core_compliance.notice_text', array() );
+
+		$text = is_array( $notice_text ) && ! empty( $notice_text[ $zone ] )
+			? (string) $notice_text[ $zone ]
+			: '';
 
 		if ( '' === $text ) {
 			return array();

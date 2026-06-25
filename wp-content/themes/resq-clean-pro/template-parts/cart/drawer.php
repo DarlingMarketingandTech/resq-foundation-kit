@@ -20,9 +20,8 @@ defined( 'ABSPATH' ) || exit;
 			</p>
 			<button
 				class="cart-drawer__close"
+				type="button"
 				aria-label="<?php esc_attr_e( 'Close', 'resq-clean-pro' ); ?>"
-				aria-expanded="true"
-				aria-controls="resq-cart-drawer"
 			>
 				<span aria-hidden="true">&#x2715;</span>
 			</button>

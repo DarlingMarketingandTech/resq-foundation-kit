@@ -312,6 +312,37 @@ class ResQ_Core_Registrations_Post_Meta {
 				)
 			)
 		);
+
+		// Phase 10 A1 — CBD Certificate of Analysis document URL.
+		register_post_meta(
+			'product',
+			'_resq_coa_url',
+			array_merge(
+				$product_args,
+				array(
+					'default'           => '',
+					'sanitize_callback' => static function ( $value ): string {
+						return esc_url_raw( (string) $value );
+					},
+				)
+			)
+		);
+
+		// Phase 10 A1 — CBD THC disclosure value (e.g. "<0.3% THC"). Free text so
+		// the owner controls exact wording; rendered verbatim and escaped.
+		register_post_meta(
+			'product',
+			'_resq_thc_disclosure',
+			array_merge(
+				$product_args,
+				array(
+					'default'           => '',
+					'sanitize_callback' => static function ( $value ): string {
+						return sanitize_text_field( (string) $value );
+					},
+				)
+			)
+		);
 	}
 
 	/**

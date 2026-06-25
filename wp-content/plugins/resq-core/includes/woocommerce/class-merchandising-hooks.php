@@ -34,6 +34,9 @@ class ResQ_Core_Merchandising_Hooks {
 		// Stream D — bundle add-to-cart validation.
 		add_filter( 'woocommerce_add_to_cart_validation', array( __CLASS__, 'validate_bundle_add_to_cart' ), 10, 3 );
 
+		// CBD cart isolation — reject adds that would mix CBD and non-CBD in one cart.
+		add_filter( 'woocommerce_add_to_cart_validation', array( __CLASS__, 'validate_cart_compliance_isolation' ), 10, 3 );
+
 		// Stream E — cart drawer AJAX suggestions endpoint.
 		add_action( 'wp_ajax_resq_cart_drawer_suggestions', array( __CLASS__, 'ajax_cart_drawer_suggestions' ) );
 		add_action( 'wp_ajax_nopriv_resq_cart_drawer_suggestions', array( __CLASS__, 'ajax_cart_drawer_suggestions' ) );
@@ -193,6 +196,87 @@ class ResQ_Core_Merchandising_Hooks {
 		}
 
 		return $passed;
+	}
+
+	/**
+	 * Reject an add-to-cart when it would mix CBD and non-CBD products in one cart.
+	 *
+	 * CBD products must be purchased in a separate order from standard, baby, and
+	 * pet-health items (docs/05-COMPLIANCE-RULES.md § CBD Isolation; docs/22 A2).
+	 * The merchandising-UI cross-sell gate only governs *suggested* products, so a
+	 * shopper using a direct `?add-to-cart=ID` URL can still bypass it — this is the
+	 * cart-level backstop. Audience mixing (human + pet) and baby + standard carts
+	 * remain allowed; only the CBD boundary is enforced here.
+	 *
+	 * Enforcement requires all of:
+	 *  - the `cbd_isolation` feature flag,
+	 *  - `resq_core_compliance.cbd_isolation_enabled` (master toggle), and
+	 *  - `resq_core_compliance.cart_isolation_enabled` (cart-level toggle).
+	 *
+	 * @param bool $passed     Whether validation has passed so far.
+	 * @param int  $product_id Product being added.
+	 * @param int  $quantity   Quantity (unused; isolation is independent of count).
+	 * @return bool
+	 */
+	public static function validate_cart_compliance_isolation( bool $passed, int $product_id, int $quantity ): bool { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
+		if ( ! $passed ) {
+			return false;
+		}
+
+		if ( ! self::cart_isolation_enforced() ) {
+			return $passed;
+		}
+
+		if ( ! function_exists( 'resq_is_cbd_product' ) || ! function_exists( 'WC' ) ) {
+			return $passed;
+		}
+
+		$cart = WC()->cart;
+		if ( ! $cart ) {
+			return $passed;
+		}
+
+		$cart_items = $cart->get_cart();
+		if ( empty( $cart_items ) ) {
+			// Empty cart can never create a mix.
+			return $passed;
+		}
+
+		$incoming_is_cbd = resq_is_cbd_product( $product_id );
+
+		foreach ( $cart_items as $cart_item ) {
+			$existing_id = (int) ( $cart_item['product_id'] ?? 0 );
+			if ( $existing_id <= 0 ) {
+				continue;
+			}
+
+			if ( resq_is_cbd_product( $existing_id ) !== $incoming_is_cbd ) {
+				wc_add_notice(
+					$incoming_is_cbd
+						? __( 'CBD products must be purchased in a separate order. Please check out your current items first, then add CBD products to a new order.', 'resq-core' )
+						: __( 'This item must be purchased in a separate order from the CBD products already in your cart. Please check out your CBD items first.', 'resq-core' ),
+					'error'
+				);
+				return false;
+			}
+		}
+
+		return $passed;
+	}
+
+	/**
+	 * Whether cart-level CBD isolation enforcement is active.
+	 *
+	 * @return bool
+	 */
+	private static function cart_isolation_enforced(): bool {
+		if ( ! function_exists( 'resq_core_feature_enabled' ) || ! function_exists( 'resq_core_get_option' ) ) {
+			return false;
+		}
+
+		return resq_core_feature_enabled( 'cbd_isolation' )
+			&& (bool) resq_core_get_option( 'resq_core_compliance.cbd_isolation_enabled', true )
+			&& (bool) resq_core_get_option( 'resq_core_compliance.cart_isolation_enabled', true );
 	}
 
 	// -------------------------------------------------------------------------

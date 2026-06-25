@@ -104,15 +104,20 @@ if ( ! function_exists( 'resq_theme_render_compliance_notices' ) ) {
 	/**
 	 * Render compliance notice slot via plugin helper when available.
 	 *
+	 * Pass $zone (with $product_id left at 0) for context-level slots that are
+	 * scoped by compliance zone rather than a specific product — e.g. the CBD
+	 * gateway disclaimer strip.
+	 *
 	 * @param string $context    Display context.
-	 * @param int    $product_id Optional product ID.
+	 * @param int    $product_id Optional product ID (product-scoped slots).
+	 * @param string $zone       Optional compliance zone slug (zone-scoped slots).
 	 */
-	function resq_theme_render_compliance_notices( string $context, int $product_id = 0 ): void {
+	function resq_theme_render_compliance_notices( string $context, int $product_id = 0, string $zone = '' ): void {
 		if ( ! function_exists( 'resq_core_get_compliance_notices' ) ) {
 			return;
 		}
 
-		$notices = resq_core_get_compliance_notices( $context, $product_id );
+		$notices = resq_core_get_compliance_notices( $context, $product_id, $zone );
 		if ( empty( $notices ) ) {
 			return;
 		}
