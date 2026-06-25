@@ -578,6 +578,19 @@ Options use the `resq_core_*` namespace. Stored in `wp_options`. Defaults set on
 
 ---
 
+#### Cart isolation enabled
+
+| Field | Value |
+|---|---|
+| Key | `resq_core_compliance['cart_isolation_enabled']` |
+| Type | bool |
+| Default | `true` |
+| Purpose | Cart-level CBD isolation — rejects an add-to-cart that would mix CBD and non-CBD products in one cart (backstop for direct `?add-to-cart=ID` URLs). Independent of merchandising-UI cross-sell enforcement. |
+| Admin | Compliance settings panel |
+| Notes | Enforcement also requires the `cbd_isolation` feature flag and `cbd_isolation_enabled`. See `22-FUTURE-FEATURES-ROADMAP.md` A2. |
+
+---
+
 #### Donation/mission claim display enabled
 
 | Field | Value |

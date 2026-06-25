@@ -45,6 +45,7 @@ class ResQ_Core_Options {
 	public static function default_compliance(): array {
 		return array(
 			'cbd_isolation_enabled'    => true,
+			'cart_isolation_enabled'   => true,
 			'donation_display_enabled' => false,
 			'notice_text'              => array(
 				'standard'   => '',

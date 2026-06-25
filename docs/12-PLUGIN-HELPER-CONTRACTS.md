@@ -710,7 +710,7 @@ These are documented in `01-THEME-PLUGIN-CONTRACT.md` and implemented in Phase 2
 | `resq_core_feature_enabled( string $feature )` | bool |
 | `resq_core_get_badge_data( int $product_id )` | `array\|null` — superseded by `resq_get_product_badges()` for theme use |
 | `resq_core_get_cross_sells( int $product_id )` | `int[]` |
-| `resq_core_get_compliance_notices( string $context, int $product_id = 0 )` | `array[]` |
+| `resq_core_get_compliance_notices( string $context, int $product_id = 0, string $zone = '' )` | `array[]` — product mode resolves the product's zone; zone mode (`$product_id` 0 + `$zone`) returns a zone-scoped notice for context-level slots |
 | `resq_core_is_active()` | bool |
 
 **Note:** Theme templates should prefer the storefront helpers in this doc. Infrastructure helpers remain for plugin internals and legacy call sites.

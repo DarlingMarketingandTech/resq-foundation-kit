@@ -119,7 +119,7 @@ These functions are the public API between layers. The theme may call plugin hel
 | `resq_core_feature_enabled( string $feature )` | Check feature flag | bool |
 | `resq_core_get_badge_data( int $product_id )` | Badge label/type/priority | `array|null` |
 | `resq_core_get_cross_sells( int $product_id )` | Curated cross-sell product IDs | `int[]` |
-| `resq_core_get_compliance_notices( string $context, int $product_id = 0 )` | Notices for context | `array[]` |
+| `resq_core_get_compliance_notices( string $context, int $product_id = 0, string $zone = '' )` | Notices for context; pass `$zone` (with `$product_id` 0) for zone-scoped slots | `array[]` |
 | `resq_core_is_active()` | Whether plugin bootstrap completed | bool |
 
 ### Plugin Storefront Data Helpers
@@ -156,7 +156,7 @@ Phase 3 implemented all 19 storefront helpers with live data reads (see `12-PLUG
 | `resq_theme_template_part( string $slug, string $name = '', array $args = [] )` | Load template part with args | void |
 | `resq_theme_class( string $base, array $modifiers = [] )` | Class string builder | string |
 | `resq_theme_render_badge( int $product_id )` | Render badge markup from plugin data | void |
-| `resq_theme_render_compliance_notices( string $context, int $product_id = 0 )` | Render notice slot | void |
+| `resq_theme_render_compliance_notices( string $context, int $product_id = 0, string $zone = '' )` | Render notice slot; pass `$zone` (with `$product_id` 0) for zone-scoped slots | void |
 | `resq_theme_wc_active()` | Whether WooCommerce is active | bool |
 
 Theme helpers that consume plugin data must guard with `function_exists()` or `resq_core_is_active()`.
