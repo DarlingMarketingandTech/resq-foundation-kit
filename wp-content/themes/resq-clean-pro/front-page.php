@@ -14,15 +14,15 @@
 defined( 'ABSPATH' ) || exit;
 
 $human_base = function_exists( 'resq_theme_get_gateway_page_url' )
-	? trailingslashit( resq_theme_get_gateway_page_url( 'page-gateway-human.php', '/shop/human/' ) )
+	? trailingslashit( resq_theme_get_gateway_page_url( 'page-gateway-human.php' ) )
 	: home_url( '/shop/human/' );
 
 $pet_base = function_exists( 'resq_theme_get_gateway_page_url' )
-	? trailingslashit( resq_theme_get_gateway_page_url( 'page-gateway-pet.php', '/shop/pet/' ) )
+	? trailingslashit( resq_theme_get_gateway_page_url( 'page-gateway-pet.php' ) )
 	: home_url( '/shop/pet/' );
 
 $learn_url = function_exists( 'resq_theme_get_gateway_page_url' )
-	? resq_theme_get_gateway_page_url( 'page-learn-index.php', '/learn/' )
+	? resq_theme_get_gateway_page_url( 'page-learn-index.php' )
 	: home_url( '/learn/' );
 
 get_header();

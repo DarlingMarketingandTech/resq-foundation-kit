@@ -17,7 +17,6 @@ if ( empty( $lane ) ) {
 
 $copy_key = (string) ( $lane['copy_key'] ?? '' );
 $content  = function_exists( 'resq_theme_get_lane_content' ) ? resq_theme_get_lane_content( $copy_key ) : array();
-$context  = $lane['context'] ?? array();
 $is_cbd   = ! empty( $lane['is_cbd'] );
 $is_problem = ! empty( $lane['is_problem'] );
 
@@ -89,13 +88,9 @@ if ( $is_problem ) {
 			);
 		}
 
-		resq_theme_template_part(
-			'gateway/filter-shell',
-			'',
-			array(
-				'context' => $context,
-			)
-		);
+		// Lane filter shell hidden until shelf queries honor GET filter params.
+		// filter-shell works on shop/archive views via ResQ_Core_Product_Filters;
+		// category lane shelves are static from resq_get_lane_product_ids().
 	}
 
 	$product_ids = $lane['product_ids'] ?? array();

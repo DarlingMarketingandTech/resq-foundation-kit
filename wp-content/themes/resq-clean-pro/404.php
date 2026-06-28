@@ -11,11 +11,11 @@
 defined( 'ABSPATH' ) || exit;
 
 $human_url = function_exists( 'resq_theme_get_gateway_page_url' )
-	? resq_theme_get_gateway_page_url( 'page-gateway-human.php', '/shop/human/' )
+	? resq_theme_get_gateway_page_url( 'page-gateway-human.php' )
 	: home_url( '/shop/human/' );
 
 $pet_url = function_exists( 'resq_theme_get_gateway_page_url' )
-	? resq_theme_get_gateway_page_url( 'page-gateway-pet.php', '/shop/pet/' )
+	? resq_theme_get_gateway_page_url( 'page-gateway-pet.php' )
 	: home_url( '/shop/pet/' );
 
 get_header();

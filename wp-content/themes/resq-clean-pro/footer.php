@@ -18,15 +18,18 @@ defined( 'ABSPATH' ) || exit;
 			// header nav and survive slug changes (see inc/navigation.php). Falls
 			// back to the canonical gateway paths when the helper is unavailable.
 			$resq_footer_human = function_exists( 'resq_theme_get_gateway_page_url' )
-				? resq_theme_get_gateway_page_url( 'page-gateway-human.php', '/human/' )
-				: home_url( '/human/' );
+				? resq_theme_get_gateway_page_url( 'page-gateway-human.php' )
+				: home_url( '/shop/human/' );
 			$resq_footer_pet = function_exists( 'resq_theme_get_gateway_page_url' )
-				? resq_theme_get_gateway_page_url( 'page-gateway-pet.php', '/pets/' )
-				: home_url( '/pets/' );
+				? resq_theme_get_gateway_page_url( 'page-gateway-pet.php' )
+				: home_url( '/shop/pet/' );
+			$resq_footer_learn = function_exists( 'resq_theme_get_gateway_page_url' )
+				? resq_theme_get_gateway_page_url( 'page-learn-index.php' )
+				: home_url( '/learn/' );
 			?>
 			<a class="site-footer__link" href="<?php echo esc_url( $resq_footer_human ); ?>"><?php esc_html_e( 'Shop For Humans', 'resq-clean-pro' ); ?></a>
 			<a class="site-footer__link" href="<?php echo esc_url( $resq_footer_pet ); ?>"><?php esc_html_e( 'Shop For Pets', 'resq-clean-pro' ); ?></a>
-			<a class="site-footer__link" href="<?php echo esc_url( home_url( '/learn/' ) ); ?>"><?php esc_html_e( 'Learn', 'resq-clean-pro' ); ?></a>
+			<a class="site-footer__link" href="<?php echo esc_url( $resq_footer_learn ); ?>"><?php esc_html_e( 'Learn', 'resq-clean-pro' ); ?></a>
 		</nav>
 
 		<?php if ( function_exists( 'resq_theme_render_compliance_notices' ) ) : ?>

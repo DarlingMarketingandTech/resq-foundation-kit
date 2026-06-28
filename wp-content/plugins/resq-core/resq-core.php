@@ -45,6 +45,7 @@ require_once RESQ_CORE_INCLUDES . 'helpers/internal.php';
 require_once RESQ_CORE_INCLUDES . 'helpers/storefront.php';
 require_once RESQ_CORE_INCLUDES . 'routing/data/lanes.php';
 require_once RESQ_CORE_INCLUDES . 'routing/class-lane-routing.php';
+require_once RESQ_CORE_INCLUDES . 'routing/class-gateway-pages.php';
 require_once RESQ_CORE_INCLUDES . 'class-product-sync.php';
 require_once RESQ_CORE_INCLUDES . 'woocommerce/class-merchandising-hooks.php';
 require_once RESQ_CORE_INCLUDES . 'woocommerce/class-product-filters.php';
@@ -61,6 +62,13 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	require_once RESQ_CORE_INCLUDES . 'catalog/class-catalog-importer.php';
 	require_once RESQ_CORE_INCLUDES . 'cli/class-catalog-cli.php';
 	WP_CLI::add_command( 'resq-catalog', 'ResQ_Core_Catalog_CLI' );
+
+	require_once RESQ_CORE_INCLUDES . 'cli/class-routes-cli.php';
+	WP_CLI::add_command( 'resq routes', 'ResQ_Core_Routes_CLI' );
+
+	require_once RESQ_CORE_INCLUDES . 'routing/class-lane-audit.php';
+	require_once RESQ_CORE_INCLUDES . 'cli/class-lanes-cli.php';
+	WP_CLI::add_command( 'resq lanes', 'ResQ_Core_Lanes_CLI' );
 }
 
 ResQ_Core_Plugin::instance();

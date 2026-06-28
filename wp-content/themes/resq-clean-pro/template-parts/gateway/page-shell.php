@@ -40,7 +40,7 @@ if ( $is_cbd ) {
 $landing  = function_exists( 'resq_theme_get_landing_content' ) ? resq_theme_get_landing_content( $gateway_slug ) : array();
 $base_url = trailingslashit( (string) get_permalink() );
 $learn_url = function_exists( 'resq_theme_get_gateway_page_url' )
-	? resq_theme_get_gateway_page_url( 'page-learn-index.php', '/learn/' )
+	? resq_theme_get_gateway_page_url( 'page-learn-index.php' )
 	: home_url( '/learn/' );
 ?>
 
