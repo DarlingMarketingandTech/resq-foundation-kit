@@ -255,6 +255,139 @@
 	transition: opacity var(--resq-transition-speed-fast) var(--resq-transition-timing);
 }
 
+.resq-routine-ladder__bundle--complete {
+	padding: var(--resq-spacing-md);
+	background: var(--resq-color-bg-muted);
+	border-radius: var(--resq-radius-md);
+}
+
+.resq-routine-ladder__bundle-complete {
+	margin: 0;
+	font-size: var(--resq-font-size-sm);
+	font-weight: var(--resq-font-weight-medium);
+	color: var(--resq-color-text-primary);
+}
+
+/* Product media — featured, bundle collage, branded fallback */
+.resq-product-media {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	border-radius: inherit;
+	background: var(--resq-color-bg-muted, #f3f0eb);
+}
+
+.resq-product-media__image,
+.resq-product-media__collage-image {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	object-position: center;
+}
+
+.resq-product-media__collage {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	grid-template-rows: repeat(2, minmax(0, 1fr));
+	width: 100%;
+	height: 100%;
+	gap: 2px;
+	background: var(--resq-color-border-light, #e8e4de);
+}
+
+.resq-product-media__collage-item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 0;
+	background: var(--resq-color-bg-surface, #fff);
+}
+
+.resq-product-media__branded {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: var(--resq-spacing-xs);
+	width: 100%;
+	height: 100%;
+	min-height: 10rem;
+	padding: var(--resq-spacing-md);
+	text-align: center;
+	background: linear-gradient(
+		145deg,
+		var(--resq-color-warm-cream-deep, #f5f0e8) 0%,
+		var(--resq-color-sage-light, #edf3ef) 60%,
+		var(--resq-color-honey-light, #fef3c7) 100%
+	);
+}
+
+.resq-product-media__branded-eyebrow {
+	font-size: var(--resq-font-size-xs);
+	font-weight: var(--resq-font-weight-medium);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--resq-color-text-muted);
+}
+
+.resq-product-media__branded-title {
+	font-family: var(--resq-font-family-display);
+	font-size: var(--resq-font-size-sm);
+	line-height: 1.3;
+	color: var(--resq-color-text-primary);
+}
+
+.resq-product-media__branded-label {
+	font-size: var(--resq-font-size-xs);
+	color: var(--resq-color-text-secondary);
+}
+
+.resq-product-media--pdp {
+	border-radius: var(--resq-radius-lg);
+	aspect-ratio: 1;
+	max-width: 36rem;
+	max-height: min(36rem, 70vh);
+}
+
+.resq-gateway-shelf__media .resq-product-media,
+.resq-fbt__media .resq-product-media {
+	border-radius: var(--resq-radius-md);
+	aspect-ratio: 1;
+}
+
+.resq-fbt__media {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	overflow: hidden;
+	border-radius: var(--resq-radius-md);
+	aspect-ratio: 1;
+	background: var(--resq-color-bg-muted);
+}
+
+.resq-fbt__item {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.resq-fbt__link {
+	flex: 1 1 auto;
+	height: 100%;
+}
+
+.resq-lane-ladder__complete {
+	margin: var(--resq-spacing-md) 0 0;
+	font-size: var(--resq-font-size-sm);
+	font-weight: var(--resq-font-weight-medium);
+	color: var(--resq-color-text-primary);
+}
+
 .resq-routine-ladder__bundle-btn:hover,
 .resq-routine-ladder__bundle-btn:focus-visible {
 	opacity: 0.9;

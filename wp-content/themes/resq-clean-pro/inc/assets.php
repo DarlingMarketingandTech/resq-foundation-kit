@@ -46,10 +46,23 @@ function resq_theme_enqueue_assets(): void {
 		RESQ_THEME_VERSION
 	);
 
+	if ( resq_theme_wc_active() ) {
+		wp_enqueue_style(
+			'resq-theme-woocommerce',
+			resq_theme_get_asset_url( 'assets/css/woocommerce.css' ),
+			array( 'resq-theme-gateway' ),
+			RESQ_THEME_VERSION
+		);
+	}
+
+	$style_deps = resq_theme_wc_active()
+		? array( 'resq-theme-woocommerce' )
+		: array( 'resq-theme-gateway' );
+
 	wp_enqueue_style(
 		'resq-theme-style',
 		get_stylesheet_uri(),
-		array( 'resq-theme-gateway' ),
+		$style_deps,
 		RESQ_THEME_VERSION
 	);
 

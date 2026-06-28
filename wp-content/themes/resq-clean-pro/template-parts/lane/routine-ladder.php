@@ -26,6 +26,7 @@ if ( empty( $steps ) || ! is_array( $steps ) ) {
 $bundle_target = (int) ( $ladder['bundle_target'] ?? 0 );
 $bundle_savings = (string) ( $ladder['bundle_savings'] ?? '' );
 $bundle_url     = $bundle_target > 0 && function_exists( 'get_permalink' ) ? get_permalink( $bundle_target ) : '';
+$is_complete_bundle = ! empty( $ladder['is_complete_bundle'] ) || ( $bundle_target > 0 && $canonical_id === $bundle_target );
 ?>
 
 <section class="resq-lane-ladder" aria-labelledby="resq-lane-ladder-title">
@@ -67,7 +68,17 @@ $bundle_url     = $bundle_target > 0 && function_exists( 'get_permalink' ) ? get
 		<?php endforeach; ?>
 	</ol>
 
-	<?php if ( $bundle_target > 0 && '' !== $bundle_url ) : ?>
+	<?php if ( $is_complete_bundle ) : ?>
+		<p class="resq-lane-ladder__complete">
+			<?php
+			echo esc_html(
+				! empty( $ladder['bundle_complete_message'] )
+					? (string) $ladder['bundle_complete_message']
+					: __( 'You\'re viewing the complete routine', 'resq-clean-pro' )
+			);
+			?>
+		</p>
+	<?php elseif ( $bundle_target > 0 && '' !== $bundle_url ) : ?>
 		<div class="resq-lane-ladder__upgrade">
 			<a class="resq-lane-ladder__upgrade-link btn btn--secondary" href="<?php echo esc_url( $bundle_url ); ?>">
 				<?php esc_html_e( 'Upgrade to full routine kit', 'resq-clean-pro' ); ?>

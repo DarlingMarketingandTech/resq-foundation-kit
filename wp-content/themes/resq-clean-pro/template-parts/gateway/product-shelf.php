@@ -61,7 +61,12 @@ if ( empty( $cards ) ) {
 			<li class="<?php echo esc_attr( $card_class ); ?>">
 				<a class="resq-gateway-shelf__link" href="<?php echo esc_url( (string) ( $card['url'] ?? '#' ) ); ?>">
 					<div class="resq-gateway-shelf__media">
-						<?php if ( ! empty( $card['image_url'] ) ) : ?>
+						<?php
+						$product_id = (int) ( $card['product_id'] ?? 0 );
+						if ( $product_id > 0 && function_exists( 'resq_theme_render_product_media' ) ) {
+							resq_theme_render_product_media( $product_id, 'shelf' );
+						} elseif ( ! empty( $card['image_url'] ) ) {
+							?>
 							<img
 								class="resq-gateway-shelf__image"
 								src="<?php echo esc_url( (string) $card['image_url'] ); ?>"
@@ -69,7 +74,9 @@ if ( empty( $cards ) ) {
 								loading="lazy"
 								decoding="async"
 							>
-						<?php endif; ?>
+							<?php
+						}
+						?>
 					</div>
 
 					<div class="resq-gateway-shelf__body">

@@ -819,37 +819,47 @@ if ( ! function_exists( 'resq_get_product_routine_ladder' ) ) {
 
 		$bundle_target  = (int) ( $primary['bundle_target'] ?? 0 );
 		$bundle_savings = '';
+		$is_complete_bundle = $bundle_target > 0 && $product_id === $bundle_target;
 
-		if ( $bundle_target > 0 && resq_is_woocommerce_available() ) {
+		if ( $is_complete_bundle ) {
+			$bundle_target = 0;
+		} elseif ( $bundle_target > 0 && resq_is_woocommerce_available() ) {
 			$bundle_product = wc_get_product( $bundle_target );
 			if ( $bundle_product ) {
-				$steps_total = 0.0;
-				foreach ( $steps as $step ) {
-					$step_id = (int) ( $step['product_id'] ?? 0 );
-					if ( $step_id <= 0 ) {
-						continue;
+				$breakdown = resq_get_bundle_savings_breakdown( $bundle_target );
+				if ( $breakdown['composition_savings'] > 0 ) {
+					$bundle_savings = wp_strip_all_tags( wc_price( $breakdown['composition_savings'] ) );
+				} else {
+					$steps_total = 0.0;
+					foreach ( $steps as $step ) {
+						$step_id = (int) ( $step['product_id'] ?? 0 );
+						if ( $step_id <= 0 ) {
+							continue;
+						}
+						$summary = resq_get_wc_product_summary( $step_id );
+						if ( $summary ) {
+							$steps_total += (float) $summary['price'];
+						}
 					}
-					$summary = resq_get_wc_product_summary( $step_id );
-					if ( $summary ) {
-						$steps_total += (float) $summary['price'];
-					}
-				}
 
-				$bundle_price = (float) $bundle_product->get_price();
-				if ( $steps_total > $bundle_price && $bundle_price > 0 ) {
-					$bundle_savings = wp_strip_all_tags( wc_price( $steps_total - $bundle_price ) );
+					$bundle_price = (float) $bundle_product->get_price();
+					if ( $steps_total > $bundle_price && $bundle_price > 0 ) {
+						$bundle_savings = wp_strip_all_tags( wc_price( $steps_total - $bundle_price ) );
+					}
 				}
 			}
 		}
 
 		return array(
-			'routine_id'     => (int) $primary['routine_id'],
-			'title'          => (string) $primary['title'],
-			'description'    => '',
-			'steps'          => $steps,
-			'bundle_target'  => $bundle_target,
-			'bundle_label'   => __( 'Upgrade to Full Routine Kit', 'resq-core' ),
-			'bundle_savings' => $bundle_savings,
+			'routine_id'              => (int) $primary['routine_id'],
+			'title'                   => (string) $primary['title'],
+			'description'             => '',
+			'steps'                   => $steps,
+			'bundle_target'           => $bundle_target,
+			'bundle_label'            => __( 'Upgrade to Full Routine Kit', 'resq-core' ),
+			'bundle_savings'          => $bundle_savings,
+			'is_complete_bundle'      => $is_complete_bundle,
+			'bundle_complete_message' => __( 'You\'re viewing the complete routine', 'resq-core' ),
 		);
 	}
 }
@@ -1125,6 +1135,9 @@ if ( ! function_exists( 'resq_get_product_card_data' ) ) {
 		}
 
 		$image_id  = (int) $product->get_image_id();
+		$image_display = function_exists( 'resq_get_product_image_display' )
+			? resq_get_product_image_display( $product_id, 'woocommerce_thumbnail' )
+			: array();
 		$audiences = array_column( resq_get_product_audiences( $product_id ), 'slug' );
 		$concerns  = array_column( resq_get_product_concerns( $product_id ), 'slug' );
 		$tags      = resq_get_product_meta( $product_id, '_resq_short_benefit_tags', array() );
@@ -1136,7 +1149,8 @@ if ( ! function_exists( 'resq_get_product_card_data' ) ) {
 			'subtitle'        => (string) resq_get_product_meta( $product_id, '_resq_product_card_subtitle', '' ),
 			'url'             => get_permalink( $product_id ),
 			'image_id'        => $image_id,
-			'image_url'       => $image_id ? wp_get_attachment_url( $image_id ) : '',
+			'image_url'       => ( 'featured' === ( $image_display['mode'] ?? '' ) ) ? (string) ( $image_display['image_url'] ?? '' ) : '',
+			'image_display'   => $image_display,
 			'price_html'      => $product->get_price_html(),
 			'badges'          => resq_get_product_badges( $product_id ),
 			'benefit_tags'    => is_array( $tags ) ? $tags : array(),

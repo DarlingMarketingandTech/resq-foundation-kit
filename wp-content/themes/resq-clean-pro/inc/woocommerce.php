@@ -12,6 +12,8 @@ if ( ! resq_theme_wc_active() ) {
 }
 
 add_action( 'after_setup_theme', 'resq_theme_woocommerce_gallery_support' );
+add_action( 'init', 'resq_theme_woocommerce_loop_image_hooks', 20 );
+add_filter( 'woocommerce_single_product_image_gallery_classes', 'resq_theme_pdp_gallery_classes' );
 
 /**
  * Declare WooCommerce gallery theme supports.
@@ -34,6 +36,35 @@ function resq_theme_woocommerce_gallery_support(): void {
 	add_theme_support( 'wc-product-gallery-zoom' );
 	add_theme_support( 'wc-product-gallery-lightbox' );
 	add_theme_support( 'wc-product-gallery-slider' );
+}
+
+/**
+ * Wrap loop thumbnails in a fixed-ratio media frame.
+ */
+function resq_theme_woocommerce_loop_image_hooks(): void {
+	remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+	add_action( 'woocommerce_before_shop_loop_item_title', 'resq_theme_template_loop_product_thumbnail', 10 );
+}
+
+/**
+ * Output the standard WooCommerce loop thumbnail inside the theme media frame.
+ */
+function resq_theme_template_loop_product_thumbnail(): void {
+	echo '<div class="resq-product-card__media">';
+	woocommerce_template_loop_product_thumbnail();
+	echo '</div>';
+}
+
+/**
+ * Add a theme hook class to the PDP gallery for frame styling.
+ *
+ * @param string[] $classes Gallery wrapper classes.
+ * @return string[]
+ */
+function resq_theme_pdp_gallery_classes( array $classes ): array {
+	$classes[] = 'resq-pdp-gallery';
+
+	return $classes;
 }
 
 // PDP compliance notice — between excerpt and add-to-cart (priority 25).

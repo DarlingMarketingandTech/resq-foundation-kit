@@ -118,15 +118,21 @@
 }
 
 .resq-gateway-shelf__media {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
 	aspect-ratio: 1;
 	background: var(--resq-color-bg-muted);
 	overflow: hidden;
 }
 
 .resq-gateway-shelf__image {
+	display: block;
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: contain;
+	object-position: center;
 }
 
 .resq-gateway-shelf__body {

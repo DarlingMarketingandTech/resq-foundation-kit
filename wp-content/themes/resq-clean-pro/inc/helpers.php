@@ -148,9 +148,11 @@ if ( ! function_exists( 'resq_theme_render_site_logo' ) ) {
 					'medium',
 					false,
 					array(
-						'class'   => $class . '-image',
-						'alt'     => get_bloginfo( 'name', 'display' ),
-						'loading' => 'eager',
+						'class'    => $class . '-image',
+						'alt'      => function_exists( 'resq_core_get_brand_name' )
+							? resq_core_get_brand_name()
+							: get_bloginfo( 'name', 'display' ),
+						'loading'  => 'eager',
 						'decoding' => 'async',
 					)
 				)
@@ -159,6 +161,53 @@ if ( ! function_exists( 'resq_theme_render_site_logo' ) ) {
 		}
 
 		echo esc_html__( 'ResQ', 'resq-clean-pro' );
+	}
+}
+
+if ( ! function_exists( 'resq_theme_get_product_media_html' ) ) {
+	/**
+	 * Build HTML for a product image / bundle fallback block.
+	 *
+	 * @param int    $product_id Product ID.
+	 * @param string $context    card, shelf, or pdp.
+	 * @return string
+	 */
+	function resq_theme_get_product_media_html( int $product_id, string $context = 'card' ): string {
+		if ( $product_id <= 0 || ! function_exists( 'resq_get_product_image_display' ) ) {
+			return '';
+		}
+
+		$size    = ( 'pdp' === $context ) ? 'woocommerce_single' : 'woocommerce_thumbnail';
+		$display = resq_get_product_image_display( $product_id, $size );
+
+		if ( empty( $display['mode'] ) || 'none' === $display['mode'] ) {
+			return '';
+		}
+
+		ob_start();
+		resq_theme_template_part(
+			'product/product-media',
+			'',
+			array(
+				'display' => $display,
+				'context' => $context,
+			)
+		);
+
+		return (string) ob_get_clean();
+	}
+}
+
+if ( ! function_exists( 'resq_theme_render_product_media' ) ) {
+	/**
+	 * Echo product image / bundle fallback markup.
+	 *
+	 * @param int    $product_id Product ID.
+	 * @param string $context    card, shelf, or pdp.
+	 */
+	function resq_theme_render_product_media( int $product_id, string $context = 'card' ): void {
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in template part.
+		echo resq_theme_get_product_media_html( $product_id, $context );
 	}
 }
 

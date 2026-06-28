@@ -28,6 +28,7 @@ $routine_title = ! empty( $ladder_payload['title'] )
 	? $ladder_payload['title']
 	: __( 'Complete Your Step-by-Step Regimen', 'resq-clean-pro' );
 $bundle_target = ! empty( $ladder_payload['bundle_target'] ) ? absint( $ladder_payload['bundle_target'] ) : 0;
+$is_complete_bundle = ! empty( $ladder_payload['is_complete_bundle'] );
 $bundle_label  = ! empty( $ladder_payload['bundle_label'] )
 	? $ladder_payload['bundle_label']
 	: __( 'Upgrade to Full Routine Kit', 'resq-clean-pro' );
@@ -97,7 +98,19 @@ $bundle_savings = ! empty( $ladder_payload['bundle_savings'] )
 		<?php endforeach; ?>
 	</ol>
 
-	<?php if ( $bundle_target > 0 ) : ?>
+	<?php if ( $is_complete_bundle ) : ?>
+		<div class="resq-routine-ladder__bundle resq-routine-ladder__bundle--complete">
+			<p class="resq-routine-ladder__bundle-complete">
+				<?php
+				echo esc_html(
+					! empty( $ladder_payload['bundle_complete_message'] )
+						? (string) $ladder_payload['bundle_complete_message']
+						: __( 'You\'re viewing the complete routine', 'resq-clean-pro' )
+				);
+				?>
+			</p>
+		</div>
+	<?php elseif ( $bundle_target > 0 ) : ?>
 		<?php $bundle_url = get_permalink( $bundle_target ); ?>
 		<?php if ( $bundle_url ) : ?>
 			<div class="resq-routine-ladder__bundle">

@@ -27,6 +27,11 @@ $active = class_exists( 'ResQ_Core_Product_Filters' )
 
 $has_active = ! empty( $active );
 
+$scope_audience = '';
+if ( ( 'gateway' === $context_type || $is_lane ) && ! empty( $context['audience'] ) ) {
+	$scope_audience = sanitize_key( (string) $context['audience'] );
+}
+
 /**
  * Build filter groups. Each group has:
  *  - param    : GET param name
@@ -83,7 +88,15 @@ foreach ( $filter_groups as $group ) {
 		continue;
 	}
 	$terms = get_terms( array( 'taxonomy' => $group['taxonomy'], 'hide_empty' => true, 'number' => 100 ) );
-	if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
+	if ( is_wp_error( $terms ) || empty( $terms ) ) {
+		continue;
+	}
+
+	if ( 'resq_concern' === $group['taxonomy'] && '' !== $scope_audience && function_exists( 'resq_core_filter_concern_terms_for_audience' ) ) {
+		$terms = resq_core_filter_concern_terms_for_audience( $terms, $scope_audience );
+	}
+
+	if ( ! empty( $terms ) ) {
 		$has_any_terms = true;
 		break;
 	}
@@ -129,6 +142,13 @@ if ( ! $has_any_terms ) {
 			$terms = get_terms( array( 'taxonomy' => $taxonomy, 'hide_empty' => true, 'orderby' => 'name', 'number' => 100 ) );
 			if ( is_wp_error( $terms ) || empty( $terms ) ) {
 				continue;
+			}
+
+			if ( 'resq_concern' === $taxonomy && '' !== $scope_audience && function_exists( 'resq_core_filter_concern_terms_for_audience' ) ) {
+				$terms = resq_core_filter_concern_terms_for_audience( $terms, $scope_audience );
+				if ( empty( $terms ) ) {
+					continue;
+				}
 			}
 
 			$active_slugs = $active[ $param ] ?? array();

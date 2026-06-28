@@ -49,7 +49,15 @@ if ( empty( $fbt_ids ) || ! is_array( $fbt_ids ) ) {
 			?>
 			<li class="resq-fbt__item">
 				<a class="resq-fbt__link" href="<?php echo esc_url( $fbt_product->get_permalink() ); ?>">
-					<?php echo wp_kses_post( $fbt_product->get_image( 'thumbnail' ) ); ?>
+					<span class="resq-fbt__media">
+						<?php
+						if ( function_exists( 'resq_theme_render_product_media' ) ) {
+							resq_theme_render_product_media( $fbt_id, 'card' );
+						} else {
+							echo wp_kses_post( $fbt_product->get_image( 'thumbnail' ) );
+						}
+						?>
+					</span>
 					<span class="resq-fbt__name"><?php echo esc_html( $fbt_product->get_name() ); ?></span>
 					<span class="resq-fbt__price"><?php echo wp_kses_post( $fbt_product->get_price_html() ); ?></span>
 				</a>

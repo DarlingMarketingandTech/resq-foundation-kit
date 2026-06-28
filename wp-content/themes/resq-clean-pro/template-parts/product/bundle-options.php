@@ -31,15 +31,21 @@ if ( empty( $items ) || ! is_array( $items ) ) {
 	return;
 }
 
-$parts_total = 0.0;
-foreach ( $items as $item ) {
-	$qty   = max( 1, (int) ( $item['qty'] ?? 1 ) );
-	$price = (float) ( $item['price'] ?? 0 );
-	$parts_total += $price * $qty;
-}
+$savings_data = function_exists( 'resq_get_bundle_savings_breakdown' )
+	? resq_get_bundle_savings_breakdown( $bundle_id )
+	: array();
+$parts_total  = (float) ( $savings_data['parts_total'] ?? 0 );
+$savings      = (float) ( $savings_data['composition_savings'] ?? 0 );
 
-$bundle_price = (float) $product->get_price();
-$savings      = $parts_total > $bundle_price ? $parts_total - $bundle_price : 0.0;
+if ( $parts_total <= 0 ) {
+	foreach ( $items as $item ) {
+		$qty          = max( 1, (int) ( $item['qty'] ?? 1 ) );
+		$parts_total += (float) ( $item['price'] ?? 0 ) * $qty;
+	}
+
+	$bundle_price = (float) $product->get_price();
+	$savings      = $parts_total > $bundle_price ? $parts_total - $bundle_price : 0.0;
+}
 ?>
 
 <section class="resq-bundle-options" aria-labelledby="resq-bundle-options-heading">

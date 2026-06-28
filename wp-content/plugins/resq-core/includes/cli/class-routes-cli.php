@@ -65,6 +65,24 @@ class ResQ_Core_Routes_CLI {
 		} else {
 			WP_CLI::success( 'All gateway routes match expected paths.' );
 		}
+
+		self::log_legacy_redirects();
+	}
+
+	/**
+	 * Log configured legacy gateway redirects.
+	 */
+	private static function log_legacy_redirects(): void {
+		if ( ! class_exists( 'ResQ_Core_Legacy_Redirects' ) ) {
+			return;
+		}
+
+		WP_CLI::log( '' );
+		WP_CLI::log( 'Legacy gateway redirects (301):' );
+
+		foreach ( ResQ_Core_Legacy_Redirects::get_map() as $legacy => $path ) {
+			WP_CLI::log( sprintf( '  /%s/ -> %s', $legacy, home_url( $path ) ) );
+		}
 	}
 
 	/**

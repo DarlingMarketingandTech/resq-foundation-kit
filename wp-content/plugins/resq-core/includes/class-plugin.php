@@ -71,6 +71,8 @@ class ResQ_Core_Plugin {
 		);
 
 		add_action( 'init', array( $this, 'register_data_structures' ), 10 );
+		ResQ_Core_Public_Branding::init();
+		ResQ_Core_Legacy_Redirects::init();
 		ResQ_Core_Product_Sync::register_hooks();
 	}
 
@@ -84,6 +86,7 @@ class ResQ_Core_Plugin {
 			ResQ_Core_Woocommerce_Compat::register_admin_notice();
 		} else {
 			ResQ_Core_Merchandising_Hooks::init();
+			ResQ_Core_Bundle_Media_Hooks::init();
 			ResQ_Core_Product_Filters::init();
 			ResQ_Core_Compliance_Gates::init();
 			ResQ_Core_Lane_Routing::init();

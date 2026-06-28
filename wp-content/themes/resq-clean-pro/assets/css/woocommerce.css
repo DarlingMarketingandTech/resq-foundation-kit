@@ -1,0 +1,222 @@
+/**
+ * WooCommerce storefront — product image frames and card layout.
+ *
+ * Constrains tall bottle photography inside fixed-ratio frames without
+ * cropping or distorting source assets.
+ *
+ * @package ResQ_Clean_Pro
+ */
+
+:root {
+	--resq-product-media-ratio: 1;
+	--resq-product-media-max-width: 36rem;
+	--resq-product-media-max-height: min(36rem, 70vh);
+	--resq-product-media-bg: var(--resq-color-bg-muted, #f3f0eb);
+}
+
+/* ==========================================================================
+   Single product — gallery frame
+   ========================================================================== */
+
+.single-product div.product div.images {
+	width: 100%;
+	max-width: var(--resq-product-media-max-width);
+}
+
+.single-product .woocommerce-product-gallery.resq-pdp-gallery {
+	background: var(--resq-product-media-bg);
+	border-radius: var(--resq-radius-lg);
+	overflow: hidden;
+}
+
+.single-product .woocommerce-product-gallery .flex-viewport {
+	max-height: var(--resq-product-media-max-height);
+	background: var(--resq-product-media-bg);
+}
+
+.single-product .woocommerce-product-gallery__wrapper {
+	max-height: var(--resq-product-media-max-height);
+}
+
+.single-product .woocommerce-product-gallery__image {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	aspect-ratio: var(--resq-product-media-ratio);
+	max-height: var(--resq-product-media-max-height);
+	margin: 0;
+	background: var(--resq-product-media-bg);
+}
+
+.single-product .woocommerce-product-gallery__image a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	max-height: var(--resq-product-media-max-height);
+}
+
+.single-product .woocommerce-product-gallery__image img {
+	width: 100%;
+	height: 100%;
+	max-height: var(--resq-product-media-max-height);
+	object-fit: contain;
+	object-position: center;
+}
+
+.single-product .flex-control-thumbs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--resq-spacing-xs);
+	margin: var(--resq-spacing-sm) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.single-product .flex-control-thumbs li {
+	flex: 0 0 calc(25% - var(--resq-spacing-xs));
+	max-width: 5rem;
+	aspect-ratio: 1;
+	overflow: hidden;
+	border-radius: var(--resq-radius-sm);
+	background: var(--resq-product-media-bg);
+}
+
+.single-product .flex-control-thumbs li img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	object-position: center;
+	opacity: 0.55;
+	transition: opacity var(--resq-transition-speed-fast) var(--resq-transition-timing);
+}
+
+.single-product .flex-control-thumbs li img.flex-active,
+.single-product .flex-control-thumbs li img:hover {
+	opacity: 1;
+}
+
+/* Bundle PDP fallback replaces the native gallery inside div.images */
+.single-product div.images .resq-product-media--pdp {
+	width: 100%;
+}
+
+/* ==========================================================================
+   Product cards — shop loop, archives, related products
+   ========================================================================== */
+
+.resq-shop-archive ul.products {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--resq-spacing-md);
+}
+
+.resq-shop-archive ul.products::before,
+.resq-shop-archive ul.products::after {
+	display: none;
+}
+
+.resq-shop-archive ul.products li.product {
+	float: none;
+	width: auto;
+	margin: 0;
+}
+
+@media (min-width: 768px) {
+	.resq-shop-archive ul.products {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1024px) {
+	.resq-shop-archive ul.products {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+ul.products li.resq-product-card {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.resq-product-card .woocommerce-loop-product__link {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	gap: var(--resq-spacing-xs);
+	text-decoration: none;
+	color: inherit;
+}
+
+.resq-product-card__media {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	aspect-ratio: var(--resq-product-media-ratio);
+	width: 100%;
+	overflow: hidden;
+	border-radius: var(--resq-radius-md);
+	background: var(--resq-product-media-bg);
+}
+
+.resq-product-card__media .resq-product-media {
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+}
+
+.resq-product-card__media img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	object-position: center;
+}
+
+.resq-product-card .woocommerce-loop-product__title {
+	margin: 0;
+	font-size: var(--resq-font-size-md);
+	font-weight: var(--resq-font-weight-medium);
+	line-height: var(--resq-line-height-base);
+}
+
+.resq-product-card .price {
+	margin-top: auto;
+	padding-top: var(--resq-spacing-xs);
+	font-size: var(--resq-font-size-sm);
+	font-weight: var(--resq-font-weight-bold);
+}
+
+.resq-product-card .button,
+.resq-product-card .added_to_cart {
+	margin-top: var(--resq-spacing-xs);
+	align-self: flex-start;
+}
+
+/* Related products reuse the same card shell */
+.related.products ul.products {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--resq-spacing-md);
+}
+
+.related.products ul.products::before,
+.related.products ul.products::after {
+	display: none;
+}
+
+.related.products ul.products li.product {
+	float: none;
+	width: auto;
+	margin: 0;
+}
+
+@media (min-width: 768px) {
+	.related.products ul.products {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
