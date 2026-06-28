@@ -1,74 +1,60 @@
 <?php
 /**
- * Homepage — Doorway split (dual audience entry).
- *
- * High-contrast 2-column layout that filters traffic by shopping intent.
+ * Homepage — Shop pathway cards.
  *
  * @package ResQ_Clean_Pro
- *
- * @var array $args {
- *     @type string $human_url Women's skincare landing URL.
- *     @type string $pet_url   Pet topical skin care landing URL.
- * }
  */
 
 defined( 'ABSPATH' ) || exit;
 
-$human_url = isset( $args['human_url'] ) ? (string) $args['human_url'] : home_url( '/shop/human/womens-skincare/' );
-$pet_url   = isset( $args['pet_url'] ) ? (string) $args['pet_url'] : home_url( '/shop/pet/topical-skin-care/' );
+$pathways = function_exists( 'resq_theme_get_home_pathway_cards' )
+	? resq_theme_get_home_pathway_cards()
+	: array();
 ?>
 
-<section class="resq-home-section resq-home-section--cream" aria-label="<?php esc_attr_e( 'Choose your routine', 'resq-clean-pro' ); ?>">
-	<div class="resq-doorway__inner">
+<section class="resq-home-section resq-home-section--cream" aria-labelledby="resq-pathways-title">
+	<div class="resq-home-section__inner resq-pathway__header">
+		<span class="resq-section-label"><?php esc_html_e( 'Shop by pathway', 'resq-clean-pro' ); ?></span>
+		<h2 id="resq-pathways-title" class="resq-pathway__title">
+			<?php esc_html_e( 'Start with the routine that fits your household.', 'resq-clean-pro' ); ?>
+		</h2>
+	</div>
 
-		<article class="resq-doorway__card">
+	<div class="resq-pathway__grid">
+		<?php foreach ( $pathways as $pathway ) : ?>
 			<?php
-			resq_theme_render_image(
-				'womens-skincare-bathroom-lifestyle',
-				array(
-					'class'       => 'resq-doorway__card-image',
-					'image_class' => 'resq-doorway__image',
-					'size'        => 'medium_large',
-					'alt'         => __( 'Women’s skincare products styled in a clean bathroom routine setting.', 'resq-clean-pro' ),
-					'label'       => __( 'The Daily Radiance Routine', 'resq-clean-pro' ),
-				)
-			);
+			$is_compact = ! empty( $pathway['is_compact'] );
+			$card_class = 'resq-pathway__card';
+			if ( $is_compact ) {
+				$card_class .= ' resq-pathway__card--compact';
+			}
 			?>
-			<div class="resq-doorway__card-body">
-				<h2 class="resq-doorway__card-headline"><?php esc_html_e( 'Advanced human skincare.', 'resq-clean-pro' ); ?></h2>
-				<p class="resq-doorway__card-sub">
-					<?php esc_html_e( 'Cleanse, hydrate, and support your skin barrier with pure botanical ingredients.', 'resq-clean-pro' ); ?>
-				</p>
-				<a class="resq-doorway__card-cta" href="<?php echo esc_url( $human_url ); ?>">
-					<?php esc_html_e( 'Explore human routines', 'resq-clean-pro' ); ?>
-				</a>
-			</div>
-		</article>
-
-		<article class="resq-doorway__card">
-			<?php
-			resq_theme_render_image(
-				'dog-skin-care-gentle-effective-lifestyle',
-				array(
-					'class'               => 'resq-doorway__card-image',
-					'image_class'         => 'resq-doorway__image',
-					'size'                => 'medium_large',
-					'alt'                 => __( 'A calm dog resting outdoors in a gentle topical care lifestyle scene.', 'resq-clean-pro' ),
-					'label'               => __( 'Soothed & Calm Companion', 'resq-clean-pro' ),
-					'placeholder_variant' => 'resq-img-placeholder--pet',
-				)
-			);
-			?>
-			<div class="resq-doorway__card-body">
-				<h2 class="resq-doorway__card-headline"><?php esc_html_e( 'Lick-safe pet topical care.', 'resq-clean-pro' ); ?></h2>
-				<p class="resq-doorway__card-sub">
-					<?php esc_html_e( 'Gentle, non-toxic comfort for hot spots, dry noses, and sensitive-feeling skin as part of a care routine.', 'resq-clean-pro' ); ?>
-				</p>
-				<a class="resq-doorway__card-cta" href="<?php echo esc_url( $pet_url ); ?>">
-					<?php esc_html_e( 'Explore pet care routines', 'resq-clean-pro' ); ?>
-				</a>
-			</div>
-		</article>
-
+			<a
+				class="<?php echo esc_attr( $card_class ); ?>"
+				href="<?php echo esc_url( (string) ( $pathway['url'] ?? '#' ) ); ?>"
+			>
+				<?php
+				resq_theme_render_image(
+					(string) ( $pathway['image_slug'] ?? '' ),
+					array(
+						'class'               => 'resq-pathway__card-image',
+						'image_class'         => 'resq-pathway__image',
+						'size'                => 'medium_large',
+						'alt'                 => (string) ( $pathway['image_alt'] ?? '' ),
+						'label'               => (string) ( $pathway['image_label'] ?? '' ),
+						'placeholder_variant' => (string) ( $pathway['variant'] ?? '' ),
+					)
+				);
+				?>
+				<div class="resq-pathway__card-body">
+					<h3 class="resq-pathway__card-headline"><?php echo esc_html( (string) ( $pathway['title'] ?? '' ) ); ?></h3>
+					<p class="resq-pathway__card-sub"><?php echo esc_html( (string) ( $pathway['description'] ?? '' ) ); ?></p>
+					<span class="resq-pathway__card-cta">
+						<?php echo esc_html( (string) ( $pathway['cta'] ?? __( 'Shop now', 'resq-clean-pro' ) ) ); ?>
+						<span aria-hidden="true">&rarr;</span>
+					</span>
+				</div>
+			</a>
+		<?php endforeach; ?>
 	</div>
 </section>

@@ -2,21 +2,20 @@
 /**
  * Homepage — Hero banner (above the fold).
  *
- * "One Cabinet, Not Two." Unified masterbrand entry with dual-audience CTAs.
- * Compliance: comfort language only, no CBD references (docs/05).
- *
  * @package ResQ_Clean_Pro
  *
  * @var array $args {
- *     @type string $human_url Resolved Shop For Humans URL.
- *     @type string $pet_url   Resolved Shop For Pets URL.
+ *     @type string $human_url   Resolved Shop For Humans URL.
+ *     @type string $pet_url     Resolved Shop For Pets URL.
+ *     @type string $bundles_url Bundles gateway URL.
  * }
  */
 
 defined( 'ABSPATH' ) || exit;
 
-$human_url = isset( $args['human_url'] ) ? (string) $args['human_url'] : home_url( '/shop/human/' );
-$pet_url   = isset( $args['pet_url'] ) ? (string) $args['pet_url'] : home_url( '/shop/pet/' );
+$human_url   = isset( $args['human_url'] ) ? (string) $args['human_url'] : home_url( '/shop/human/' );
+$pet_url     = isset( $args['pet_url'] ) ? (string) $args['pet_url'] : home_url( '/shop/pet/' );
+$bundles_url = isset( $args['bundles_url'] ) ? (string) $args['bundles_url'] : home_url( '/shop/bundles/' );
 ?>
 
 <section class="resq-hero" aria-labelledby="resq-hero-title">
@@ -33,11 +32,14 @@ $pet_url   = isset( $args['pet_url'] ) ? (string) $args['pet_url'] : home_url( '
 			</p>
 
 			<div class="resq-hero__actions">
-				<a class="resq-hero__cta--primary" href="<?php echo esc_url( $human_url ); ?>">
-					<?php esc_html_e( 'Shop for Humans', 'resq-clean-pro' ); ?>
+				<a class="resq-hero__cta resq-hero__cta--primary" href="<?php echo esc_url( $human_url ); ?>">
+					<?php esc_html_e( 'Shop Human Care', 'resq-clean-pro' ); ?>
 				</a>
-				<a class="resq-hero__cta--secondary" href="<?php echo esc_url( $pet_url ); ?>">
-					<?php esc_html_e( 'Shop for Pets', 'resq-clean-pro' ); ?>
+				<a class="resq-hero__cta resq-hero__cta--secondary" href="<?php echo esc_url( $pet_url ); ?>">
+					<?php esc_html_e( 'Shop Pet Care', 'resq-clean-pro' ); ?>
+				</a>
+				<a class="resq-hero__cta resq-hero__cta--tertiary" href="<?php echo esc_url( $bundles_url ); ?>">
+					<?php esc_html_e( 'Bundles & Savings', 'resq-clean-pro' ); ?>
 				</a>
 			</div>
 
@@ -48,7 +50,7 @@ $pet_url   = isset( $args['pet_url'] ) ? (string) $args['pet_url'] : home_url( '
 				</li>
 				<li class="resq-hero__trust-item">
 					<span class="resq-hero__trust-icon" aria-hidden="true">&#127807;</span>
-					<?php esc_html_e( '5.5 pH-balanced & fragrance-free', 'resq-clean-pro' ); ?>
+					<?php esc_html_e( '5.5 pH balanced & fragrance-free', 'resq-clean-pro' ); ?>
 				</li>
 				<li class="resq-hero__trust-item">
 					<span class="resq-hero__trust-icon" aria-hidden="true">&#128062;</span>
@@ -57,18 +59,20 @@ $pet_url   = isset( $args['pet_url'] ) ? (string) $args['pet_url'] : home_url( '
 			</ul>
 		</div>
 
-		<?php
-		resq_theme_render_image(
-			'ingredients-cream-honey-aloe-triptych',
-			array(
-				'class'       => 'resq-hero__image',
-				'image_class' => 'resq-hero__img',
-				'size'        => 'large',
-				'alt'         => __( 'Raw Manuka honey, aloe, and cream textures styled as the botanical foundation of a household routine.', 'resq-clean-pro' ),
-				'label'       => __( 'The Shared Cabinet Lifestyle', 'resq-clean-pro' ),
-				'loading'     => 'eager',
-			)
-		);
-		?>
+		<div class="resq-hero__media">
+			<?php
+			resq_theme_render_image(
+				'ingredients-cream-honey-aloe-triptych',
+				array(
+					'class'       => 'resq-hero__image',
+					'image_class' => 'resq-hero__img',
+					'size'        => 'large',
+					'alt'         => __( 'Raw Manuka honey, aloe, and cream textures styled as the botanical foundation of a household routine.', 'resq-clean-pro' ),
+					'label'       => __( 'The Shared Cabinet Lifestyle', 'resq-clean-pro' ),
+					'loading'     => 'eager',
+				)
+			);
+			?>
+		</div>
 	</div>
 </section>

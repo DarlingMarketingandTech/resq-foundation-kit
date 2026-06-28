@@ -70,7 +70,7 @@ function resq_theme_enqueue_assets(): void {
 		wp_enqueue_style(
 			'resq-theme-home',
 			resq_theme_get_asset_url( 'assets/css/home.css' ),
-			array( 'resq-theme-components' ),
+			array( 'resq-theme-gateway' ),
 			RESQ_THEME_VERSION
 		);
 	}

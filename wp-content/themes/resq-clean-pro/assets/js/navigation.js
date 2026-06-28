@@ -109,12 +109,19 @@
 		const trigger = item.querySelector( '.main-navigation__trigger' );
 		if ( ! trigger ) return;
 
+		let closeTimer = null;
+
 		function close() {
 			item.setAttribute( 'data-open', 'false' );
 			trigger.setAttribute( 'aria-expanded', 'false' );
 		}
 
 		function open() {
+			if ( closeTimer ) {
+				clearTimeout( closeTimer );
+				closeTimer = null;
+			}
+
 			items.forEach( function ( other ) {
 				if ( other !== item ) {
 					other.setAttribute( 'data-open', 'false' );
@@ -126,7 +133,28 @@
 			trigger.setAttribute( 'aria-expanded', 'true' );
 		}
 
+		function scheduleClose() {
+			if ( closeTimer ) {
+				clearTimeout( closeTimer );
+			}
+
+			closeTimer = setTimeout( function () {
+				closeTimer = null;
+				if ( ! item.contains( document.activeElement ) ) {
+					close();
+				}
+			}, 200 );
+		}
+
 		trigger.addEventListener( 'focus', open );
+
+		item.addEventListener( 'focusin', function () {
+			if ( closeTimer ) {
+				clearTimeout( closeTimer );
+				closeTimer = null;
+			}
+			open();
+		} );
 
 		trigger.addEventListener( 'keydown', function ( event ) {
 			if ( 'Escape' === event.key ) {
@@ -134,10 +162,8 @@
 			}
 		} );
 
-		item.addEventListener( 'focusout', function ( event ) {
-			if ( ! item.contains( event.relatedTarget ) ) {
-				close();
-			}
+		item.addEventListener( 'focusout', function () {
+			scheduleClose();
 		} );
 	} );
 

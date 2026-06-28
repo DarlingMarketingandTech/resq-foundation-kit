@@ -38,12 +38,16 @@ foreach ( $product_ids as $product_id ) {
 if ( empty( $cards ) ) {
 	return;
 }
+
+$show_title = '' !== trim( $shelf_title );
 ?>
 
-<section class="resq-gateway__section resq-gateway-shelf-section" aria-labelledby="resq-gateway-shelf-heading">
+<section class="resq-gateway__section resq-gateway-shelf-section"<?php echo $show_title ? ' aria-labelledby="resq-gateway-shelf-heading"' : ' aria-label="' . esc_attr__( 'Product shelf', 'resq-clean-pro' ) . '"'; ?>>
+	<?php if ( $show_title ) : ?>
 	<h2 id="resq-gateway-shelf-heading" class="resq-gateway__section-title">
 		<?php echo esc_html( $shelf_title ); ?>
 	</h2>
+	<?php endif; ?>
 
 	<ul class="resq-gateway-shelf">
 		<?php foreach ( $cards as $card ) : ?>

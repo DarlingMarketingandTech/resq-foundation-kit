@@ -59,6 +59,7 @@
 	--resq-radius-lg: 8px;
 
 	--resq-container-max-width: 1280px;
+	--resq-container-max-width-wide: 1440px;
 	--resq-z-index-header: 500;
 	--resq-z-index-overlay: 550;
 	--resq-z-index-drawer: 600;

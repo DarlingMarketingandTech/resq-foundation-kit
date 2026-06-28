@@ -21,6 +21,10 @@ $pet_base = function_exists( 'resq_theme_get_gateway_page_url' )
 	? trailingslashit( resq_theme_get_gateway_page_url( 'page-gateway-pet.php' ) )
 	: home_url( '/shop/pet/' );
 
+$bundles_url = function_exists( 'resq_theme_get_gateway_page_url' )
+	? resq_theme_get_gateway_page_url( 'page-gateway-bundles.php' )
+	: home_url( '/shop/bundles/' );
+
 $learn_url = function_exists( 'resq_theme_get_gateway_page_url' )
 	? resq_theme_get_gateway_page_url( 'page-learn-index.php' )
 	: home_url( '/learn/' );
@@ -35,19 +39,13 @@ get_header();
 		'template-parts/home/hero',
 		null,
 		array(
-			'human_url' => untrailingslashit( $human_base ),
-			'pet_url'   => untrailingslashit( $pet_base ),
+			'human_url'   => untrailingslashit( $human_base ),
+			'pet_url'     => untrailingslashit( $pet_base ),
+			'bundles_url' => $bundles_url,
 		)
 	);
 
-	get_template_part(
-		'template-parts/home/doorway-split',
-		null,
-		array(
-			'human_url' => $human_base . 'womens-skincare/',
-			'pet_url'   => $pet_base . 'topical-skin-care/',
-		)
-	);
+	get_template_part( 'template-parts/home/doorway-split' );
 
 	get_template_part(
 		'template-parts/home/concern-lanes',
@@ -57,6 +55,8 @@ get_header();
 			'pet_base'   => $pet_base,
 		)
 	);
+
+	get_template_part( 'template-parts/home/favorites-shelf' );
 
 	get_template_part(
 		'template-parts/home/ingredient-authority',
