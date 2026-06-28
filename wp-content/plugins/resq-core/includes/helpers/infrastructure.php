@@ -57,6 +57,50 @@ if ( ! function_exists( 'resq_core_is_active' ) ) {
 	}
 }
 
+if ( ! function_exists( 'resq_core_get_attachment_id_by_slug' ) ) {
+	/**
+	 * Resolve a Media Library attachment by its filename-derived post slug.
+	 *
+	 * WordPress keeps generated sizes on the same attachment, so catalog and
+	 * marketing maps should pass the original upload slug without size suffixes.
+	 *
+	 * @param string $slug Attachment post_name, usually the uploaded filename without extension.
+	 * @return int Attachment ID, or 0 when no image attachment matches.
+	 */
+	function resq_core_get_attachment_id_by_slug( string $slug ): int {
+		$slug = sanitize_title( $slug );
+
+		if ( '' === $slug ) {
+			return 0;
+		}
+
+		$cache_key = 'attachment_slug_' . md5( $slug );
+		$cached    = ResQ_Core_Cache::get( $cache_key );
+
+		if ( false !== $cached ) {
+			return (int) $cached;
+		}
+
+		$query = new WP_Query(
+			array(
+				'name'           => $slug,
+				'post_type'      => 'attachment',
+				'post_status'    => 'inherit',
+				'post_mime_type' => 'image',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+				'no_found_rows'  => true,
+			)
+		);
+
+		$attachment_id = ! empty( $query->posts ) ? (int) $query->posts[0] : 0;
+
+		ResQ_Core_Cache::set( $cache_key, $attachment_id );
+
+		return $attachment_id;
+	}
+}
+
 if ( ! function_exists( 'resq_core_get_badge_data' ) ) {
 	/**
 	 * Return badge data for a product.
@@ -143,15 +187,23 @@ if ( ! function_exists( 'resq_core_build_zone_notice' ) ) {
 			? (string) $notice_text[ $zone ]
 			: '';
 
+		$dev_preview = false;
+
+		if ( '' === $text ) {
+			$text = resq_core_dev_compliance_notice_text( $zone );
+			$dev_preview = '' !== $text;
+		}
+
 		if ( '' === $text ) {
 			return array();
 		}
 
 		return array(
 			array(
-				'zone'    => $zone,
-				'context' => $context,
-				'text'    => $text,
+				'zone'        => $zone,
+				'context'     => $context,
+				'text'        => $text,
+				'dev_preview' => $dev_preview,
 			),
 		);
 	}

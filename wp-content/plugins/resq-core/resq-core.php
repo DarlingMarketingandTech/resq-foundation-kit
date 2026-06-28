@@ -3,7 +3,7 @@
  * Plugin Name: ResQ Core
  * Plugin URI:
  * Description: Business logic, settings, and WooCommerce integrations for the ResQ storefront.
- * Version: 0.5.0
+ * Version: 0.6.0
  * Requires at least: 6.4
  * Requires PHP: 8.1
  * Author:
@@ -25,13 +25,14 @@ if ( defined( 'RESQ_CORE_VERSION' ) ) {
 	return;
 }
 
-define( 'RESQ_CORE_VERSION', '0.5.0' );
+define( 'RESQ_CORE_VERSION', '0.6.0' );
 define( 'RESQ_CORE_FILE', __FILE__ );
 define( 'RESQ_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'RESQ_CORE_URL', plugin_dir_url( __FILE__ ) );
 define( 'RESQ_CORE_INCLUDES', RESQ_CORE_DIR . 'includes/' );
 
 require_once RESQ_CORE_INCLUDES . 'helpers/infrastructure.php';
+require_once RESQ_CORE_INCLUDES . 'helpers/local-sandbox.php';
 require_once RESQ_CORE_INCLUDES . 'class-options.php';
 require_once RESQ_CORE_INCLUDES . 'class-cache.php';
 require_once RESQ_CORE_INCLUDES . 'registrations/class-post-meta.php';
@@ -42,6 +43,8 @@ require_once RESQ_CORE_INCLUDES . 'registrations/class-registrations.php';
 require_once RESQ_CORE_INCLUDES . 'class-woocommerce-compat.php';
 require_once RESQ_CORE_INCLUDES . 'helpers/internal.php';
 require_once RESQ_CORE_INCLUDES . 'helpers/storefront.php';
+require_once RESQ_CORE_INCLUDES . 'routing/data/lanes.php';
+require_once RESQ_CORE_INCLUDES . 'routing/class-lane-routing.php';
 require_once RESQ_CORE_INCLUDES . 'class-product-sync.php';
 require_once RESQ_CORE_INCLUDES . 'woocommerce/class-merchandising-hooks.php';
 require_once RESQ_CORE_INCLUDES . 'woocommerce/class-product-filters.php';

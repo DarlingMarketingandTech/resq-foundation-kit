@@ -38,6 +38,10 @@ class ResQ_Core_Compliance_Gates {
 			return;
 		}
 
+		if ( function_exists( 'resq_core_compliance_enforcement_active' ) && ! resq_core_compliance_enforcement_active() ) {
+			return;
+		}
+
 		if ( ! function_exists( 'resq_core_feature_enabled' ) || ! resq_core_feature_enabled( 'state_restriction' ) ) {
 			return;
 		}

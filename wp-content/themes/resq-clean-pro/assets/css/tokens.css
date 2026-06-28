@@ -69,6 +69,24 @@
 
 	--resq-breakpoint-md: 768px;
 	--resq-breakpoint-lg: 1024px;
+
+	/* Brand warm palette — homepage, seasonal accents */
+	--resq-color-warm-cream: #FAF7F2;
+	--resq-color-warm-cream-deep: #F5F0E8;
+	--resq-color-honey-light: #FEF3C7;
+	--resq-color-honey: #D97706;
+	--resq-color-sage: #4A7C59;
+	--resq-color-sage-light: #EDF3EF;
+	--resq-color-sage-muted: #A8C5B0;
+
+	/* Extended type scale — editorial headlines */
+	--resq-font-size-4xl: 2.25rem;
+	--resq-font-size-5xl: 3rem;
+	--resq-font-size-6xl: 3.75rem;
+
+	/* Section spacing */
+	--resq-section-padding-y: 5rem;
+	--resq-section-padding-y-lg: 7rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -119,7 +119,55 @@ Imported at recommended strategy prices. Owner should confirm COGS/margin before
 
 ---
 
-## 7. Storefront behavior verification
+## 7. Target Problem Lane copy (draft briefs — pre-launch)
+
+> **Authority:** [`05-COMPLIANCE-RULES.md`](../05-COMPLIANCE-RULES.md) § Target Problem Lane Copy Rules. Lane creative briefs (June 2026) are strategy drafts — scrub risky phrases and obtain owner/legal sign-off per lane before publish.
+
+### 7a. Briefed lanes — per-lane guardrail sign-off
+
+| Lane slug | Canonical SKU prefix | Zone / flags | Owner sign-off |
+| --- | --- | --- | --- |
+| `razor-burn` | `RQ-HUM-MOISTURIZER` | standard | ☐ |
+| `beard-and-odor-control` | `RQ-HUM-MENSWASH` | standard | ☐ |
+| `makeup-removal-detox` | `RQ-HUM-WASH` | standard | ☐ |
+| `exfoliation-texture` | `RQ-HUM-SCRUB` | standard | ☐ |
+| `overnight-repair` | `RQ-HUM-NIGHTSERUM` | standard | ☐ |
+| `post-color-irritation` | `RQ-HUM-SHAMPOO` | standard | ☐ |
+| `split-end-defense` | `RQ-HUM-CONDITIONER` | standard | ☐ |
+| `diaper-rash` | `RQ-BABY-CREAM` / `RQ-HUM-AIOCREAM` | `baby` | ☐ |
+| `hyperkeratosis` | `RQ-PET-SKINCREAM` | `pet-health` | ☐ |
+| `feline-dermatitis` | `RQ-PET-SKINCREAM` | `pet-health` | ☐ |
+| `seasonal-grass-itch` | `RQ-PET-SHAMPOO` | `pet-health` | ☐ |
+| `mud-fever-support` | `RQ-PET-SHAMPOO` | `pet-health` | ☐ |
+| `undercoat-friction-static` | `RQ-PET-CONDITIONER` | `pet-health` | ☐ |
+
+### 7b. Lane-wide checks (all briefed lanes)
+
+- [ ] Hero and benefit-matrix copy uses cosmetic/support language — no cure/treat/prevent disease claims
+- [ ] Draft phrases scrubbed (`eliminates`, `cellular micro-repair`, `clears acne`, undocumented `vet-recommended`, etc.)
+- [ ] Routine ladder SKUs match catalog; bundle upgrade prices match live WooCommerce totals
+- [ ] CBD SKUs absent from standard human/pet lane ladders and cross-sells
+- [ ] Men's moisturizer lane excluded from CBD merchandising paths
+- [ ] Before/after and testimonial blocks permissioned and non-guaranteeing
+- [ ] "Buy 1, Donate 1" copy verified against operational donation policy
+- [ ] Baby diaper-rash lane reviewed for drug vs. cosmetic classification (active ingredients)
+- [ ] Pet lanes include consult-your-veterinarian guidance where strategy warrants it
+
+### 7c. Matrix expansion lanes (no full brief yet)
+
+Do not publish until brief + §7b checks exist:
+
+| Expansion focus | Canonical SKU prefix | Blocker |
+| --- | --- | --- |
+| Cradle cap comfort | `RQ-HUM-AIOCREAM` / `RQ-BABY-CREAM` | Baby lane brief + drug/cosmetic review |
+| Skin fold dermatitis (pet) | `RQ-PET-SKINCREAM` | Pet-health brief |
+| Pseudofolliculitis / shaving bumps | `RQ-HUM-MOISTURIZER` | May merge with `razor-burn` lane |
+| Diabetic training rewards | `RQ-PET-DIABETIC-TREATS` | `medical-adjacent`; human-checkout isolation |
+| Senior dog elbow calluses | `RQ-PET-SKINCREAM` | Pet-health brief |
+
+---
+
+## 8. Storefront behavior verification
 
 After import, confirm in browser:
 
@@ -131,7 +179,7 @@ After import, confirm in browser:
 
 ---
 
-## 8. Non-blocking follow-ups (Phase 8+)
+## 9. Non-blocking follow-ups (Phase 8+)
 
 - Subscribe-and-save and bulk quantity breaks are pricing strategy only — no Woo Subscriptions engine yet.
 - Product images not included in catalog import — add via media library or Phase 8 merchandising pass.

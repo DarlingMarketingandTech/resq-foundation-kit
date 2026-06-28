@@ -26,7 +26,7 @@ if ( ! function_exists( 'resq_catalog_get_products' ) ) {
 		$horse        = array( resq_catalog_cat( 'horse-care', 'Horse & Large Animal Care' ) );
 		$anti_aging   = array( resq_catalog_cat( 'anti-aging-serums', 'Anti-Aging Serums' ) );
 
-		return array(
+		$products = array(
 			'RQ-HUM-AIOCREAM' => array(
 				'name'               => 'All-in-One Intensive Skin Treatment & Moisturizer',
 				'type'               => 'variable',
@@ -535,6 +535,57 @@ if ( ! function_exists( 'resq_catalog_get_products' ) ) {
 				'badge_label'      => 'Specialty',
 				'badge_type'       => 'custom',
 			),
+		);
+
+		foreach ( resq_catalog_get_product_image_map() as $sku => $image_data ) {
+			if ( isset( $products[ $sku ] ) ) {
+				$products[ $sku ] = array_merge( $products[ $sku ], $image_data );
+			}
+		}
+
+		return $products;
+	}
+}
+
+if ( ! function_exists( 'resq_catalog_get_product_image_map' ) ) {
+	/**
+	 * Return Media Library image slugs keyed by canonical catalog SKU.
+	 *
+	 * Slugs mirror uploaded filenames without extension. Missing attachments are
+	 * skipped by the importer, so this map can include planned assets safely.
+	 *
+	 * @return array<string, array<string, mixed>>
+	 */
+	function resq_catalog_get_product_image_map(): array {
+		return array(
+			'RQ-HUM-AIOCREAM'           => array( 'image' => 'womens-ultimate-face-body-cream', 'gallery' => array( 'womens-skincare-bathroom-lifestyle', 'ingredients-cream-honey-aloe-triptych' ) ),
+			'RQ-HUM-WASH'               => array( 'image' => 'womens-face-body-wash', 'gallery' => array( 'womens-skincare-bathroom-lifestyle', 'ingredients-cream-honey-aloe-triptych' ) ),
+			'RQ-HUM-SCRUB'              => array( 'image' => 'womens-microderm-scrub', 'gallery' => array( 'womens-skincare-bathroom-lifestyle', 'ingredients-cream-honey-aloe-triptych' ) ),
+			'RQ-HUM-NIGHTSERUM'         => array( 'image' => 'womens-night-serum', 'gallery' => array( 'womens-skincare-bathroom-lifestyle', 'womens-line-complete-collection' ) ),
+			'RQ-HUM-MOISTURIZER'        => array( 'image' => 'mens-face-body-moisturizer-2', 'gallery' => array( 'mens-skin-care-cream-hero-splash', 'mens-line-complete-collection' ) ),
+			'RQ-HUM-MENSWASH'           => array( 'image' => 'mens-face-body-wash', 'gallery' => array( 'mens-skin-care-cream-hero-splash', 'mens-line-complete-collection' ) ),
+			'RQ-HUM-MENSSERUM'          => array( 'image' => 'mens-anti-aging-night-serum', 'gallery' => array( 'mens-skin-care-cream-hero-splash', 'mens-line-complete-collection' ) ),
+			'RQ-HUM-MENSSCRUB'          => array( 'image' => 'mens-skin-care-cream-8oz', 'gallery' => array( 'mens-skin-care-cream-hero-splash', 'mens-line-complete-collection' ) ),
+			'RQ-HUM-MENSHAMPOO'         => array( 'image' => 'mens-hair-loss-prevention-shampoo', 'gallery' => array( 'womens-hair-loss-shampoo-conditioner-bundle', 'mens-line-complete-collection' ) ),
+			'RQ-HUM-MENSCOND'           => array( 'image' => 'womens-hair-loss-shampoo-conditioner-bundle', 'gallery' => array( 'mens-hair-loss-prevention-shampoo', 'ingredients-cream-honey-aloe-triptych' ) ),
+			'RQ-HUM-SHAMPOO'            => array( 'image' => 'womens-hair-loss-prevention-shampoo', 'gallery' => array( 'womens-hair-loss-shampoo-conditioner-bundle', 'womens-hair-loss-prevention-conditioner' ) ),
+			'RQ-HUM-CONDITIONER'        => array( 'image' => 'womens-hair-loss-prevention-conditioner', 'gallery' => array( 'womens-hair-loss-shampoo-conditioner-bundle', 'womens-hair-loss-prevention-shampoo' ) ),
+			'RQ-HUM-MANUKAHONEY'        => array( 'image' => 'ingredients-cream-honey-aloe-triptych', 'gallery' => array( 'womens-hair-loss-shampoo-conditioner-bundle' ) ),
+			'RQ-BABY-WASH'              => array( 'image' => 'baby-face-body-wash', 'gallery' => array( 'baby-skin-treatment-lifestyle' ) ),
+			'RQ-BABY-CREAM'             => array( 'image' => 'baby-skin-treatment', 'gallery' => array( 'baby-skin-treatment-lifestyle', 'ingredients-cream-honey-aloe-triptych' ) ),
+			'RQ-PET-SKINCREAM'          => array( 'image' => 'dog-skin-care-cream-manuka-honey-4oz', 'gallery' => array( 'dog-skin-care-gentle-effective-lifestyle', 'dog-skin-care-healing-before-after', 'dog-skin-care-hotspot-relief-benefits', 'dog-skin-care-ingredients-infographic', 'cat-skin-care-cream-manuka-honey-2oz', 'cat-skin-care-gentle-effective-lifestyle' ) ),
+			'RQ-PET-HORSECREAM'         => array( 'image' => 'horse-skin-care-cream-manuka-honey-8oz', 'gallery' => array( 'horse-skin-care-natural-healing-lifestyle', 'horse-skin-care-wound-healing-closeup', 'horse-skin-care-vet-recommended-before-after', 'horse-skin-care-organic-ingredients' ) ),
+			'RQ-PET-SHAMPOO'            => array( 'image' => 'dog-shampoo-manuka-honey-16oz', 'gallery' => array( 'dog-skin-care-gentle-effective-lifestyle', 'pet-topical-care-hyperkeratosis-lifestyle' ) ),
+			'RQ-PET-CONDITIONER'        => array( 'image' => 'dog-conditioner-manuka-honey-16oz', 'gallery' => array( 'dog-skin-care-gentle-effective-lifestyle', 'pet-topical-care-hyperkeratosis-lifestyle' ) ),
+			'RQ-PET-DIABETIC-TREATS'    => array( 'image' => 'diabetic-dog-treats-2', 'gallery' => array( 'diabetic-dog-treats-alt' ) ),
+			'RQ-PCBD-OIL'               => array( 'image' => 'cbd-hemp-oil-pets-beef-cheese-300mg', 'gallery' => array( 'cbd-hemp-oil-pets-beef-cheese-300mg-alt', 'cbd-for-pets-natural' ) ),
+			'RQ-PCBD-TREATS'            => array( 'image' => 'cbd-infused-organic-dog-treats-2', 'gallery' => array( 'cbd-for-pets-natural' ) ),
+			'RQ-HCBD-OIL'               => array( 'image' => 'full-spectrum-cbd-oil-2' ),
+			'RQ-HCBD-GUMMIES'           => array( 'image' => 'vegan-gummies-cbd' ),
+			'RQ-HCBD-SLEEPGUMMIES'      => array( 'image' => 'sleep-gummies-cbd' ),
+			'RQ-HCBD-RUB'               => array( 'image' => 'intensive-releif-rub-cbd' ),
+			'RQ-HCBD-BATHBOMB'          => array( 'image' => 'cbd-bath-bomb-for-pain', 'gallery' => array( 'cbd-bath-bomb-for-healing' ) ),
+			'RQ-HCBD-SOFTGELS'          => array( 'image' => 'weight-control-softgels-cbd' ),
 		);
 	}
 }

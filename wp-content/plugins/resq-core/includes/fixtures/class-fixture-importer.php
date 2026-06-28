@@ -170,6 +170,16 @@ class ResQ_Core_Fixture_Importer {
 			$product->set_attributes( $this->build_variation_attributes( $data['variations'] ?? array() ) );
 		}
 
+		$image_id = $this->resolve_image_slug( (string) ( $data['image'] ?? '' ) );
+		if ( $image_id > 0 ) {
+			$product->set_image_id( $image_id );
+		}
+
+		$gallery_ids = $this->resolve_image_slugs( $data['gallery'] ?? array() );
+		if ( ! empty( $gallery_ids ) ) {
+			$product->set_gallery_image_ids( $gallery_ids );
+		}
+
 		$product_id = (int) $product->save();
 
 		if ( $product_id <= 0 ) {
@@ -205,6 +215,43 @@ class ResQ_Core_Fixture_Importer {
 		ResQ_Core_Cache::bust_product( $product_id );
 
 		return $product_id;
+	}
+
+	/**
+	 * Resolve a catalog image slug to a Media Library attachment ID.
+	 *
+	 * @param string $slug Attachment slug.
+	 * @return int
+	 */
+	protected function resolve_image_slug( string $slug ): int {
+		if ( '' === $slug || ! function_exists( 'resq_core_get_attachment_id_by_slug' ) ) {
+			return 0;
+		}
+
+		return resq_core_get_attachment_id_by_slug( $slug );
+	}
+
+	/**
+	 * Resolve catalog gallery image slugs to attachment IDs.
+	 *
+	 * @param mixed $slugs Image slug list.
+	 * @return int[]
+	 */
+	protected function resolve_image_slugs( mixed $slugs ): array {
+		if ( ! is_array( $slugs ) ) {
+			return array();
+		}
+
+		$image_ids = array();
+
+		foreach ( $slugs as $slug ) {
+			$image_id = $this->resolve_image_slug( (string) $slug );
+			if ( $image_id > 0 ) {
+				$image_ids[] = $image_id;
+			}
+		}
+
+		return array_values( array_unique( $image_ids ) );
 	}
 
 	/**

@@ -129,11 +129,22 @@ No code: this is a structured copy review + owner sign-off against
 Mechanism is ready (all plugin copy fields are claim-safe by design); the sign-off
 is an owner/legal task before the Phase 11 gate.
 
-> **Dev-site posture:** every Phase 10 feature flag ships **enabled** so the owner
-> can see each surface live. All chrome copy is neutral; all legal/claim strings
-> (CBD disclaimer `notice_text`, `restricted_states`, `state_restriction_notice`)
-> are **empty pending owner/legal sign-off**. Flip any flag off in
-> `resq_core_features`, or leave the claim strings empty, to keep a surface dormant.
+**Target Problem Lane guardrails (June 2026):** Per-lane allowed/prohibited claim
+territory is now in [`05-COMPLIANCE-RULES.md`](05-COMPLIANCE-RULES.md) § Target
+Problem Lane Copy Rules. Owner sign-off table: compliance checklist §7. Draft lane
+briefs must be scrubbed for risky phrases (`eliminates`, `cellular micro-repair`,
+undocumented `vet-recommended`, etc.) before any lane page ships.
+
+> **Local sandbox:** when `resq_core_is_local_sandbox()` is true (WP environment
+> `local`/`development`, or a `.local`/`.test` host), compliance surfaces use
+> `[Dev preview]` placeholder copy instead of staying silent, age gate and cookie
+> consent are suppressed, and cart/state checkout enforcement is off. Production
+> keeps owner-gated silence until copy is approved.
+
+> **Production posture:** every Phase 10 feature flag ships **enabled**; legal/claim
+> strings (`notice_text`, `restricted_states`, `state_restriction_notice`) stay
+> empty until owner/legal sign-off. Flip any flag off in `resq_core_features`, or
+> leave claim strings empty, to keep a surface dormant.
 
 ---
 
@@ -194,6 +205,14 @@ Spot-check catalog strings for high-risk SKUs from owner checklist (do **not** c
 | `medical-adjacent` | `RQ-PET-DIABETIC-TREATS` | Diabetic wording is routine-safe, not diagnostic |
 
 Document pending owner sign-offs in Validation results — do not block gate on unchecked boxes.
+
+### A4b. Target Problem Lane draft briefs (pre-publish)
+
+When lane pages are built, review draft copy against
+[`05-COMPLIANCE-RULES.md`](05-COMPLIANCE-RULES.md) § Target Problem Lane Copy Rules
+and record per-lane sign-off in compliance checklist §7. **No lane ships on draft
+brief text as-is** — strategy briefs contain phrases that fail Medical/Pet/Baby
+caution rules until scrubbed.
 
 ### A5. CBD cart isolation (add-to-cart backstop)
 
@@ -289,6 +308,67 @@ against a real initialized cart. Picked CBD `CBD Gummies 3-Pack` and non-CBD
 Filter confirmed registered; both directional notices fired. **PASS.**
 
 _(Remaining streams filled after gate run.)_
+
+---
+
+### B — Accessibility code review (2026-06-24)
+
+Code-review pass covering all items answerable without a browser.
+
+| Check | File(s) reviewed | Result |
+| --- | --- | --- |
+| Skip link present | `header.php` | `<a class="screen-reader-text" href="#primary-content">` — present ✅ |
+| Skip link target | All page templates (`index.php`, gateways, shop, PDP, search) | `<main id="primary-content">` — all templates covered ✅ |
+| Cart drawer ARIA | `template-parts/cart/drawer.php` | `role="dialog"`, `aria-modal="true"`, `aria-labelledby="resq-cart-drawer-title"`, close `aria-label` ✅ |
+| Cart drawer focus trap | `assets/js/cart-drawer.js` | `trapFocus()` + `handleTrapKeydown()` + focus restoration on close ✅ |
+| Cart drawer Escape | `assets/js/cart-drawer.js` | `document.keydown` Escape handler ✅ |
+| Mobile nav ARIA | `template-parts/global/mobile-drawer.php` | `role="dialog"`, `aria-modal="true"`, `aria-label`, close `aria-label` ✅ |
+| Mobile nav `aria-hidden` toggle | `assets/js/navigation.js` | **BUG FIXED (2026-06-24)** — outer drawer `aria-hidden` was never toggled; `setOpen()` now sets `aria-hidden="false/true"` ✅ |
+| Mobile nav focus trap | `assets/js/navigation.js` | **BUG FIXED (2026-06-24)** — no Tab trap existed; `trapFocus()` added, bound on open / unbound on close ✅ |
+| Mobile nav Escape | `assets/js/navigation.js` | `document.keydown` Escape + `toggle.focus()` restoration ✅ |
+| Filter controls ARIA | `template-parts/gateway/filter-shell.php` | `aria-labelledby="resq-filter-shell-heading"` on section ✅; keyboard reachability → browser check |
+| Alt text — gateway shelf | `template-parts/gateway/product-shelf.php` | `alt="<?php echo esc_attr($card['title']); ?>"` ✅ |
+| Alt text — PLP cards | `woocommerce/content-product.php` | Uses WooCommerce `woocommerce_template_loop_product_thumbnail` → inherits attachment alt; verify populated in browser |
+| Reduced motion | `assets/css/tokens.css`, `assets/css/components.css` | `@media (prefers-reduced-motion: reduce)` present in both files ✅ |
+| Form labels — checkout | `woocommerce/checkout/form-checkout.php` | Fields rendered via `do_action('woocommerce_checkout_billing')` (Woo core) — labels owned by WooCommerce; browser verify |
+
+**Browser-only items remaining:** focus ring visibility, filter keyboard reachability, PLP alt text population, checkout label association.
+
+---
+
+### C — Checkout / payment safety code review (2026-06-24)
+
+Code-review verifier script: `wp eval-file C:\tmp\resq-verify-checkout-safety.php`
+
+| Check | Method | Result |
+| --- | --- | --- |
+| No custom payment iframe | `woocommerce/checkout/form-checkout.php` code review | No `<iframe>` in file; uses only `do_action('woocommerce_checkout_order_review')` ✅ |
+| Plugin-off checkout safety | `inc/helpers.php` code review | `resq_theme_render_compliance_notices()` is a theme function; guards `resq_core_get_compliance_notices()` with `function_exists()` internally — returns cleanly when plugin off ✅ |
+| Nonce — cart drawer AJAX | `includes/woocommerce/class-merchandising-hooks.php` | `check_ajax_referer('resq_cart_drawer', 'nonce')` called before any processing ✅ |
+| Nonce — cart form | `woocommerce/cart/cart.php` | `wp_nonce_field('woocommerce-cart', 'woocommerce-cart-nonce')` preserved ✅ |
+| No resq-* payment hook override | Runtime hook scan | No resq-* callbacks on `woocommerce_pay_order_before_submit`, `woocommerce_checkout_process`, or `woocommerce_checkout_order_created` — confirmed by verifier script |
+
+**Browser / manual items remaining:**
+
+```bat
+wp eval-file C:\tmp\resq-verify-checkout-safety.php
+```
+
+Then manually:
+
+1. `GET /checkout/` with empty cart → expect 302 → `/cart/`
+2. Add a product, visit `/checkout/` → form renders, no PHP fatals
+3. Plugin-off smoke:
+
+```bat
+wp plugin deactivate resq-core
+```
+
+_(visit /cart/ and /checkout/ in browser — expect no fatal errors)_
+
+```bat
+wp plugin activate resq-core
+```
 
 ---
 

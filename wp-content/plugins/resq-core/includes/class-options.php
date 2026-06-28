@@ -34,10 +34,9 @@ class ResQ_Core_Options {
 			'donation_display'        => false,
 			'gateway_featured'        => true,
 			'learn_bridges'           => true,
-			// Phase 10 compliance features. Enabled on the dev site so the owner
-			// can review each surface; all chrome copy is neutral (non-claim) and
-			// every legal/claim string (CBD disclaimer, restricted-state list) is
-			// left empty for owner/legal sign-off before launch.
+			// Phase 10 compliance features. Enabled on local dev so surfaces are
+			// reviewable; owner/legal copy is empty in options on production until
+			// sign-off. Local sandbox uses dev placeholders (see local-sandbox.php).
 			'coa_disclosure'          => true,
 			'state_restriction'       => true,
 			'age_gate'                => true,

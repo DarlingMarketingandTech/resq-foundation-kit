@@ -52,18 +52,65 @@ if ( ! function_exists( 'resq_theme_get_primary_nav_items' ) ) {
 	 * @return array<int, array<string, mixed>>
 	 */
 	function resq_theme_get_primary_nav_items(): array {
+		$human_base = trailingslashit( resq_theme_get_gateway_page_url( 'page-gateway-human.php', '/shop/human/' ) );
+		$pet_base   = trailingslashit( resq_theme_get_gateway_page_url( 'page-gateway-pet.php', '/shop/pet/' ) );
+
 		$items = array(
 			array(
 				'label'    => __( 'Shop For Humans', 'resq-clean-pro' ),
-				'url'      => resq_theme_get_gateway_page_url( 'page-gateway-human.php', '/human/' ),
+				'url'      => untrailingslashit( $human_base ),
 				'slug'     => 'human',
 				'isolated' => false,
+				'children' => array(
+					array(
+						'label'       => __( 'Women’s Skincare', 'resq-clean-pro' ),
+						'description' => __( 'Routines, sensitive care, anti-aging sets', 'resq-clean-pro' ),
+						'url'         => $human_base . 'womens-skincare/',
+					),
+					array(
+						'label'       => __( 'Men’s Grooming', 'resq-clean-pro' ),
+						'description' => __( 'Wash, moisture, shaving, hair', 'resq-clean-pro' ),
+						'url'         => $human_base . 'mens-grooming/',
+					),
+					array(
+						'label'       => __( 'Intensive Skin Care', 'resq-clean-pro' ),
+						'description' => __( 'Dry-skin comfort and everyday moisture support', 'resq-clean-pro' ),
+						'url'         => $human_base . 'therapeutic-skin-care/',
+					),
+					array(
+						'label'       => __( 'Hair & Scalp Care', 'resq-clean-pro' ),
+						'description' => __( 'Manuka shampoo & conditioner duos', 'resq-clean-pro' ),
+						'url'         => $human_base . 'hair-scalp-care/',
+					),
+					array(
+						'label'       => __( 'Baby & Infant Care', 'resq-clean-pro' ),
+						'description' => __( 'Gentle bath and skin-comfort items', 'resq-clean-pro' ),
+						'url'         => $human_base . 'baby-infant-care/',
+					),
+				),
 			),
 			array(
 				'label'    => __( 'Shop For Pets', 'resq-clean-pro' ),
-				'url'      => resq_theme_get_gateway_page_url( 'page-gateway-pet.php', '/pets/' ),
+				'url'      => untrailingslashit( $pet_base ),
 				'slug'     => 'pet',
 				'isolated' => false,
+				'children' => array(
+					array(
+						'label'       => __( 'Topical Skin Care', 'resq-clean-pro' ),
+						'description' => __( 'Hot spots, paws, equine skin', 'resq-clean-pro' ),
+						'url'         => $pet_base . 'topical-skin-care/',
+					),
+					array(
+						'label'       => __( 'Coat & Grooming', 'resq-clean-pro' ),
+						'description' => __( 'Maintenance shampoo and conditioner duos', 'resq-clean-pro' ),
+						'url'         => $pet_base . 'coat-grooming/',
+					),
+					array(
+						'label'       => __( 'Treats & Diabetic Care', 'resq-clean-pro' ),
+						'description' => __( 'Low-glycemic dietary options', 'resq-clean-pro' ),
+						'url'         => $pet_base . 'treats-diabetic-care/',
+					),
+				),
 			),
 			array(
 				'label'    => __( 'Bundles & Savings', 'resq-clean-pro' ),

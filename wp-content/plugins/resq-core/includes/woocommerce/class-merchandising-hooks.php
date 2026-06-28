@@ -270,6 +270,10 @@ class ResQ_Core_Merchandising_Hooks {
 	 * @return bool
 	 */
 	private static function cart_isolation_enforced(): bool {
+		if ( function_exists( 'resq_core_compliance_enforcement_active' ) && ! resq_core_compliance_enforcement_active() ) {
+			return false;
+		}
+
 		if ( ! function_exists( 'resq_core_feature_enabled' ) || ! function_exists( 'resq_core_get_option' ) ) {
 			return false;
 		}

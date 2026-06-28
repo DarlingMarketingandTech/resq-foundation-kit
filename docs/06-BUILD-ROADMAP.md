@@ -28,6 +28,8 @@
 | Phase 6 branch | `phase-6-gateway-learn-surfaces` |
 | Phase 6 status | complete — smoke verified |
 | Phase 7 status | complete — fixtures + catalog import |
+| Phase 8 branch | `feat/phase-8-merchandising` |
+| Phase 8 status | complete — all streams A–F smoke verified |
 | `resq-core` version | `0.5.0` |
 | `resq-clean-pro` version | `0.5.0` |
 | Current focus | Phase 10 — Compliance, accessibility, performance QA (Phase 9 gate passed) |
@@ -370,7 +372,7 @@ See [`archive/phase-notes/14-PHASE-3-IMPLEMENTATION-NOTES.md`](archive/phase-not
 | 6 Gateway and Learn surfaces | complete | Archive `17`; smoke verified |
 | 7 Demo fixture system | complete | Runbook `18`; `wp resq-fixtures` |
 | — Real catalog import | complete | Runbook `19`; `wp resq-catalog` |
-| 8 Merchandising behavior | complete | Runbook [`20`](20-PHASE-8-IMPLEMENTATION-NOTES.md) |
-| 9 Local sandbox validation | complete | Fresh-install gate passed on LocalWP; runbook `21`; plugin + theme `0.5.0` |
-| 10 Compliance/accessibility/performance QA | pending | |
+| 8 Merchandising behavior | complete | Runbook [`20`](20-PHASE-8-IMPLEMENTATION-NOTES.md); all streams A–F smoke verified |
+| 9 Local sandbox validation | complete | Fresh-install gate passed on LocalWP; runbook [`21`](21-PHASE-9-IMPLEMENTATION-NOTES.md); plugin + theme `0.5.0` |
+| 10 Compliance/accessibility/performance QA | pending | Planned scope in [`22-FUTURE-FEATURES-ROADMAP.md`](22-FUTURE-FEATURES-ROADMAP.md) |
 | 11 Preflight release package | pending | Tag targets per completed phases — see Release Marker |

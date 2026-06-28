@@ -33,11 +33,16 @@ if ( empty( $disclosure ) ) {
 
 $coa_url = (string) ( $disclosure['coa_url'] ?? '' );
 $thc     = (string) ( $disclosure['thc_disclosure'] ?? '' );
+$is_dev  = ! empty( $disclosure['dev_preview'] );
 ?>
-<section class="resq-cbd-disclosure" aria-labelledby="resq-cbd-disclosure-heading">
+<section class="resq-cbd-disclosure<?php echo $is_dev ? ' resq-cbd-disclosure--dev-preview' : ''; ?>" aria-labelledby="resq-cbd-disclosure-heading">
 	<h3 id="resq-cbd-disclosure-heading" class="resq-cbd-disclosure__title">
 		<?php esc_html_e( 'Lab Testing & Disclosure', 'resq-clean-pro' ); ?>
 	</h3>
+
+	<?php if ( $is_dev ) : ?>
+		<p class="resq-cbd-disclosure__dev-note"><?php esc_html_e( 'Dev preview — replace with owner-approved COA and THC values before production.', 'resq-clean-pro' ); ?></p>
+	<?php endif; ?>
 
 	<ul class="resq-cbd-disclosure__list">
 		<?php if ( '' !== $thc ) : ?>

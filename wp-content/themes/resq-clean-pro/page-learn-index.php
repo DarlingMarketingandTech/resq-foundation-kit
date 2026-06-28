@@ -46,13 +46,29 @@ if ( have_posts() ) :
 		<main id="primary-content" class="site-main resq-container" role="main">
 			<div class="resq-learn-index">
 				<header class="resq-learn-index__hero">
-					<h1 class="resq-learn-index__title"><?php the_title(); ?></h1>
+					<div class="resq-learn-index__hero-copy">
+						<span class="resq-learn-index__eyebrow"><?php esc_html_e( 'Transparent botanical science', 'resq-clean-pro' ); ?></span>
+						<h1 class="resq-learn-index__title"><?php the_title(); ?></h1>
 
-					<?php if ( get_the_content() ) : ?>
-						<div class="resq-gateway__hero-intro entry-content">
-							<?php the_content(); ?>
-						</div>
-					<?php endif; ?>
+						<?php if ( get_the_content() ) : ?>
+							<div class="resq-gateway__hero-intro entry-content">
+								<?php the_content(); ?>
+							</div>
+						<?php endif; ?>
+					</div>
+
+					<?php
+					resq_theme_render_image(
+						'ingredients-cream-honey-aloe-triptych',
+						array(
+							'class'       => 'resq-learn-index__hero-media',
+							'image_class' => 'resq-learn-index__hero-image',
+							'size'        => 'large',
+							'alt'         => __( 'Raw Manuka honey, aloe, and cream textures that anchor the ResQ ingredient story.', 'resq-clean-pro' ),
+							'label'       => __( 'The Botanical Wellness Ritual', 'resq-clean-pro' ),
+						)
+					);
+					?>
 				</header>
 
 				<?php if ( $guide_query->have_posts() ) : ?>

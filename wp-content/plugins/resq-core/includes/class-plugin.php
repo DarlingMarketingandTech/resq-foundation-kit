@@ -86,6 +86,7 @@ class ResQ_Core_Plugin {
 			ResQ_Core_Merchandising_Hooks::init();
 			ResQ_Core_Product_Filters::init();
 			ResQ_Core_Compliance_Gates::init();
+			ResQ_Core_Lane_Routing::init();
 		}
 
 		$this->initialized = true;
@@ -103,6 +104,9 @@ class ResQ_Core_Plugin {
 	 */
 	public function activate(): void {
 		ResQ_Core_Options::set_defaults();
+		if ( class_exists( 'ResQ_Core_Lane_Routing' ) ) {
+			ResQ_Core_Lane_Routing::flush_rewrite_rules();
+		}
 	}
 
 	/**

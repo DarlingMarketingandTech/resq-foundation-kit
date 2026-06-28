@@ -68,6 +68,10 @@ if ( ! function_exists( 'resq_theme_has_analytics_consent' ) ) {
 	 * @return bool
 	 */
 	function resq_theme_has_analytics_consent(): bool {
+		if ( function_exists( 'resq_core_is_local_sandbox' ) && resq_core_is_local_sandbox() ) {
+			return true;
+		}
+
 		if ( ! resq_theme_feature_on( 'cookie_consent', false ) ) {
 			return true;
 		}
@@ -75,9 +79,24 @@ if ( ! function_exists( 'resq_theme_has_analytics_consent' ) ) {
 	}
 }
 
-/**
- * Enqueue compliance scripts and inject footer surfaces.
- */
+if ( ! function_exists( 'resq_theme_compliance_surfaces_enabled' ) ) {
+	/**
+	 * Whether age gate / cookie consent surfaces should render.
+	 *
+	 * Suppressed on local sandbox so CBD and other pages are immediately browsable
+	 * during development; production keeps full gating for owner review.
+	 *
+	 * @return bool
+	 */
+	function resq_theme_compliance_surfaces_enabled(): bool {
+		if ( function_exists( 'resq_core_is_local_sandbox' ) && resq_core_is_local_sandbox() ) {
+			return false;
+		}
+
+		return true;
+	}
+}
+
 add_action( 'wp_enqueue_scripts', 'resq_theme_enqueue_compliance_assets' );
 add_action( 'wp_footer', 'resq_theme_render_compliance_surfaces' );
 
@@ -85,6 +104,10 @@ add_action( 'wp_footer', 'resq_theme_render_compliance_surfaces' );
  * Enqueue age-gate and cookie-consent scripts when their features are active.
  */
 function resq_theme_enqueue_compliance_assets(): void {
+	if ( ! resq_theme_compliance_surfaces_enabled() ) {
+		return;
+	}
+
 	$age_gate_active = resq_theme_feature_on( 'age_gate', false )
 		&& resq_theme_is_cbd_context()
 		&& ! isset( $_COOKIE['resq_age_confirmed'] );
@@ -131,6 +154,10 @@ function resq_theme_enqueue_compliance_assets(): void {
  * Inject the age gate and cookie consent surfaces into the footer.
  */
 function resq_theme_render_compliance_surfaces(): void {
+	if ( ! resq_theme_compliance_surfaces_enabled() ) {
+		return;
+	}
+
 	if (
 		resq_theme_feature_on( 'age_gate', false )
 		&& resq_theme_is_cbd_context()

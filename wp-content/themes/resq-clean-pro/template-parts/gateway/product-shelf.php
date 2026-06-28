@@ -4,7 +4,8 @@
  *
  * @package ResQ_Clean_Pro
  *
- * @var int[] $product_ids Canonical product IDs for the shelf.
+ * @var int[]  $product_ids Canonical product IDs for the shelf.
+ * @var string $shelf_title Optional shelf heading override.
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -19,6 +20,7 @@ if (
 
 $product_ids = isset( $product_ids ) && is_array( $product_ids ) ? array_map( 'absint', $product_ids ) : array();
 $product_ids = array_values( array_filter( $product_ids ) );
+$shelf_title = isset( $shelf_title ) ? (string) $shelf_title : __( 'Featured Products', 'resq-clean-pro' );
 
 if ( empty( $product_ids ) ) {
 	return;
@@ -40,7 +42,7 @@ if ( empty( $cards ) ) {
 
 <section class="resq-gateway__section resq-gateway-shelf-section" aria-labelledby="resq-gateway-shelf-heading">
 	<h2 id="resq-gateway-shelf-heading" class="resq-gateway__section-title">
-		<?php esc_html_e( 'Featured Products', 'resq-clean-pro' ); ?>
+		<?php echo esc_html( $shelf_title ); ?>
 	</h2>
 
 	<ul class="resq-gateway-shelf">

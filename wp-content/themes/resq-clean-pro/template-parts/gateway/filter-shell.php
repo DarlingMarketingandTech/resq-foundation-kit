@@ -18,6 +18,7 @@ defined( 'ABSPATH' ) || exit;
 $context      = isset( $context ) && is_array( $context ) ? $context : array();
 $gateway_slug = (string) ( $context['context_id'] ?? '' );
 $context_type = (string) ( $context['context_type'] ?? '' );
+$is_lane      = ( 'lane' === $context_type );
 
 // Active filter values from current request.
 $active = class_exists( 'ResQ_Core_Product_Filters' )
@@ -40,10 +41,10 @@ $filter_groups = array(
 		'param'    => 'resq_audience',
 		'taxonomy' => 'resq_audience',
 		'label'    => __( 'Audience', 'resq-clean-pro' ),
-		'hidden'   => ( 'gateway' === $context_type && ! empty( $context['audience'] ) )
+		'hidden'   => ( ( 'gateway' === $context_type || $is_lane ) && ! empty( $context['audience'] ) )
 			? (string) $context['audience']
 			: '',
-		'hide'     => ( 'gateway' === $context_type && ! empty( $context['audience'] ) ),
+		'hide'     => ( ( 'gateway' === $context_type || $is_lane ) && ! empty( $context['audience'] ) ),
 	),
 	array(
 		'param'    => 'resq_concern',
@@ -63,7 +64,9 @@ $filter_groups = array(
 
 // Resolve current page URL for form action (strips existing resq_ params).
 $current_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );
-if ( is_tax() || is_post_type_archive( 'product' ) ) {
+if ( $is_lane && ! empty( $context['lane_url'] ) ) {
+	$current_url = (string) $context['lane_url'];
+} elseif ( is_tax() || is_post_type_archive( 'product' ) ) {
 	$current_url = get_pagenum_link( 1, false );
 }
 

@@ -752,12 +752,17 @@ if ( ! function_exists( 'resq_get_product_cbd_disclosure' ) ) {
 		$thc     = sanitize_text_field( (string) resq_get_product_meta( $product_id, '_resq_thc_disclosure', '' ) );
 
 		if ( '' === $coa_url && '' === $thc ) {
+			if ( resq_core_is_local_sandbox() ) {
+				return resq_core_dev_cbd_disclosure();
+			}
+
 			return array();
 		}
 
 		return array(
 			'coa_url'        => $coa_url,
 			'thc_disclosure' => $thc,
+			'dev_preview'    => false,
 		);
 	}
 }
@@ -1286,5 +1291,341 @@ if ( ! function_exists( 'resq_get_learn_links_for_product' ) ) {
 		}
 
 		return $result;
+	}
+}
+
+/*
+ * ──────────────────────────────────────────────────
+ *  Target Problem Lanes & Category Landings
+ * ──────────────────────────────────────────────────
+ */
+
+if ( ! function_exists( 'resq_resolve_sku_to_product_id' ) ) {
+	/**
+	 * Resolve a catalog SKU to a WooCommerce product ID.
+	 *
+	 * @param string $sku Product SKU.
+	 * @return int|null Product ID or null.
+	 */
+	function resq_resolve_sku_to_product_id( string $sku ): ?int {
+		$sku = trim( $sku );
+		if ( '' === $sku || ! function_exists( 'wc_get_product_id_by_sku' ) ) {
+			return null;
+		}
+
+		$product_id = (int) wc_get_product_id_by_sku( $sku );
+		return $product_id > 0 ? $product_id : null;
+	}
+}
+
+if ( ! function_exists( 'resq_build_lane_key' ) ) {
+	/**
+	 * Build a registry lookup key from route segments.
+	 *
+	 * @param string $audience Audience slug.
+	 * @param string $category Category slug.
+	 * @param string $problem  Optional problem slug.
+	 * @return string
+	 */
+	function resq_build_lane_key( string $audience, string $category, string $problem = '' ): string {
+		$audience = sanitize_key( $audience );
+		$category = sanitize_key( $category );
+		$problem  = sanitize_key( $problem );
+
+		$key = $audience . '-' . $category;
+		if ( '' !== $problem ) {
+			$key .= '-' . $problem;
+		}
+
+		return $key;
+	}
+}
+
+if ( ! function_exists( 'resq_resolve_lane_url' ) ) {
+	/**
+	 * Build the public URL for a lane route.
+	 *
+	 * @param string $audience Audience slug.
+	 * @param string $category Category slug.
+	 * @param string $problem  Optional problem slug.
+	 * @return string
+	 */
+	function resq_resolve_lane_url( string $audience, string $category, string $problem = '' ): string {
+		$audience = sanitize_key( $audience );
+		$category = sanitize_key( $category );
+		$problem  = sanitize_key( $problem );
+
+		$path = 'shop/' . $audience . '/' . $category;
+		if ( '' !== $problem ) {
+			$path .= '/' . $problem;
+		}
+
+		return trailingslashit( home_url( '/' . $path ) );
+	}
+}
+
+if ( ! function_exists( 'resq_get_lane_from_request' ) ) {
+	/**
+	 * Resolve the current lane from query vars.
+	 *
+	 * @return array<string, mixed>|null Enriched lane or null.
+	 */
+	function resq_get_lane_from_request(): ?array {
+		if ( ! class_exists( 'ResQ_Core_Lane_Routing' ) || ! ResQ_Core_Lane_Routing::is_lane_request() ) {
+			return null;
+		}
+
+		return resq_get_lane(
+			array(
+				'audience' => (string) get_query_var( 'resq_lane_audience' ),
+				'category' => (string) get_query_var( 'resq_lane_category' ),
+				'problem'  => (string) get_query_var( 'resq_lane_problem' ),
+			)
+		);
+	}
+}
+
+if ( ! function_exists( 'resq_get_lane' ) ) {
+	/**
+	 * Resolve a lane route to enriched registry data.
+	 *
+	 * @param array{audience?:string,category?:string,problem?:string} $route Route segments.
+	 * @return array<string, mixed>|null
+	 */
+	function resq_get_lane( array $route ): ?array {
+		if ( ! function_exists( 'resq_get_lane_registry' ) ) {
+			return null;
+		}
+
+		$audience = sanitize_key( (string) ( $route['audience'] ?? '' ) );
+		$category = sanitize_key( (string) ( $route['category'] ?? '' ) );
+		$problem  = sanitize_key( (string) ( $route['problem'] ?? '' ) );
+
+		if ( '' === $audience || '' === $category ) {
+			return null;
+		}
+
+		$gateway_only = array( 'human', 'pet', 'bundles', 'cbd', 'learn' );
+		if ( in_array( $category, $gateway_only, true ) && '' === $problem ) {
+			return null;
+		}
+
+		$key      = resq_build_lane_key( $audience, $category, $problem );
+		$registry = resq_get_lane_registry();
+
+		if ( ! isset( $registry[ $key ] ) || ! is_array( $registry[ $key ] ) ) {
+			return null;
+		}
+
+		$lane = $registry[ $key ];
+
+		$canonical_id = null;
+		$sku          = (string) ( $lane['canonical_sku'] ?? '' );
+
+		if ( '' !== $sku ) {
+			$product_id = resq_resolve_sku_to_product_id( $sku );
+			if ( $product_id ) {
+				$canonical_id = resq_get_canonical_product_id( $product_id, 'product' ) ?? $product_id;
+			}
+		}
+
+		$product_ids = resq_get_lane_product_ids( $lane, 'problem' === ( $lane['lane_type'] ?? '' ) ? $canonical_id : null );
+
+		$lane['registry_key'] = $key;
+		$lane['url']          = resq_resolve_lane_url( $audience, $category, $problem );
+		$lane['canonical_id'] = $canonical_id;
+		$lane['product_ids']  = $product_ids;
+		$lane['is_cbd']       = ( 'cbd' === ( $lane['compliance_zone'] ?? 'standard' ) );
+		$lane['is_problem']   = ( 'problem' === ( $lane['lane_type'] ?? '' ) );
+		$lane['is_draft']     = ( 'draft' === ( $lane['status'] ?? 'draft' ) );
+		$lane['context']      = array(
+			'context_type'      => 'lane',
+			'context_id'        => $key,
+			'audience'          => $audience,
+			'concerns'          => '' !== $problem ? array( $problem ) : array(),
+			'featured_products' => $product_ids,
+			'canonical_targets' => $canonical_id ? array( $canonical_id ) : array(),
+			'compliance_zone'   => (string) ( $lane['compliance_zone'] ?? 'standard' ),
+			'filters'           => array(
+				'audience' => array( $audience ),
+				'concern'  => '' !== $problem ? array( $problem ) : array(),
+			),
+			'lane_url'          => resq_resolve_lane_url( $audience, $category, $problem ),
+		);
+
+		return apply_filters( 'resq_lane_resolved', $lane, $route );
+	}
+}
+
+if ( ! function_exists( 'resq_get_lane_product_ids' ) ) {
+	/**
+	 * Query product IDs for a lane shelf, respecting CBD isolation.
+	 *
+	 * @param array<string, mixed> $lane         Lane registry entry.
+	 * @param int|null               $canonical_id Optional canonical override (problem lanes).
+	 * @return int[]
+	 */
+	function resq_get_lane_product_ids( array $lane, ?int $canonical_id = null ): array {
+		if ( null !== $canonical_id && $canonical_id > 0 ) {
+			return array( $canonical_id );
+		}
+
+		$preset = $lane['filter_preset'] ?? array();
+		if ( ! is_array( $preset ) ) {
+			return array();
+		}
+
+		$cache_key = 'lane_products_' . md5( wp_json_encode( $preset ) . (string) ( $lane['cbd_excluded'] ?? true ) );
+		$cached    = ResQ_Core_Cache::get( $cache_key );
+		if ( false !== $cached && is_array( $cached ) ) {
+			return $cached;
+		}
+
+		$tax_query = array( 'relation' => 'AND' );
+
+		if ( ! empty( $preset['audience'] ) && taxonomy_exists( 'resq_audience' ) ) {
+			$tax_query[] = array(
+				'taxonomy' => 'resq_audience',
+				'field'    => 'slug',
+				'terms'    => array( sanitize_key( (string) $preset['audience'] ) ),
+			);
+		}
+
+		if ( ! empty( $preset['product_cat'] ) && is_array( $preset['product_cat'] ) ) {
+			$tax_query[] = array(
+				'taxonomy' => 'product_cat',
+				'field'    => 'slug',
+				'terms'    => array_map( 'sanitize_key', $preset['product_cat'] ),
+			);
+		}
+
+		if ( ! empty( $preset['compliance_zone'] ) && taxonomy_exists( 'resq_compliance_zone' ) ) {
+			$tax_query[] = array(
+				'taxonomy' => 'resq_compliance_zone',
+				'field'    => 'slug',
+				'terms'    => array( sanitize_key( (string) $preset['compliance_zone'] ) ),
+			);
+		}
+
+		if ( count( $tax_query ) <= 1 ) {
+			return array();
+		}
+
+		$query = new WP_Query(
+			array(
+				'post_type'      => 'product',
+				'post_status'    => 'publish',
+				'posts_per_page' => 50,
+				'fields'         => 'ids',
+				'tax_query'      => $tax_query, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+			)
+		);
+
+		$result = array();
+
+		foreach ( $query->posts as $post_id ) {
+			$post_id = (int) $post_id;
+
+			if ( ! empty( $lane['cbd_excluded'] ) && resq_is_cbd_product( $post_id ) ) {
+				continue;
+			}
+
+			if ( ! empty( $preset['compliance_zone'] ) && 'cbd' !== $preset['compliance_zone'] && resq_is_cbd_product( $post_id ) ) {
+				continue;
+			}
+
+			$canonical = resq_get_canonical_product_id( $post_id, 'product' ) ?? $post_id;
+			$result[]  = $canonical;
+		}
+
+		$result = array_values( array_unique( $result ) );
+		ResQ_Core_Cache::set( $cache_key, $result );
+
+		return $result;
+	}
+}
+
+if ( ! function_exists( 'resq_get_lane_problem_links' ) ) {
+	/**
+	 * Return navigable problem-lane links for a category landing.
+	 *
+	 * @param array<string, mixed> $lane Category lane data.
+	 * @return array<int, array{slug:string,label:string,url:string,status:string}>
+	 */
+	function resq_get_lane_problem_links( array $lane ): array {
+		$slugs = $lane['problem_lanes'] ?? array();
+		if ( ! is_array( $slugs ) || empty( $slugs ) ) {
+			return array();
+		}
+
+		$audience = sanitize_key( (string) ( $lane['audience'] ?? '' ) );
+		$category = sanitize_key( (string) ( $lane['category'] ?? '' ) );
+		$links    = array();
+
+		foreach ( $slugs as $problem_slug ) {
+			$problem_slug = sanitize_key( (string) $problem_slug );
+			if ( '' === $problem_slug ) {
+				continue;
+			}
+
+			$problem_lane = resq_get_lane(
+				array(
+					'audience' => $audience,
+					'category' => $category,
+					'problem'  => $problem_slug,
+				)
+			);
+
+			if ( null === $problem_lane ) {
+				continue;
+			}
+
+			$links[] = array(
+				'slug'   => $problem_slug,
+				'label'  => resq_get_lane_problem_label( $problem_slug ),
+				'url'    => (string) ( $problem_lane['url'] ?? resq_resolve_lane_url( $audience, $category, $problem_slug ) ),
+				'status' => (string) ( $problem_lane['status'] ?? 'draft' ),
+			);
+		}
+
+		return $links;
+	}
+}
+
+if ( ! function_exists( 'resq_get_lane_problem_label' ) ) {
+	/**
+	 * Human-readable label for a problem slug.
+	 *
+	 * @param string $slug Problem slug.
+	 * @return string
+	 */
+	function resq_get_lane_problem_label( string $slug ): string {
+		$labels = array(
+			'razor-burn'                  => __( 'Post-shave comfort', 'resq-core' ),
+			'beard-and-odor-control'      => __( 'Beard & cleansing routine', 'resq-core' ),
+			'makeup-removal-detox'        => __( 'Makeup removal & cleanse', 'resq-core' ),
+			'exfoliation-texture'         => __( 'Texture & polishing', 'resq-core' ),
+			'overnight-repair'            => __( 'Overnight appearance support', 'resq-core' ),
+			'diaper-rash'                 => __( 'Diaper-area comfort', 'resq-core' ),
+			'post-color-irritation'       => __( 'Post-color scalp comfort', 'resq-core' ),
+			'split-end-defense'           => __( 'Split-end smoothing', 'resq-core' ),
+			'hyperkeratosis'              => __( 'Rough nose & paw calluses', 'resq-core' ),
+			'feline-dermatitis'           => __( 'Chin & fold comfort', 'resq-core' ),
+			'seasonal-grass-itch'         => __( 'Seasonal coat wash', 'resq-core' ),
+			'undercoat-friction-static'   => __( 'Mat & static glide', 'resq-core' ),
+			'mud-fever-support'           => __( 'Mud & pasture debris cleanse', 'resq-core' ),
+			'skin-chafing'                => __( 'Skin chafing comfort', 'resq-core' ),
+			'cradle-cap-comfort'          => __( 'Cradle cap comfort', 'resq-core' ),
+			'shaving-bumps'               => __( 'Shaving bump comfort', 'resq-core' ),
+			'excess-sebum-control'        => __( 'Excess sebum balance', 'resq-core' ),
+			'senior-dog-elbow-calluses'   => __( 'Senior elbow calluses', 'resq-core' ),
+			'skin-fold-dermatitis'        => __( 'Skin fold comfort', 'resq-core' ),
+			'diabetic-training-rewards'   => __( 'Training rewards routine', 'resq-core' ),
+			'weight-management-rewards'   => __( 'Weight-management rewards', 'resq-core' ),
+		);
+
+		$slug = sanitize_key( $slug );
+
+		return $labels[ $slug ] ?? ucwords( str_replace( '-', ' ', $slug ) );
 	}
 }

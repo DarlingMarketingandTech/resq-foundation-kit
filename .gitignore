@@ -47,5 +47,13 @@ wp-config.php
 # uncomment the next line
 #/wp-content/themes
 
-# Cursor project runtime state
+# Cursor / Claude agent runtime state
 .claude/sessions/
+.claude/memory/
+.claude/state/
+
+# Playwright MCP page snapshots
+.playwright-mcp/
+
+# Cursor multi-root workspace file (machine-specific LocalWP path)
+*.code-workspace

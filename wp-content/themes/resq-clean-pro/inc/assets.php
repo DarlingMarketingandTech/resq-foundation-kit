@@ -53,6 +53,15 @@ function resq_theme_enqueue_assets(): void {
 		RESQ_THEME_VERSION
 	);
 
+	if ( is_front_page() ) {
+		wp_enqueue_style(
+			'resq-theme-home',
+			resq_theme_get_asset_url( 'assets/css/home.css' ),
+			array( 'resq-theme-components' ),
+			RESQ_THEME_VERSION
+		);
+	}
+
 	wp_enqueue_script(
 		'resq-theme-navigation',
 		resq_theme_get_asset_url( 'assets/js/navigation.js' ),

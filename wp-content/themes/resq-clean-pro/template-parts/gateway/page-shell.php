@@ -36,6 +36,12 @@ $wrapper_class = 'resq-gateway';
 if ( $is_cbd ) {
 	$wrapper_class .= ' resq-gateway--cbd';
 }
+
+$landing  = function_exists( 'resq_theme_get_landing_content' ) ? resq_theme_get_landing_content( $gateway_slug ) : array();
+$base_url = trailingslashit( (string) get_permalink() );
+$learn_url = function_exists( 'resq_theme_get_gateway_page_url' )
+	? resq_theme_get_gateway_page_url( 'page-learn-index.php', '/learn/' )
+	: home_url( '/learn/' );
 ?>
 
 <div class="<?php echo esc_attr( $wrapper_class ); ?>">
@@ -45,13 +51,42 @@ if ( $is_cbd ) {
 	}
 
 	resq_theme_template_part(
-		'gateway/hero',
+		'gateway/hero-lead',
 		'',
 		array(
-			'gateway_slug' => $gateway_slug,
-			'context'      => $context,
+			'content'  => $landing,
+			'base_url' => $base_url,
+			'is_cbd'   => $is_cbd,
 		)
 	);
+
+	// Per-slug marketing layer (data-driven, empty-safe).
+	if ( 'bundles' === $gateway_slug ) {
+		resq_theme_template_part(
+			'gateway/value-band',
+			'',
+			array(
+				'value_points' => $landing['value_points'] ?? array(),
+			)
+		);
+	} elseif ( $is_cbd ) {
+		resq_theme_template_part(
+			'gateway/purity-matrix',
+			'',
+			array(
+				'purity' => $landing['purity'] ?? array(),
+			)
+		);
+	} elseif ( ! empty( $landing['segments'] ) ) {
+		resq_theme_template_part(
+			'gateway/segment-grid',
+			'',
+			array(
+				'segments' => $landing['segments'],
+				'base_url' => $base_url,
+			)
+		);
+	}
 
 	resq_theme_template_part(
 		'gateway/concern-cards',
@@ -76,5 +111,17 @@ if ( $is_cbd ) {
 			'product_ids' => $product_ids,
 		)
 	);
+
+	// Pet rescue mission band closes the page.
+	if ( ! empty( $landing['mission'] ) ) {
+		resq_theme_template_part(
+			'gateway/mission-band',
+			'',
+			array(
+				'mission' => $landing['mission'],
+				'cta_url' => $learn_url,
+			)
+		);
+	}
 	?>
 </div>

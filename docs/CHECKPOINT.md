@@ -1,19 +1,20 @@
 # Docs Checkpoint — Current Status
 
-> Single source for where the ResQ Foundation Kit stands today. Updated after Phase 9 local sandbox validation gate passed.
+> Single source for where the ResQ Foundation Kit stands today. Updated after site imagery delivery (0.6.0).
 
 ## Release marker
 
 | Item | Value |
 | --- | --- |
 | Branch | `feat/phase-9-sandbox-validation` |
-| `resq-core` | `0.5.0` (Phase 9 gate passed) |
-| `resq-clean-pro` | `0.5.0` (Phase 9 gate passed) |
-| Catalog import | `wp resq-catalog` — ~28 families, 6 routines, 23 bundles (`RQ-*` SKUs) |
+| `resq-core` | `0.6.0` (site imagery + catalog image maps) |
+| `resq-clean-pro` | `0.6.0` (marketing/lane/Learn image slots) |
+| Catalog import | `wp resq-catalog` — ~28 families, 6 routines, 23 bundles (`RQ-*` SKUs); re-run `--reset` after imagery changes |
 | Demo fixtures | `wp resq-fixtures` — `fixture-*` SKUs (sandbox only) |
-| Local validation | Phase 9 fresh-install gate PASSED on LocalWP (clean catalog rebuild, 20 surfaces clean, resilience + CBD isolation verified) — see [`21`](21-PHASE-9-IMPLEMENTATION-NOTES.md) |
+| Local validation | Phase 9 fresh-install gate PASSED on LocalWP — see [`21`](21-PHASE-9-IMPLEMENTATION-NOTES.md) |
+| Site imagery | Media Library slug resolver + theme render helper — see [`25`](25-SITE-IMAGERY-IMPLEMENTATION-NOTES.md) |
 
-**Next roadmap focus:** Phase 10 — compliance, accessibility, performance QA.
+**Next roadmap focus:** Phase 10 — compliance, accessibility, performance QA (visual imagery smoke in runbook [`25`](25-SITE-IMAGERY-IMPLEMENTATION-NOTES.md)).
 
 Comprehensive documentation (single merged handbook) is **deferred** to a follow-up initiative. This checkpoint only prunes and syncs status.
 
@@ -49,6 +50,7 @@ Delivery records for phases 2A–6 live in [`docs/archive/phase-notes/`](archive
 | Phase order and gates | [`06-BUILD-ROADMAP.md`](06-BUILD-ROADMAP.md) |
 | Phase 9 delivery record | [`21-PHASE-9-IMPLEMENTATION-NOTES.md`](21-PHASE-9-IMPLEMENTATION-NOTES.md) |
 | Phase 10 runbook (active) | [`23-PHASE-10-IMPLEMENTATION-NOTES.md`](23-PHASE-10-IMPLEMENTATION-NOTES.md) |
+| Site imagery delivery | [`25-SITE-IMAGERY-IMPLEMENTATION-NOTES.md`](25-SITE-IMAGERY-IMPLEMENTATION-NOTES.md) |
 | Phase 8 delivery record | [`20-PHASE-8-IMPLEMENTATION-NOTES.md`](20-PHASE-8-IMPLEMENTATION-NOTES.md) |
 | Import demo data (sandbox) | [`18-PHASE-7-IMPLEMENTATION-NOTES.md`](18-PHASE-7-IMPLEMENTATION-NOTES.md) |
 | Import real catalog | [`19-CATALOG-IMPORT-NOTES.md`](19-CATALOG-IMPORT-NOTES.md) |

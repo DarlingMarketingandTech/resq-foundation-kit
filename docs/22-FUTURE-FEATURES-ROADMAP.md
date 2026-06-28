@@ -142,6 +142,7 @@ Phase 10 is already scoped in [`06-BUILD-ROADMAP.md`](06-BUILD-ROADMAP.md). The 
 **What's missing:**
 - Populated checklist with actual copy from the live catalog (not fixture content).
 - Review of category/gateway page editorial copy (lives in WP Page content, not plugin schema — needs manual review).
+- Review of Target Problem Lane draft briefs against [`05-COMPLIANCE-RULES.md`](05-COMPLIANCE-RULES.md) § Target Problem Lane Copy Rules; per-lane sign-off in compliance checklist §7.
 - Review of WooCommerce email templates (order confirmation, etc.) for claim language.
 - Owner signature on `compliance-review-checklist.md` before Phase 11.
 

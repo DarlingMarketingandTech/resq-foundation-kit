@@ -1,0 +1,757 @@
+/**
+ * Homepage section styles — front-page.php
+ *
+ * Sections:
+ *   1. Shared utilities (.resq-home-section, image placeholders, section headers)
+ *   2. Hero banner (.resq-hero)
+ *   3. Doorway split (.resq-doorway)
+ *   4. Concern lanes (.resq-concern-lanes)
+ *   5. Ingredient authority (.resq-ingredient-authority)
+ *   6. Social proof & mission (.resq-social-proof)
+ *
+ * Compliance: No CBD references appear on this page. Comfort language only.
+ *
+ * @package ResQ_Clean_Pro
+ */
+
+/* ==========================================================================
+   1. Shared utilities
+   ========================================================================== */
+
+.resq-home-section {
+	width: 100%;
+	padding-block: var(--resq-section-padding-y);
+}
+
+.resq-home-section--cream {
+	background-color: var(--resq-color-warm-cream);
+}
+
+.resq-home-section--cream-deep {
+	background-color: var(--resq-color-warm-cream-deep);
+}
+
+.resq-home-section--honey {
+	background-color: var(--resq-color-honey-light);
+}
+
+.resq-home-section--sage {
+	background-color: var(--resq-color-sage-light);
+}
+
+.resq-home-section__inner {
+	max-width: var(--resq-container-max-width);
+	margin-inline: auto;
+	padding-inline: var(--resq-spacing-xl);
+}
+
+.resq-section-label {
+	display: inline-block;
+	margin-bottom: var(--resq-spacing-md);
+	font-size: var(--resq-font-size-xs);
+	font-weight: var(--resq-font-weight-bold);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--resq-color-honey);
+}
+
+.resq-section-label--sage {
+	color: var(--resq-color-sage);
+}
+
+.resq-section-label--muted {
+	color: var(--resq-color-text-muted);
+}
+
+/* Image placeholder styles are shared via components.css (.resq-img-placeholder). */
+
+/* ==========================================================================
+   2. Hero banner
+   ========================================================================== */
+
+.resq-hero {
+	padding-block: var(--resq-section-padding-y-lg);
+	background-color: var(--resq-color-warm-cream);
+	overflow: hidden;
+}
+
+.resq-hero__inner {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--resq-spacing-2xl);
+	max-width: var(--resq-container-max-width);
+	margin-inline: auto;
+	padding-inline: var(--resq-spacing-xl);
+	align-items: center;
+}
+
+.resq-hero__content {
+	display: flex;
+	flex-direction: column;
+	gap: var(--resq-spacing-lg);
+}
+
+.resq-hero__headline {
+	margin: 0;
+	font-family: var(--resq-font-family-display);
+	font-size: var(--resq-font-size-4xl);
+	font-weight: var(--resq-font-weight-bold);
+	line-height: 1.1;
+	color: var(--resq-color-text-primary);
+	letter-spacing: -0.03em;
+}
+
+.resq-hero__subheadline {
+	margin: 0;
+	font-size: var(--resq-font-size-lg);
+	line-height: var(--resq-line-height-loose);
+	color: var(--resq-color-text-secondary);
+	max-width: 36rem;
+}
+
+.resq-hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--resq-spacing-md);
+}
+
+.resq-hero__cta--primary {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--resq-spacing-xs);
+	padding: var(--resq-spacing-md) var(--resq-spacing-xl);
+	font-size: var(--resq-font-size-md);
+	font-weight: var(--resq-font-weight-bold);
+	color: var(--resq-color-text-on-dark);
+	background-color: var(--resq-color-primary);
+	border: 2px solid var(--resq-color-primary);
+	border-radius: var(--resq-radius-md);
+	text-decoration: none;
+	transition: opacity var(--resq-transition-speed-fast) var(--resq-transition-timing),
+		transform var(--resq-transition-speed-fast) var(--resq-transition-timing);
+}
+
+.resq-hero__cta--secondary {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--resq-spacing-xs);
+	padding: var(--resq-spacing-md) var(--resq-spacing-xl);
+	font-size: var(--resq-font-size-md);
+	font-weight: var(--resq-font-weight-bold);
+	color: var(--resq-color-text-primary);
+	background-color: transparent;
+	border: 2px solid var(--resq-color-border-dark);
+	border-radius: var(--resq-radius-md);
+	text-decoration: none;
+	transition: background-color var(--resq-transition-speed-fast) var(--resq-transition-timing),
+		transform var(--resq-transition-speed-fast) var(--resq-transition-timing);
+}
+
+.resq-hero__cta--primary:hover,
+.resq-hero__cta--primary:focus-visible {
+	opacity: 0.88;
+	transform: translateY(-1px);
+}
+
+.resq-hero__cta--secondary:hover,
+.resq-hero__cta--secondary:focus-visible {
+	background-color: var(--resq-color-bg-muted);
+	transform: translateY(-1px);
+}
+
+.resq-hero__image {
+	aspect-ratio: 4 / 3;
+	width: 100%;
+}
+
+.resq-hero__trust-strip {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--resq-spacing-md) var(--resq-spacing-xl);
+	align-items: center;
+	padding-top: var(--resq-spacing-md);
+	border-top: 1px solid var(--resq-color-border-light);
+}
+
+.resq-hero__trust-item {
+	display: flex;
+	align-items: center;
+	gap: var(--resq-spacing-xs);
+	font-size: var(--resq-font-size-xs);
+	font-weight: var(--resq-font-weight-medium);
+	color: var(--resq-color-text-muted);
+	letter-spacing: 0.03em;
+}
+
+.resq-hero__trust-icon {
+	font-size: var(--resq-font-size-md);
+	line-height: 1;
+}
+
+/* ==========================================================================
+   3. Doorway split — dual audience entry
+   ========================================================================== */
+
+.resq-doorway__inner {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--resq-spacing-lg);
+	max-width: var(--resq-container-max-width);
+	margin-inline: auto;
+	padding-inline: var(--resq-spacing-xl);
+}
+
+.resq-doorway__card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border: 1px solid var(--resq-color-border-light);
+	border-radius: var(--resq-radius-lg);
+	background: var(--resq-color-bg-card);
+	transition: box-shadow var(--resq-transition-speed-base) var(--resq-transition-timing),
+		transform var(--resq-transition-speed-base) var(--resq-transition-timing);
+}
+
+.resq-doorway__card:hover {
+	box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+	transform: translateY(-2px);
+}
+
+.resq-doorway__card-image {
+	aspect-ratio: 3 / 2;
+	width: 100%;
+}
+
+.resq-doorway__card-body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--resq-spacing-md);
+	padding: var(--resq-spacing-xl);
+}
+
+.resq-doorway__card-headline {
+	margin: 0;
+	font-family: var(--resq-font-family-display);
+	font-size: var(--resq-font-size-2xl);
+	font-weight: var(--resq-font-weight-bold);
+	line-height: 1.2;
+	color: var(--resq-color-text-primary);
+	letter-spacing: -0.02em;
+}
+
+.resq-doorway__card-sub {
+	margin: 0;
+	font-size: var(--resq-font-size-md);
+	line-height: var(--resq-line-height-loose);
+	color: var(--resq-color-text-secondary);
+}
+
+.resq-doorway__card-cta {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--resq-spacing-xs);
+	align-self: flex-start;
+	padding: var(--resq-spacing-sm) var(--resq-spacing-lg);
+	font-size: var(--resq-font-size-sm);
+	font-weight: var(--resq-font-weight-bold);
+	color: var(--resq-color-text-on-dark);
+	background-color: var(--resq-color-primary);
+	border-radius: var(--resq-radius-md);
+	text-decoration: none;
+	transition: opacity var(--resq-transition-speed-fast) var(--resq-transition-timing);
+}
+
+.resq-doorway__card-cta:hover,
+.resq-doorway__card-cta:focus-visible {
+	opacity: 0.88;
+}
+
+.resq-doorway__card-cta::after {
+	content: '→';
+	display: inline-block;
+	transition: transform var(--resq-transition-speed-fast) var(--resq-transition-timing);
+}
+
+.resq-doorway__card-cta:hover::after {
+	transform: translateX(3px);
+}
+
+/* ==========================================================================
+   4. Concern lanes — symptom-led problem lanes
+   ========================================================================== */
+
+.resq-concern-lanes__header {
+	text-align: center;
+	margin-bottom: var(--resq-spacing-2xl);
+}
+
+.resq-concern-lanes__title {
+	margin: 0;
+	font-family: var(--resq-font-family-display);
+	font-size: var(--resq-font-size-3xl);
+	font-weight: var(--resq-font-weight-bold);
+	line-height: 1.2;
+	color: var(--resq-color-text-primary);
+	letter-spacing: -0.02em;
+}
+
+.resq-concern-lanes__grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--resq-spacing-md);
+	max-width: var(--resq-container-max-width);
+	margin-inline: auto;
+	padding-inline: var(--resq-spacing-xl);
+}
+
+.resq-concern-card {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border-radius: var(--resq-radius-lg);
+	border: 1px solid var(--resq-color-border-light);
+	background: var(--resq-color-bg-card);
+	text-decoration: none;
+	color: inherit;
+	transition: box-shadow var(--resq-transition-speed-base) var(--resq-transition-timing),
+		transform var(--resq-transition-speed-base) var(--resq-transition-timing);
+}
+
+.resq-concern-card:hover,
+.resq-concern-card:focus-visible {
+	box-shadow: 0 6px 24px rgba(0,0,0,0.09);
+	transform: translateY(-2px);
+	outline: 2px solid var(--resq-color-sage);
+	outline-offset: 2px;
+}
+
+.resq-concern-card__image {
+	aspect-ratio: 4 / 3;
+	width: 100%;
+}
+
+.resq-concern-card__body {
+	padding: var(--resq-spacing-md) var(--resq-spacing-lg);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--resq-spacing-sm);
+}
+
+.resq-concern-card__label {
+	font-size: var(--resq-font-size-md);
+	font-weight: var(--resq-font-weight-bold);
+	color: var(--resq-color-text-primary);
+	line-height: 1.3;
+}
+
+.resq-concern-card__arrow {
+	flex-shrink: 0;
+	width: 2rem;
+	height: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: var(--resq-color-bg-muted);
+	font-size: var(--resq-font-size-sm);
+	color: var(--resq-color-text-secondary);
+	transition: background-color var(--resq-transition-speed-fast) var(--resq-transition-timing),
+		color var(--resq-transition-speed-fast) var(--resq-transition-timing);
+}
+
+.resq-concern-card:hover .resq-concern-card__arrow,
+.resq-concern-card:focus-visible .resq-concern-card__arrow {
+	background: var(--resq-color-primary);
+	color: var(--resq-color-text-on-dark);
+}
+
+/* ==========================================================================
+   5. Ingredient authority block
+   ========================================================================== */
+
+.resq-ingredient-authority__inner {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--resq-spacing-2xl);
+	max-width: var(--resq-container-max-width);
+	margin-inline: auto;
+	padding-inline: var(--resq-spacing-xl);
+	align-items: center;
+}
+
+.resq-ingredient-authority__content {
+	display: flex;
+	flex-direction: column;
+	gap: var(--resq-spacing-lg);
+}
+
+.resq-ingredient-authority__headline {
+	margin: 0;
+	font-family: var(--resq-font-family-display);
+	font-size: var(--resq-font-size-4xl);
+	font-weight: var(--resq-font-weight-bold);
+	line-height: 1.1;
+	color: var(--resq-color-text-primary);
+	letter-spacing: -0.03em;
+}
+
+.resq-ingredient-authority__headline em {
+	font-style: normal;
+	color: var(--resq-color-honey);
+}
+
+.resq-ingredient-authority__body {
+	margin: 0;
+	font-size: var(--resq-font-size-md);
+	line-height: var(--resq-line-height-loose);
+	color: var(--resq-color-text-secondary);
+	max-width: 36rem;
+}
+
+.resq-ingredient-authority__badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--resq-spacing-sm);
+}
+
+.resq-ingredient-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--resq-spacing-xs);
+	padding: var(--resq-spacing-xs) var(--resq-spacing-md);
+	font-size: var(--resq-font-size-xs);
+	font-weight: var(--resq-font-weight-bold);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--resq-color-sage);
+	background: var(--resq-color-sage-light);
+	border: 1px solid var(--resq-color-sage-muted);
+	border-radius: 100px;
+}
+
+.resq-ingredient-authority__cta {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--resq-spacing-xs);
+	align-self: flex-start;
+	padding: var(--resq-spacing-sm) var(--resq-spacing-xl);
+	font-size: var(--resq-font-size-sm);
+	font-weight: var(--resq-font-weight-bold);
+	color: var(--resq-color-text-primary);
+	background: transparent;
+	border: 2px solid var(--resq-color-text-primary);
+	border-radius: var(--resq-radius-md);
+	text-decoration: none;
+	transition: background-color var(--resq-transition-speed-fast) var(--resq-transition-timing),
+		color var(--resq-transition-speed-fast) var(--resq-transition-timing);
+}
+
+.resq-ingredient-authority__cta:hover,
+.resq-ingredient-authority__cta:focus-visible {
+	background-color: var(--resq-color-primary);
+	color: var(--resq-color-text-on-dark);
+	border-color: var(--resq-color-primary);
+}
+
+.resq-ingredient-authority__image {
+	aspect-ratio: 5 / 6;
+	width: 100%;
+	max-width: 28rem;
+	justify-self: center;
+}
+
+/* ==========================================================================
+   6. Social proof & mission pledge
+   ========================================================================== */
+
+.resq-social-proof__inner {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--resq-spacing-2xl);
+	max-width: var(--resq-container-max-width);
+	margin-inline: auto;
+	padding-inline: var(--resq-spacing-xl);
+}
+
+.resq-social-proof__headline {
+	grid-column: 1 / -1;
+	margin: 0 0 var(--resq-spacing-md);
+	font-family: var(--resq-font-family-display);
+	font-size: var(--resq-font-size-3xl);
+	font-weight: var(--resq-font-weight-bold);
+	line-height: 1.15;
+	color: var(--resq-color-text-primary);
+	letter-spacing: -0.02em;
+	text-align: center;
+}
+
+/* Results column */
+.resq-social-proof__results {
+	display: flex;
+	flex-direction: column;
+	gap: var(--resq-spacing-lg);
+}
+
+.resq-before-after {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--resq-spacing-xs);
+	border-radius: var(--resq-radius-lg);
+	overflow: hidden;
+}
+
+.resq-before-after__panel {
+	position: relative;
+	aspect-ratio: 3 / 4;
+}
+
+.resq-before-after__panel .resq-img-placeholder {
+	height: 100%;
+	border-radius: 0;
+}
+
+.resq-before-after__tag {
+	position: absolute;
+	top: var(--resq-spacing-sm);
+	left: var(--resq-spacing-sm);
+	padding: 2px var(--resq-spacing-xs);
+	font-size: var(--resq-font-size-xs);
+	font-weight: var(--resq-font-weight-bold);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--resq-color-text-on-dark);
+	background: rgba(0,0,0,0.55);
+	border-radius: var(--resq-radius-sm);
+}
+
+.resq-social-proof__results-body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--resq-spacing-md);
+}
+
+.resq-social-proof__copy {
+	margin: 0;
+	font-size: var(--resq-font-size-md);
+	line-height: var(--resq-line-height-loose);
+	color: var(--resq-color-text-secondary);
+}
+
+.resq-social-proof__guarantee {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--resq-spacing-sm);
+	padding: var(--resq-spacing-md);
+	background: var(--resq-color-bg-surface);
+	border: 1px solid var(--resq-color-border-light);
+	border-radius: var(--resq-radius-md);
+}
+
+.resq-social-proof__guarantee-icon {
+	flex-shrink: 0;
+	font-size: var(--resq-font-size-xl);
+	line-height: 1;
+}
+
+.resq-social-proof__guarantee-text {
+	font-size: var(--resq-font-size-sm);
+	color: var(--resq-color-text-secondary);
+	line-height: var(--resq-line-height-base);
+}
+
+.resq-social-proof__guarantee-text strong {
+	display: block;
+	color: var(--resq-color-text-primary);
+	font-size: var(--resq-font-size-md);
+	margin-bottom: 2px;
+}
+
+.resq-social-proof__cta {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--resq-spacing-xs);
+	align-self: flex-start;
+	padding: var(--resq-spacing-sm) var(--resq-spacing-xl);
+	font-size: var(--resq-font-size-sm);
+	font-weight: var(--resq-font-weight-bold);
+	color: var(--resq-color-text-on-dark);
+	background: var(--resq-color-primary);
+	border-radius: var(--resq-radius-md);
+	text-decoration: none;
+	transition: opacity var(--resq-transition-speed-fast) var(--resq-transition-timing);
+}
+
+.resq-social-proof__cta:hover,
+.resq-social-proof__cta:focus-visible {
+	opacity: 0.88;
+}
+
+/* Mission pledge column */
+.resq-mission-pledge {
+	display: flex;
+	flex-direction: column;
+	gap: var(--resq-spacing-lg);
+	padding: var(--resq-spacing-xl);
+	background: var(--resq-color-sage);
+	border-radius: var(--resq-radius-lg);
+	color: var(--resq-color-text-on-dark);
+}
+
+.resq-mission-pledge__badge {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--resq-spacing-xs);
+	padding: var(--resq-spacing-xs) var(--resq-spacing-md);
+	font-size: var(--resq-font-size-xs);
+	font-weight: var(--resq-font-weight-bold);
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--resq-color-sage);
+	background: rgba(255,255,255,0.95);
+	border-radius: 100px;
+	align-self: flex-start;
+}
+
+.resq-mission-pledge__headline {
+	margin: 0;
+	font-family: var(--resq-font-family-display);
+	font-size: var(--resq-font-size-2xl);
+	font-weight: var(--resq-font-weight-bold);
+	line-height: 1.2;
+	color: rgba(255,255,255,0.97);
+	letter-spacing: -0.02em;
+}
+
+.resq-mission-pledge__copy {
+	margin: 0;
+	font-size: var(--resq-font-size-md);
+	line-height: var(--resq-line-height-loose);
+	color: rgba(255,255,255,0.82);
+}
+
+.resq-mission-pledge__stat {
+	display: flex;
+	align-items: center;
+	gap: var(--resq-spacing-md);
+	padding: var(--resq-spacing-md);
+	background: rgba(255,255,255,0.1);
+	border-radius: var(--resq-radius-md);
+}
+
+.resq-mission-pledge__stat-number {
+	font-family: var(--resq-font-family-display);
+	font-size: var(--resq-font-size-4xl);
+	font-weight: var(--resq-font-weight-bold);
+	color: #fff;
+	line-height: 1;
+	white-space: nowrap;
+}
+
+.resq-mission-pledge__stat-label {
+	font-size: var(--resq-font-size-sm);
+	color: rgba(255,255,255,0.8);
+	line-height: var(--resq-line-height-base);
+}
+
+.resq-mission-pledge__cta {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--resq-spacing-xs);
+	align-self: flex-start;
+	padding: var(--resq-spacing-sm) var(--resq-spacing-xl);
+	font-size: var(--resq-font-size-sm);
+	font-weight: var(--resq-font-weight-bold);
+	color: var(--resq-color-sage);
+	background: #fff;
+	border-radius: var(--resq-radius-md);
+	text-decoration: none;
+	transition: opacity var(--resq-transition-speed-fast) var(--resq-transition-timing);
+}
+
+.resq-mission-pledge__cta:hover,
+.resq-mission-pledge__cta:focus-visible {
+	opacity: 0.90;
+}
+
+/* ==========================================================================
+   Responsive — tablet & desktop
+   ========================================================================== */
+
+@media (min-width: 768px) {
+	.resq-hero__inner {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.resq-hero__headline {
+		font-size: var(--resq-font-size-5xl);
+	}
+
+	.resq-doorway__inner {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.resq-concern-lanes__grid {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	.resq-ingredient-authority__inner {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.resq-ingredient-authority__headline {
+		font-size: var(--resq-font-size-5xl);
+	}
+
+	.resq-ingredient-authority__image {
+		justify-self: end;
+	}
+
+	.resq-social-proof__inner {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.resq-social-proof__headline {
+		text-align: left;
+	}
+}
+
+@media (min-width: 1024px) {
+	.resq-hero__inner {
+		grid-template-columns: 5fr 4fr;
+		gap: var(--resq-spacing-3xl);
+	}
+
+	.resq-hero__headline {
+		font-size: var(--resq-font-size-6xl);
+	}
+
+	.resq-ingredient-authority__inner {
+		grid-template-columns: 5fr 4fr;
+		gap: var(--resq-spacing-3xl);
+	}
+
+	.resq-ingredient-authority__headline {
+		font-size: var(--resq-font-size-5xl);
+	}
+}
+
+/* ==========================================================================
+   Reduced motion — respect user preference
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+	.resq-doorway__card,
+	.resq-concern-card,
+	.resq-hero__cta--primary,
+	.resq-hero__cta--secondary,
+	.resq-ingredient-authority__cta {
+		transition: none;
+	}
+
+	.resq-doorway__card:hover,
+	.resq-concern-card:hover {
+		transform: none;
+	}
+}

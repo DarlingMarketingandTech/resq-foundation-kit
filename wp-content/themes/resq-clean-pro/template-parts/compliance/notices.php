@@ -20,7 +20,7 @@ if ( empty( $notices ) || ! is_array( $notices ) ) {
 		<?php if ( empty( $notice['text'] ) ) : ?>
 			<?php continue; ?>
 		<?php endif; ?>
-		<div class="resq-compliance-notice">
+		<div class="resq-compliance-notice<?php echo ! empty( $notice['dev_preview'] ) ? ' resq-compliance-notice--dev-preview' : ''; ?>">
 			<?php echo esc_html( (string) $notice['text'] ); ?>
 		</div>
 	<?php endforeach; ?>

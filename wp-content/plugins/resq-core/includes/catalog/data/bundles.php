@@ -17,7 +17,7 @@ if ( ! function_exists( 'resq_catalog_get_bundles' ) ) {
 		$bundles_human = array( resq_catalog_cat( 'bundles-human', 'Human Bundles' ) );
 		$bundles_pet   = array( resq_catalog_cat( 'bundles-pet', 'Pet Bundles' ) );
 
-		return array(
+		$bundles = array(
 			'RQ-KIT-PET-HOTSPOT' => array(
 				'name'         => 'Pet Hot Spot Rescue Kit',
 				'price'        => '89.95',
@@ -282,6 +282,49 @@ if ( ! function_exists( 'resq_catalog_get_bundles' ) ) {
 					array( 'sku' => 'RQ-PET-DIABETIC-TREATS', 'qty' => 3 ),
 				),
 			),
+		);
+
+		foreach ( resq_catalog_get_bundle_image_map() as $sku => $image_data ) {
+			if ( isset( $bundles[ $sku ] ) ) {
+				$bundles[ $sku ] = array_merge( $bundles[ $sku ], $image_data );
+			}
+		}
+
+		return $bundles;
+	}
+}
+
+if ( ! function_exists( 'resq_catalog_get_bundle_image_map' ) ) {
+	/**
+	 * Return Media Library image slugs keyed by bundle and multipack SKU.
+	 *
+	 * @return array<string, array<string, mixed>>
+	 */
+	function resq_catalog_get_bundle_image_map(): array {
+		return array(
+			'RQ-KIT-PET-HOTSPOT'        => array( 'image' => 'dog-skin-care-gentle-effective-lifestyle', 'gallery' => array( 'dog-skin-care-cream-manuka-honey-4oz', 'dog-shampoo-manuka-honey-16oz', 'dog-conditioner-manuka-honey-16oz' ) ),
+			'RQ-DUO-PET-COAT'           => array( 'image' => 'dog-skin-care-gentle-effective-lifestyle', 'gallery' => array( 'dog-shampoo-manuka-honey-16oz', 'dog-conditioner-manuka-honey-16oz' ) ),
+			'RQ-KIT-PCBD-CALM-500'      => array( 'image' => 'cbd-for-pets-natural', 'gallery' => array( 'cbd-hemp-oil-pets-beef-cheese-300mg', 'cbd-infused-organic-dog-treats-2' ) ),
+			'RQ-KIT-PCBD-CALM-1000'     => array( 'image' => 'cbd-for-pets-natural', 'gallery' => array( 'cbd-hemp-oil-pets-beef-cheese-300mg', 'cbd-infused-organic-dog-treats-2' ) ),
+			'RQ-KIT-PET-SENIOR'         => array( 'image' => 'dog-skin-care-conditions-lifestyle', 'gallery' => array( 'dog-skin-care-cream-manuka-honey-4oz', 'cbd-hemp-oil-pets-beef-cheese-300mg', 'diabetic-dog-treats-2' ) ),
+			'RQ-KIT-HORSE-SKIN'         => array( 'image' => 'horse-skin-care-natural-healing-lifestyle', 'gallery' => array( 'horse-skin-care-cream-manuka-honey-8oz', 'horse-skin-care-vet-recommended-before-after', 'ingredients-cream-honey-aloe-triptych' ) ),
+			'RQ-KIT-HUM-WOMENS'         => array( 'image' => 'womens-complete-5piece-bundle', 'gallery' => array( 'womens-ultimate-face-body-cream', 'womens-face-body-wash', 'womens-night-serum' ) ),
+			'RQ-KIT-HUM-ANTIAGING'      => array( 'image' => 'womens-skincare-3piece-bundle', 'gallery' => array( 'womens-night-serum', 'womens-microderm-scrub', 'womens-ultimate-face-body-cream' ) ),
+			'RQ-KIT-HUM-WOMENS-STARTER' => array( 'image' => 'womens-skincare-3piece-bundle', 'gallery' => array( 'womens-face-body-wash', 'womens-ultimate-face-body-cream' ) ),
+			'RQ-KIT-HUM-MENS'           => array( 'image' => 'mens-line-complete-collection', 'gallery' => array( 'mens-face-body-wash', 'mens-face-body-moisturizer-2', 'mens-anti-aging-night-serum' ) ),
+			'RQ-KIT-HUM-MENS-ELITE'     => array( 'image' => 'mens-line-complete-collection', 'gallery' => array( 'mens-face-body-wash', 'mens-face-body-moisturizer-2', 'mens-skin-care-cream-8oz', 'mens-anti-aging-night-serum' ) ),
+			'RQ-DUO-HUM-MENSHAIR'       => array( 'image' => 'mens-hair-loss-prevention-shampoo', 'gallery' => array( 'womens-hair-loss-shampoo-conditioner-bundle' ) ),
+			'RQ-DUO-HUM-HAIR'           => array( 'image' => 'womens-hair-loss-shampoo-conditioner-bundle', 'gallery' => array( 'womens-hair-loss-prevention-shampoo', 'womens-hair-loss-prevention-conditioner' ) ),
+			'RQ-DUO-BABY-BATH'          => array( 'image' => 'baby-skin-treatment-lifestyle', 'gallery' => array( 'baby-face-body-wash', 'baby-skin-treatment' ) ),
+			'RQ-KIT-HCBD-NIGHT'         => array( 'image' => 'sleep-gummies-cbd', 'gallery' => array( 'cbd-bath-bomb-for-pain' ) ),
+			'RQ-KIT-HCBD-RELIEF'        => array( 'image' => 'intensive-releif-rub-cbd', 'gallery' => array( 'cbd-bath-bomb-for-healing' ) ),
+			'RQ-KIT-HCBD-DAILY'         => array( 'image' => 'full-spectrum-cbd-oil-2', 'gallery' => array( 'vegan-gummies-cbd' ) ),
+			'RQ-PK-HCBD-BATH-3'         => array( 'image' => 'cbd-bath-bomb-for-pain', 'gallery' => array( 'cbd-bath-bomb-for-healing' ) ),
+			'RQ-PK-HCBD-BATH-5'         => array( 'image' => 'cbd-bath-bomb-for-pain', 'gallery' => array( 'cbd-bath-bomb-for-healing' ) ),
+			'RQ-PK-HCBD-GUMMIES-2'      => array( 'image' => 'vegan-gummies-cbd' ),
+			'RQ-PK-HCBD-GUMMIES-3'      => array( 'image' => 'vegan-gummies-cbd' ),
+			'RQ-PK-PET-DIABETIC-2'      => array( 'image' => 'diabetic-dog-treats-2', 'gallery' => array( 'diabetic-dog-treats-alt' ) ),
+			'RQ-PK-PET-DIABETIC-3'      => array( 'image' => 'diabetic-dog-treats-2', 'gallery' => array( 'diabetic-dog-treats-alt' ) ),
 		);
 	}
 }
